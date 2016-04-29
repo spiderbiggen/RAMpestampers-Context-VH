@@ -30,6 +30,7 @@ In this section the hardware/software mapping Tygron uses will be explained, as 
 Tygron has its own server, from which it communicates with all other entities. For each group of users, there is a seperate server which contains their world and on which those users can work. The general Tygron server knows these other servers and will redirect the user to the particular server. So, when a customer wants to connect to Tygron, it will first connect to this general server. Also, this general server has contact with other servers which are not connected to Tygron. For example, when a customer wants to build a part of a city to play on, the general server will connect to some other servers that give information about this place, like where the buildings are and what the use of those buildings is. 
 
 \subsubsection{Our project}
+<<<<<<< HEAD
 
 \begin{figure}[h!]
   \centering
@@ -38,6 +39,9 @@ Tygron has its own server, from which it communicates with all other entities. F
   \label{fig:tygron2}
 \end{figure}
 In our project we have our own server with all TU Delft students. But there is another thing that needs to be different: the way we connect to that server. Since we don't use humans, but agents to play the game, those agents need to connect in some way to the server. To do so we have a connector between our instance and the server. This connector will use the goal code we wrote and will translate this into actions in the game. This way our agent can play the game. \ref{fig:tygron2} illustrates this.
+=======
+In our project we have our own server with all TU Delft students. But there is another thing that needs to be different: the way we connect to that server. Since we don't use humans, but agents to play the game, those agents need to connect in some way to the server. To do so we have a connector between our instance and the server. This connector will use the goal code we wrote and will translate this into actions in the game. This way our agent can play the game. The picture in Persistent data management illustrates this.
+>>>>>>> master
 
 \newpage
 \subsection{Persistent data management}
@@ -59,7 +63,7 @@ In GOAL the data the agent uses is stored in multiple databases. The agent has a
 
 \newpage
 \subsection{Concurrency}
-
+Each group in the Virtual Humans for Serious Gaming context project will develop a cognitive agent, so there will be 5 roles and therefore multiple agents. An agent itself does not make use of concurrency, but all the agents together will run parallel and are running in 1 environment. When there are multiple agents running, there is concurrency. A crucial thing to find solutions for city design and development projects in a game is communication between the agents. The agents have to be able to communicate and find a solution together that fulfil the goals of the agents as much as possible.
 
 
 
