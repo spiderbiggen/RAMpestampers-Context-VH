@@ -33,6 +33,7 @@ In GOAL the data the agent uses is stored in multiple databases. The agent has a
   \caption{Updating the agent's database.}
   \label{fig:agentstate1}
 \end{figure}
+In GOAL the data the agent uses is stored in multiple databases. The agent has a knowledge base which is the same for every environment that he might find himself in. This data is simply stored as GOAL code in the agent his GOAL files. The rest of the data that the agent uses is dynamic and his state is updated constantly according to the situation that the agent is currently in. Our agent maintains two different databases of facts. One database called the goal base consists of things the agent wants to achieve. The other database is called the belief base and consists of facts that the agent believes are true (now).  Figure \ref{fig:agentstate1} \cite{goal} shows how the databases of the agent are updated.
 
 \newpage
 \subsection{Concurrency}
