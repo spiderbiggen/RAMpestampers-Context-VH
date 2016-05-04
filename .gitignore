@@ -91,6 +91,6 @@ local.properties
 *.out
 *.synctex.gz
 #==============================================================================#
-
-
+documents/*.pdf
+documents/*/*.pdf
 
