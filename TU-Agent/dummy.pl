@@ -8,4 +8,4 @@
 havebuilding :- buildings([X|Y]).
 
 % to have land is now a believe
-land.
+land(none).
