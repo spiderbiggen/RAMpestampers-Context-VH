@@ -1,5 +1,9 @@
 use dummy as knowledge.
 
+define	building_plan_construction(Id, Level, MultiPolygon) with
+   pre{ true }
+   post{ true }
+   
 define map_buy_land(MultiPolygon, Double) with
 	pre{ true }
 	post{ true }
