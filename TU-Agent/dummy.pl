@@ -6,3 +6,6 @@
 
 % we have a building if the building list has at least 1 element.
 havebuilding :- buildings([X|Y]).
+
+% to have land is now a believe
+land.
