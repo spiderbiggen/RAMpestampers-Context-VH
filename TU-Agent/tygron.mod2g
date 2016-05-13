@@ -7,10 +7,5 @@ exit=always.
 module helloWorld {
 	% find a piece of pre-determined ground and attempt to buy it	
 	if true
-		then map_buy_land(2, square(10,10,200,10), 500).
-	
-	% find a function to build a road (always 1 floor)
-	 if bel(functions(FS), member([NAME,Id,L],FS), member('EDUCATION',L)) 
-		then building_plan_construction(Id, 3, square(10,10,200,10)).
-		
+		then map_buy_land(square(10,10,200,10), 500).
 }
