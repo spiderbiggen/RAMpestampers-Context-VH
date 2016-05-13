@@ -2,7 +2,7 @@ use dummy as knowledge.
 use tygron as actionspec.
 use somegoal as goals.
 
-exit=always.
+exit=nogoals.
 
 module helloWorld {
 	% find a piece of pre-determined ground and attempt to buy it	
