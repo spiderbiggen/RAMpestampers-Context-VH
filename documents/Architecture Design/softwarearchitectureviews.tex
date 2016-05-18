@@ -5,23 +5,23 @@ This section describes the software architecture views, it explains the subsyste
 
 \begin{figure}[h!]
   \centering
-  \includegraphics[scale=0.35]{Tygrondatabase1.png}
+  \includegraphics[scale=0.55]{Tygrondatabase3.png}
   \caption{Diagram of the Tygron Engine connected to the database and the GOAL agent.}
   \label{fig:tygron1}
 \end{figure}
-The architecture is divided into different subsystems. It consists of the database, tygron engine server, several clients and several agents. In this section we will explain what each part is and does.
+The architecture is divided into different subsystems. It consists of the database, Tygron engine server, several clients and several agents. In this section we will explain what each part is and does.
 
 \begin{itemize}
 	\item \textbf{The Database} \\ 
-	The database in the system is used to save all kinds of data. This database stores all the data that is used to build the environment like the roads, buildings, rivers, etc. 
+	The database in the system is used to save all kinds of data that is used to build the environment. This data contains for example the roads, buildings, rivers, etc.
 	\item \textbf{The Tygron Engine Server (\textit{TES})} \\ 
-	The Tygron Engine server is used to serve all the data to the correct clients and agents. 
+	The Tygron Engine server is used to serve all the data to the correct clients and agents. The engine is an online 3D project software for urban planners, architects and engineers. It is a tool that streamlines the planning process and substantially reduces the time and costs involved in urban projects according to the Tygron website.
 	\item \textbf{A Client} \\
-	A client is a human interacting with the Tygron Engine Software. There can be multiple clients per \textit{TES}.
+	A client is a human interacting with the Tygron Engine Software. There can be multiple clients per \textit{TES}. The client can be a stakeholder and play the game according the strategy the stakeholder has in real live. 
 	\item \textbf{The SDK} \\
 	The SDK (Software Development Kit) is used to connect agents to the \textit{TES}.
 	\item \textbf{An Agent} \\
-	An agent is a computer controlled entity that acts like a client. There can be multiple agents per \textit{TES}. 
+	An agent is a computer controlled entity that acts like a client. There can be multiple agents per \textit{TES}. The agent can replace a client.
 \end{itemize}
 
 \newpage
