@@ -1,5 +1,6 @@
 use "tygronenv-1.0.6-jar-with-dependencies.jar" as environment 
-	with map = "daantest" .
+	with map = "demoproject" ,
+	stakeholder = "EDUCATION".
 
 define tygronagent as agent {
 	use tygron as main module.
