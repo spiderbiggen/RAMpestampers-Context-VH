@@ -18,8 +18,8 @@
 \begin{tabular}{ l l }
   Description & Information about the agent his stakeholder ID.  \\
   Type & Send once. \\
-  Syntax & self($<$STAKE\_ID$>$) \\
-  Parameters & $<$STAKE\_ID$>$: Unique indentifier for this stakeholder\\\\
+  Syntax & self($<$S\_ID$>$) \\
+  Parameters & $<$S\_ID$>$: Unique indentifier for this stakeholder.
 
 \end{tabular}
 
@@ -44,7 +44,7 @@
     & indicator. $<$TARG\_VAL$>$: The target value of the indicator. 
 \end{tabular}
 
-\subsection*{Indicator\_link}
+\subsection*{Indicator link}
 
 \begin{tabular}{ l l }
   Description & Links the stakeholders to the indicators.  \\
@@ -66,13 +66,13 @@
     & zone. $<$ALLOWED\_CATEGORIES$>$ : The allowed categories for this zone.
 \end{tabular}
 
-\subsection*{Zone\_link}
+\subsection*{Zone link}
 
 \begin{tabular}{ l l }
-  Description & Links a zone to an indicator.  \\
+  Description & Links the zones to the indicators.  \\
   Type & Send on change. \\
   Syntax & zone\_link($<$Z\_ID$>$, $<$IN\_ID$>$, $<$CUR\_VAL$>$, $<$TAR\_VAL$>$) \\
-  Parameters &  $<$Z\_ID$>$: Unique identifier for a zone. $<$IN\_ID$>$:Unique identifier for an indicator. \\
+  Parameters &  $<$Z\_ID$>$: Unique identifier for a zone. $<$IN\_ID$>$: Unique identifier for an indicator. \\
     & $<$CUR\_VAL$>$: The current value of the indicator. $<$TAR\_VAL$>$:  The target value \\
     & of the indicator.
 \end{tabular}
@@ -96,7 +96,7 @@
   Description & Information about a piece of land.  \\
   Type & Send on change. \\
   Syntax & building($<$LOCATION$>$, $<$S\_ID$>$) \\
-  Parameters &  $<$LOCATION$>$: The location of the land. $<$S\_ID$>$ : Identifier of the stakeholder \\
+  Parameters &  $<$LOCATION$>$: The location of the land. $<$S\_ID$>$: Identifier of the stakeholder \\
     &  that owns this land.
 \end{tabular}
 
