@@ -1,7 +1,7 @@
 \section{Software architecture views}
-
-\subsection{Subsystem decomposition}
 This section describes the software architecture views, it explains the subsystem decomposition, the hardware/software mapping, persistent data management and the concurrency.
+\subsection{Subsystem decomposition}
+
 
 \begin{figure}[h!]
   \centering
@@ -29,7 +29,7 @@ The architecture is divided into different subsystems. It consists of the databa
 In this section the hardware/software mapping Tygron uses will be explained, as well as the way our agent will be connected to this.
 
 \subsubsection{Tygron}
-Tygron has its own servers, from which it communicates with all other entities. For each group of users, there is a seperate server which contains their world and on which those users can work. The general Tygron server knows these other servers and will redirect the user to the particular server. So, when a customer wants to connect to Tygron, it will first connect to this general server. Also, this general server has contact with other servers which are not connected to Tygron. For example, when a customer wants to build a part of a city to play on, the general server will connect to some other servers that give information about this place, like where the buildings are and what the use of those buildings is. 
+Tygron has its own servers, from which it communicates with all other entities. For each group of users, there is a seperate server which contains the world that is used for the game and which this group of users can work on. The general Tygron server knows these other servers and will redirect the user to the particular server. So, when a customer wants to connect to Tygron, it will first connect to this general server. Also, this general server has contact with other servers which are not connected to Tygron. For example, when a customer wants to build a part of a city to play on, the general server will connect to some other servers that give information about this place, like where the buildings are and what the use of those buildings is. 
 
 \subsubsection{Our project}
 \begin{figure}[h!]
@@ -49,13 +49,13 @@ The data management for our project envelops multiple parts. We have a part wher
   \caption{Updating the agent's database.}
   \label{fig:agentstate1}
 \end{figure}
-In GOAL the data the agent uses is stored in multiple databases. The agent has a knowledge base which is the same for every environment that it might find itself in. This data is simply stored as GOAL code in the agent his GOAL files. The rest of the data that the agent uses is dynamic and its state is updated constantly according to the situation that the agent is currently in. Our agent maintains two different databases of facts. One database called the goal base consists of targets the agent wants to achieve. The other database is called the belief base and consists of facts that the agent believes are true (now). Figure \ref{fig:agentstate1} \cite{goal} shows how the databases of the agent are updated.
+In GOAL the data used by the agent is stored in multiple databases. The agent has a knowledge base which is the same for every environment that it might find itself in. This data is simply stored as GOAL code in the agent his GOAL files. The rest of the data that the agent uses is dynamic and its state is updated constantly according to the situation that the agent is currently in. Our agent maintains two different databases of facts. One database called the goal base consists of targets the agent wants to achieve. The other database is called the belief base and consists of facts that the agent believes are true (now). Figure \ref{fig:agentstate1} \cite{goal} shows how the databases of the agent are updated.
 
 
 
 \newpage
 \subsection{Concurrency}
-Each group in the Virtual Humans for Serious Gaming context project will develop a cognitive agent, so there will be five roles and therefore multiple agents. An agent itself does not make use of concurrency, but all the agents together will run parallel and are running in one environment. When there are multiple agents running, there is concurrency. When we connect to an online server in the end, the overall system uses some networking, which also causes some concurrency. A crucial thing to find solutions for city design and development projects in a game is communication between the agents. The agents have to be able to communicate and find a solution together that fulfil the goals of the agents as much as possible.
+Each group in the Virtual Humans for Serious Gaming context project will develop a cognitive agent, so there will be five roles and therefore multiple agents. An agent itself does not make use of concurrency, but all the agents together will run parallel and are running in one environment. When there are multiple agents running, there is concurrency. When we connect to an online server in the end, the overall system uses some networking, which also causes some concurrency. A crucial thing to find solutions for city design and development projects in a game is communication between the agents. The agents have to be able to communicate and find a solution together that fulfill the goals of the agents as much as possible.
 
 
 
