@@ -16,12 +16,12 @@ In this document the strategy about destroying buildings will be explained. In t
 \\
 \textit{"As an agent\\
 When in a simulation\\
-I am able to destroy stuff if I think 
+I am able to destroy buildings if I think 
 this is benificial for me\\
 To make room for construction or to 
 optimize a certain indicator."\\}
 
-There are two important parts in this user story that need to be discussed before implementing anything. The 'stuff' part: so which buildings need to be destroyed, and the 'benificial' part: so when buildings need to be destroyed. Again, these two questions will be discussed in the following two sections. 
+There are two important parts in this user story that need to be discussed before implementing anything. The 'stuff' part: so which buildings need to be destroyed, and the 'benificial' part: so when buildings need to be destroyed.
 
 \section{When/why to destroy buildings}
 In this section the reasons to destroy a building will be explained. There are two types of reasons and both of them ultimately give a better indicator score. The first reason is to directly influence an indicator, and the second reason is to make space for a new building that influences an indicator. Both will be discussed in the following sections. The agent needs to keep destroying buildings in order to build newer, higher buildings, until all indicators are at 100\%.
@@ -31,14 +31,14 @@ In this section the reasons to destroy a building will be explained. There are t
 There is one direct reason to destroy a building. We created an indicator 'Destroy old buildings' that has the goal to destroy all pre-war type of buildings. There are quite a lot of these buildings, and if they are all destroyed this indicator will get to the 100\%. This is a reason to just destroy some buildings without needing another reason and it has a direct influence on an indicator. However, just destroying buildings also has a downside: it will possibly lower the other three indicators. These are to have a positive budget, build more education buildings and build high education buildings. So: if you destroy a certain building there is a chance it will impact to total score negatively. The only way to make it possitive is to build a building on that ground: see the following section.
 
 \subsection{Indirect influence}
-Usually when a building is destroyed, there is no direct benefit. That's why there needs to be built a new building on that spot that improves the score of the building indicators. This will be further explained in the building strategy document, but it is important to realize when destroying something that there will be new land to build something on. So: even when destroying something is not immediately beneficial, there is a possibility it will be beneficial because there is a new area to build a building on.
+Usually when a building is destroyed, there is no direct benefit. That's why there needs to be built a new building on that spot that improves the score of the building indicators. This will be further explained in the building strategy document, but it is important to realize when destroying something that there will be new land to build something on. So even when destroying something is not immediately beneficial, there is a possibility it will be beneficial because there is a new area to build a building on.
 
 \section{Which building to destroy}
 This section is relatively easy compared to the previous one. In this section it will be explained which building should be destroyed. There is only one indicator that benefits from destroying buildings, and that indicator is the 'Destroy old buildings' indicator. So: when a building needs to be destroyed for a reason in the previous section: an old building should be chosen. Those buildings have the pre-war type. It doesn't really matter which of the old buildings to destroy. 
 
-Then, if all old buildings are already destroyed and there still needs to be destroyed more, there is one more reason to chose a specific building. There is one indicator that needs high buildigs to get a higher score. So: if all old buildings are destroyed the next building to destroy is the lowest one, to make room for a high one.
+Once all old buildings are already destroyed and there still needs to be destroyed more, there is one more reason to chose a specific building. There is one indicator that needs high buildigs to get a higher score. So if all old buildings are destroyed the next building to destroy is the lowest one, to make room for a high one.
 
 \section{Summary}
-To achieve the goals (optimize the scores of the indicators) it is necassary to either destroy buildings or buy new ground. When the agent chooses to destroy a building it has to choose one of the old buildings, because these improve the score of an indicator. Then, after destroying it, it should build a new building on that place. Which building can be read in the Building strategy file. The agent keeps destroying and building until the end of the session or until it achieves all its goals. 
+To achieve the goals (optimize the scores of the indicators) it is necessary to either destroy buildings or buy new ground. When the agent chooses to destroy a building it has to choose one of the old buildings, because these improve the score of an indicator. Then, after destroying it, it should build a new building in its place. Which building this will be, can be read about in the building strategy file. The agent keeps destroying and building until the end of the session or until it achieves all its goals. 
 
 \end{document}
