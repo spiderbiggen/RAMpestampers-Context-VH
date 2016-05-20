@@ -1,0 +1,103 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\author{Daan van der Werf}
+\title{Tygron Percepts Overview}
+
+\begin{document}
+
+\maketitle{}
+\newpage
+
+\section*{Percepts}
+
+\subsection*{Self}
+
+\begin{tabular}{ l l }
+  Description & Information about the agent his stakeholder ID.  \\
+  Type & Send once. \\
+  Syntax & self($<$S\_ID$>$) \\
+  Parameters & $<$S\_ID$>$: Unique indentifier for this stakeholder.
+
+\end{tabular}
+
+\subsection*{Stakeholder}
+
+\begin{tabular}{ l l }
+  Description & Information about all the stakeholders of the current project.  \\
+  Type & Send once. \\
+  Syntax & stakeholder($<$ID$>$, $<$NAME$>$, $<$SHORTNAME$>$, $<$INCOME$>$, $<$START\_BUDGET$>$) \\
+  Parameters &  $<$ID$>$: Unique identifier for a stakeholder. $<$NAME$>$: Name of the stakeholder. \\
+   & $<$SHORTNAME$>$: Short name of the stakeholder. $<$INCOME$>$: Income of the \\
+   & stakeholder. $<$START\_BUDGET$>$: Starting budget of the stakeholder.
+\end{tabular}
+
+\subsection*{Indicators}
+
+\begin{tabular}{ l l }
+  Description & Information about all the indicators of the current project.  \\
+  Type & Send once. \\
+  Syntax & indicators($<$ID$>$, $<$CUR\_VAL$>$, $<$TARG\_VAL$>$) \\
+  Parameters &  $<$ID$>$: Unique identifier for an indicator. $<$CUR\_VAL$>$: The current value of the \\
+    & indicator. $<$TARG\_VAL$>$: The target value of the indicator. 
+\end{tabular}
+
+\subsection*{Indicator link}
+
+\begin{tabular}{ l l }
+  Description & Links the stakeholders to the indicators.  \\
+  Type & Send on change. \\
+  Syntax & indicator\_link($<$NAME$>$, $<$I\_ID$>$, $<$S\_ID$>$, $<$WEIGHT$>$) \\
+  Parameters &  $<$NAME$>$: Name of an indicator for a certain stakeholder. $<$I\_ID$>$: Unique identifier \\
+    & for a indicator. $<$S\_ID$>$:  Unique identifier for a stakeholder. $<$WEIGHT$>$: The weight \\
+    & that this stakeholder has given to this indicator.
+\end{tabular}
+
+\subsection*{Zone}
+
+\begin{tabular}{ l l }
+  Description & Information about all the zones of the current project. \\
+  Type & Send on change. \\
+  Syntax & zone($<$ID$>$, $<$NAME$>$, $<$SIZE$>$, $<$MAX\_FLOORS$>$, $<$ALLOWED\_CATEGORIES$>$) \\
+  Parameters &  $<$ID$>$: Unique identifier for a zone. $<$NAME$>$: The name of the zone. \\
+    & $<$SIZE$>$: The size of the zone. $<$MAX\_FLOORS$>$: The maximum allowed floors in this \\
+    & zone. $<$ALLOWED\_CATEGORIES$>$ : The allowed categories for this zone.
+\end{tabular}
+
+\subsection*{Zone link}
+
+\begin{tabular}{ l l }
+  Description & Links the zones to the indicators.  \\
+  Type & Send on change. \\
+  Syntax & zone\_link($<$Z\_ID$>$, $<$IN\_ID$>$, $<$CUR\_VAL$>$, $<$TAR\_VAL$>$) \\
+  Parameters &  $<$Z\_ID$>$: Unique identifier for a zone. $<$IN\_ID$>$: Unique identifier for an indicator. \\
+    & $<$CUR\_VAL$>$: The current value of the indicator. $<$TAR\_VAL$>$:  The target value \\
+    & of the indicator.
+\end{tabular}
+
+\subsection*{Building}
+
+\begin{tabular}{ l l }
+  Description & Information about all the buildings of the current project.  \\
+  Type & Send on change. \\
+  Syntax & extbuilding($<$ID$>$, $<$NAME$>$, $<$S\_ID$>$, $<$CONS\_YEAR$>$, $<$CATEGORIES$>$, \\
+    & $<$FLOORS$>$) \\
+  Parameters &  $<$ID$>$: Unique identifier for a building. $<$NAME$>$ : Name of the building. \\
+    & $<$CATEGORIES$>$: The categories that the building falls into. $<$FLOORS$>$:  The \\
+    & amount of floors the building has. $<$STAKE\_ID$>$: The id of the stakeholder that \\
+    & owns the building. $<$CONS\_YEAR$>$: The year the building was constructed.
+\end{tabular}
+
+\subsection*{Land}
+
+\begin{tabular}{ l l }
+  Description & Information about a piece of land.  \\
+  Type & Send on change. \\
+  Syntax & land($<$LOCATION$>$, $<$S\_ID$>$) \\
+  Parameters &  $<$LOCATION$>$: The location of the land. $<$S\_ID$>$: Identifier of the stakeholder \\
+    &  that owns this land.
+\end{tabular}
+
+\end{document}
