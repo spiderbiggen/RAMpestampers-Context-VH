@@ -1,24 +1,25 @@
 \section{Introduction}
 
-In this document we’ll describe the architecture of our product for the Virtual Humans context project. It should give insight in the design of our system. First we will identify our design goals, which should represent the things that we find to be important for this project.
+In the Virtual Humans for Serious Gaming context project each group will develop a cognitive agent. Each cognitive agent will represent a role in a Tygron game, making it possible to run a simulation with only agents. In this document the architecture of our product for the Virtual Humans context project will be described. It should give insight in the design of our system. First we will identify our design goals, which should represent the things that are important for this project. Second, the software architecture views are given, including a description about the subsystem decomposition, the hardware/software mapping, persistent data management and the concurrency. The last section contains a glossary, which will explain the definition of the terms that might be unfamiliar to certain readers.
 
 
 \subsection{Design goals}
+In this section, a more detailed description about the design goals is given. Each subsection includes an explanation about manageability, performance, scalability, reliability, securability or availability.
 
 \subsubsection*{Manageability}
-We’re working with multiple project groups and have to maintain the same code for the connector. It’s important that we keep this code manageable, enabling every group to make modifications as needed, without breaking other parts of the code.
+In this project, multiple groups work together to maintain the same code for the connector. It is important that the groups keep this code manageable, enabling every group to make modifications as needed, without breaking other parts of the code.
 
 \subsubsection*{Performance}
-From our previous MAS project we know that goal code can get really slow when you don’t take performance into consideration while coding. We should try to keep our design as efficient as possible to prevent these kind of problems.
+From our previous MAS project, which was a project for making agents in the first person shooter game Unreal Tournament, we know that GOAL code can get really slow when you do not take performance into consideration while coding. Although there is a new version of GOAL which have solved some performance issues, the design should be as efficient as possible to prevent these kind of problems.
 
 \subsubsection*{Scalability}
-Although we’re developing our agent for just one scenario in this project, there’s a change it will be used in larger scenarios and we should design so that this would be possible if ever needed.
+Although the development of our agent is based on just one scenario in this project, there is a chance it will be used in larger scenarios and the design should be in such a way that this would be possible if ever needed.
 
 \subsubsection*{Reliability}
-Since our agent will be used to replace a missing player in a game it’s important that this agent is  reliable. If during a play session with multiple users the agent fails and the game has to be restarted this is not only frustrating for the players, but can also cost a lot of money since some of the players are well paid employees.
+The agent that will be developed by our project group will be used to replace a player that is absent in a game. It is important that this agent is reliable. If during a play session with multiple users the agent fails and the game has to be restarted this is not only frustrating for the players, but can also cost a lot of money since some of the players are well paid employees.
 
 \subsubsection*{Securability}
-The agents login to the system of Tygron and have a direct connection to their server running during a game. We should keep this in mind while designing the system.
+The agents that are developed by the project groups login to the system of Tygron and have a direct connection to their server during a game. The direct connection could give some problems in terms of security, this should be taken in consideration while designing the system.
 
 \subsubsection*{Availability}
-There should be a working version at all times, so that when a player is missing for a game the game can be played anyway. Not knowing if an agent is available could cause a whole game to be unplayable because of a missing player.
+There should be a working version at all times, so that when a player is missing for a game the game can be played anyway. If an agent is not available, it could cause an unplayable game, which results in a not proper end result.
