@@ -4,14 +4,17 @@
 :- dynamic functions/1.
 :- dynamic buildings/1.
 
-% we have a building if the building list has at least 1 element.
-havebuilding :- buildings([X|Y]).
+% we have a building if the building list has exactly 3 elements
+havebuilding :- buildings([X,Y,Z]).
 
 % demolish
 % demolish :- buildings(none).
 
 % initialize built believe
 built(none).
+
+% initialize destroy believe
+destroy(none).
 
 % initialize land believe
 land(none).
