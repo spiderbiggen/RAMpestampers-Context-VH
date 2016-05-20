@@ -82,8 +82,8 @@
 \begin{tabular}{ l l }
   Description & Information about all the buildings of the current project.  \\
   Type & Send on change. \\
-  Syntax & building($<$ID$>$, $<$NAME$>$, $<$CATEGORIES$>$, $<$FLOORS$>$, $<$STAKE\_ID$>$, \\
-    & $<$CONS\_YEAR$>$) \\
+  Syntax & extbuilding($<$ID$>$, $<$NAME$>$, $<$S\_ID$>$, $<$CONS\_YEAR$>$, $<$CATEGORIES$>$, \\
+    & $<$FLOORS$>$) \\
   Parameters &  $<$ID$>$: Unique identifier for a building. $<$NAME$>$ : Name of the building. \\
     & $<$CATEGORIES$>$: The categories that the building falls into. $<$FLOORS$>$:  The \\
     & amount of floors the building has. $<$STAKE\_ID$>$: The id of the stakeholder that \\
@@ -95,7 +95,7 @@
 \begin{tabular}{ l l }
   Description & Information about a piece of land.  \\
   Type & Send on change. \\
-  Syntax & building($<$LOCATION$>$, $<$S\_ID$>$) \\
+  Syntax & land($<$LOCATION$>$, $<$S\_ID$>$) \\
   Parameters &  $<$LOCATION$>$: The location of the land. $<$S\_ID$>$: Identifier of the stakeholder \\
     &  that owns this land.
 \end{tabular}
