@@ -1,0 +1,36 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+
+\author{Daan van der Werf}
+\title{Strategy for buying land}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\maketitle{}
+\newpage{}
+
+\section{Introduction}
+To be able to decide which land to buy is essential for an agent. The agent needs the land in order to be able to construct a new building that is part of his plans in order to increase an indicator. In this document the strategy for buying ground will be explained. In the first section the reasons for buying ground will be explained and in the second section the consequences of buying certain parts of ground are explained. This document is used to implement the following user story:\\
+
+\noindent\textit{"As an agent\\
+when in a simulation\\
+I am able to buy ground if I think
+this is benificial for me\\
+To construct 
+things that are part of my goals."\\}
+
+There are two parts of this user story that might need some explaination. The first one is the use of the word "beneficial". Whenever something is beneficial for an agent it means that the action will increase the indicator for the stakeholder that the agent is playing. The second are the things that are part of the agent its goals. Whenever the agent decides to work on raising a certain indicator, it will adopt a goal which will result in a higher score for that indicator.
+
+\section{When/why to buy ground}
+The final goal of the agent as a stakeholder is to make sure that all its indicators are as high as possible. This means for the agent that portrays the TU Delft that it wants to have education buildings that are as modern, space efficient and green as possible. This means that if the agent owns buildings that are (too) old, it will try to demolish these buildings and build better new buildings. If the agent does not own the land, he needs to buy it first in order to be able to use it to raise its indicators. 
+
+
+\section{Which land to buy}
+For the agent to decide which land to buy depends on a few factors. First of all, because one of his indicators is to keep a positive balance, the agent has to take the price of the land into accountl. Secondly, the building that the agent plans on constructing on the land needs to have enough space to be build. This means that the land that the agent wants to buy needs to be large enough to build the desired building. Based on both of these factors the agent will decide which land to buy. 
+
+\section{Summary}
+A well functioning agent needs to make smart decisions on multiple things and one of those things is deciding on which ground to buy. The agent needs this ground to be able to construct new buildings in order to raise his indicator scores. To decide which ground to buy the agent uses a combination of indicator scores in order to reach his decision. These indicators include keeping a positive balance and having enough able to build the desired space efficient building.
+
+\end{document}
