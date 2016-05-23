@@ -6,7 +6,7 @@ before_install:
 - git pull origin context
 install:
 # build the connector, testing of the connector is done in the tygron repo CI.
-- mvn -pl "!doc" install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+- mvn -pl "!doc" install -DskipTests=true -Dmaven.javadoc.skip=true -Dcobertura.skip -B -V
 - java -cp environment/target/tygronenv-*-jar-with-dependencies.jar login.Login $email $password
 - cd ..
 # move generated env jar to the same folder as the test file(s)
