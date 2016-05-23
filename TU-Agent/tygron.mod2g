@@ -7,13 +7,13 @@ exit=nogoals.
 module helloWorld {
 	% find a function to build a student building
 	 if bel(functions(FS), member([NAME,Id,L],FS), member('EDUCATION',L), land(student_buildings)) 
-		then building_plan_construction(Id, 3, square(10,10,200,10)) + insert(built(1)) + delete(land(student_buildings)).
+		then building_plan_construction(Id, 3, square(10,10,200,10)) + insert(built(Id)) + delete(land(student_buildings)).
 		
 	% take down the initial building
-	if bel(buildings([building(Id, Name, List, Status)|X]), destroy(none))
-        then building_plan_demolish(Id) + delete(buildings([building(Id, Name, List, Status)])) + delete(destroy(none)) + insert(land(student_buildings)).
+	if bel(buildings([building(Id, Name, List, Status)|X]))
+        then building_plan_demolish(Id) + insert(destroy(Id)).
         
 	% find a piece of pre-determined ground and attempt to buy it	
-	if true
+	if not(bel(land(student_buildings)))
 		then map_buy_land(square(10,10,200,200), 500) + insert(land(student_buildings)).
 }

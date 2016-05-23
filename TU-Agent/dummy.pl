@@ -5,7 +5,8 @@
 :- dynamic buildings/1.
 
 % we have a building if the building list has exactly 3 elements
-havebuilding :- buildings([X,Y,Z]).
+havebuilding :- buildings([X|T]).
+isdestroyed :- destroy(X), X \= none.
 
 % demolish
 % demolish :- buildings(none).
