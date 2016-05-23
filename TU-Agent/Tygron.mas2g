@@ -1,5 +1,5 @@
 use "tygronenv-1.0.8-jar-with-dependencies.jar" as environment 
-	with project = "RAMpestampersTest" ,
+	with project = "stefantestmap" ,
 	stakeholder = "MUNICIPALITY",
 	domain = "tudelft".
 
