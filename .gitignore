@@ -6,7 +6,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -140,4 +139,8 @@ local.properties
 #==============================================================================#
 documents/*.pdf
 documents/*/*.pdf
+documents/*.jar
+documents/*/*.jar
+deliverables/*.jar
+deliverables/*/*.jar
 

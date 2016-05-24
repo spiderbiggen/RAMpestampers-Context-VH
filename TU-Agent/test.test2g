@@ -1,0 +1,20 @@
+use Tygron as mas.
+use dummy as knowledge.
+use somegoal as goals.
+use tygron as module.
+
+timeout = 60.
+
+test tygronagent with
+	pre { goal(havebuilding) }
+	in {
+		eventually done(building_plan_construction(_, _, _)).
+		eventually done(map_buy_land(_, _)).
+		eventually done(building_plan_demolish(_)).
+	}
+	post { not(goal(havebuilding)) }
+	
+	tygronagent {
+		do tygron.
+	}
+	
