@@ -4,7 +4,7 @@ jdk:
 # make app.properties through travis before script start, needed for user validation
 before_script:
 # omit tygron version in env name and mas2g env location name
-- mv tygronenv-*-jar-with-dependencies.jar tygronenv-jar-with-dependencies.jar
+- mv TU-Agent/tygronenv-*-jar-with-dependencies.jar TU-Agent/tygronenv-jar-with-dependencies.jar
 - sed -i s/tygronenv-.*-jar-with-dependencies.jar/tygronenv-jar-with-dependencies.jar/g TU-Agent/Tygron.mas2g
 script:
 # run the Goal Test with a 60s timeout
