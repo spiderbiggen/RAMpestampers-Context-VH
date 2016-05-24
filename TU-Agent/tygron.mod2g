@@ -4,7 +4,7 @@ use somegoal as goals.
 
 exit=nogoals.
 
-module helloWorld {
+module tygron {
 	% find a function to build a student building
 	 if bel(functions(FS), member([NAME,Id,L],FS), member('EDUCATION',L), land(student_buildings)) 
 		then building_plan_construction(Id, 3, square(10,10,200,10)) + insert(built(Id)) + delete(land(student_buildings)).
