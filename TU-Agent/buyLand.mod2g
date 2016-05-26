@@ -1,0 +1,13 @@
+use dummy as knowledge.
+use somegoal as goals.
+use tygron as actionspec.
+
+order=linearall.
+
+module buyLand {
+	
+	% find a piece of pre-determined ground and attempt to buy it	
+	if not(bel(land(student_buildings)))
+		then map_buy_land(square(10,10,200,200), 500) + insert(land(student_buildings)).
+
+}
