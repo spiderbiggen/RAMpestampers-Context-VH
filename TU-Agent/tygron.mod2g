@@ -2,7 +2,8 @@ use dummy as knowledge.
 use tygron as actionspec.
 use somegoal as goals.
 
-exit=nogoals.
+exit=never.
+order=linear.
 
 module tygron {
 	% find a function to build a student building
