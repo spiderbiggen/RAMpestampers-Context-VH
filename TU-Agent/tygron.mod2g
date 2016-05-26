@@ -1,20 +1,25 @@
 use dummy as knowledge.
 use tygron as actionspec.
 use somegoal as goals.
+use demolish as module.
+use buildConstruction as module.
+use buyLand as module.
+
 
 exit=never.
 order=linear.
 
 module tygron {
+	
 	% find a function to build a student building
 	 if bel(functions(FS), member([NAME,Id,L],FS), member('EDUCATION',L), land(student_buildings)) 
-		then building_plan_construction(Id, 3, square(10,10,200,10)) + insert(built(Id)) + delete(land(student_buildings)).
+		then buildConstruction.
 		
 	% take down the initial building
 	if bel(buildings([building(Id, Name, List, Status)|X]))
-        then building_plan_demolish(Id) + insert(destroy(Id)).
+        then demolish.
         
 	% find a piece of pre-determined ground and attempt to buy it	
 	if not(bel(land(student_buildings)))
-		then map_buy_land(square(10,10,200,200), 500) + insert(land(student_buildings)).
+		then buyLand.
 }
