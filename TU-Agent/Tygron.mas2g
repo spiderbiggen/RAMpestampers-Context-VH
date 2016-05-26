@@ -1,6 +1,6 @@
 use "tygronenv-1.0.8-jar-with-dependencies.jar" as environment 
-	with project = "stefantestmap" ,
-	stakeholder = "MUNICIPALITY",
+	with project = "vhproject" ,
+	stakeholder = "EDUCATION",
 	domain = "tudelft".
 
 define tygronagent as agent {
@@ -10,5 +10,5 @@ define tygronagent as agent {
 }
 
 launchpolicy {
-	when name=Municipality launch tygronagent.
+	when name=TU launch tygronagent.
 }
