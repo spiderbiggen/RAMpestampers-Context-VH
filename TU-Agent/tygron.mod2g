@@ -2,7 +2,7 @@ use dummy as knowledge.
 use tygron as actionspec.
 use somegoal as goals.
 
-exit=never.
+exit=nogoals.
 order=linear.
 
 module tygron {
