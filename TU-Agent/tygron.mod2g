@@ -1,6 +1,5 @@
 use agentKnowledge as knowledge.
 use tygron as actionspec.
-use agentGoals as goals.
 use demolish as module.
 use buildConstruction as module.
 use buyLand as module.
@@ -10,16 +9,14 @@ exit=nogoals.
 order=linear.
 
 module tygron {
-	
-	% find a function to build a student building
-	 if bel(functions(FS), member([NAME,Id,L],FS), member('EDUCATION',L), land(student_buildings)) 
+	if a-goal(buildhigh)
 		then buildConstruction.
-		
-	% take down the initial building
-	if bel(buildings([building(Id, Name, List, Status)|X]))
-        then demolish.
-        
-	% find a piece of pre-determined ground and attempt to buy it	
-	if not(bel(land(student_buildings)))
-		then buyLand.
+	if a-goal(buildeducation)
+		then buildConstruction.
+	if a-goal(buildgreen)
+		then buildConstruction.
+	
+	% if we have no room to build we should demolish something or buy land
+    % then demolish.
+	% then buyLand.
 }

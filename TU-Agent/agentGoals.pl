@@ -1,3 +1,3 @@
-% we want to have built something.
-havebuilding.
-isdestroyed.
+buildhigh.
+buildeducation.
+buildgreen.

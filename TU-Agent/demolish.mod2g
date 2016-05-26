@@ -1,13 +1,11 @@
 use agentKnowledge as knowledge.
-use agentGoals as goals.
 use tygron as actionspec.
 
 order=linearall.
 
 module demolish {
 	
-	% take down the initial building
-	if bel(buildings([building(Id, Name, List, Status)|X]))
-        then building_plan_demolish(Id) + insert(destroy(Id)).
+	if true
+		then exit-module.
 
 }

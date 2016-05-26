@@ -1,22 +1,14 @@
-
 :- dynamic stakeholders/1.
 :- dynamic settings/1.
 :- dynamic functions/1.
 :- dynamic buildings/1.
 :- dynamic indicators/1.
+:- dynamic bouwhoogindicator/1.
+:- dynamic bouwtudelftindicator/1.
+:- dynamic groenindicator/1.
+:- dynamic budgetindicator/1.
+:- dynamic slopenindicator/1.
 
-% we have a building if the building list has exactly 3 elements
-havebuilding :- buildings([X|T]).
-isdestroyed :- destroy(X), X \= none.
-
-% demolish
-% demolish :- buildings(none).
-
-% initialize built believe
-built(none).
-
-% initialize destroy believe
-destroy(none).
-
-% initialize land believe
-land(none).
+buildhigh :- bouwhoogindicator(100).
+buildeducation :- bouwtudelftindicator(100).
+buildgreen :- groenindicator(100).
