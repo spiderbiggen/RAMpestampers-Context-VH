@@ -10,7 +10,7 @@ order=linear.
 
 module tygron {
 	if a-goal(buildhigh)
-		then buildConstruction.
+		then exit-module.
 	if a-goal(buildeducation)
 		then buildConstruction.
 	if a-goal(buildgreen)
