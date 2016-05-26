@@ -35,3 +35,10 @@ define building_plan_demolish(BuildingId) with
 define message_new(StakeholderId, Subject, Content, IsMotivationNeeded) with
 	pre{ true }
 	post { true}
+	
+% Define the upgrade building action
+% Plan the upgrade of a building
+% params = the UpgradeID of the upgrade type, Multipolygon describing the area to be upgraded
+define building_plan_upgrade(UpgradeID, MultiPolygon) with
+  pre{ true }
+  post{ true }
