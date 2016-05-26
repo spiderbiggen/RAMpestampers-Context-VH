@@ -6,7 +6,7 @@ use buildConstruction as module.
 use buyLand as module.
 
 
-exit=never.
+exit=nogoals.
 order=linear.
 
 module tygron {
