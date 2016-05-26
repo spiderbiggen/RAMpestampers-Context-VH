@@ -1,4 +1,4 @@
-use dummy as knowledge.
+use agentKnowledge as knowledge.
 
 % Define the building action
 % Plan a new building

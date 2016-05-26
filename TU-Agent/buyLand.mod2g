@@ -1,5 +1,5 @@
-use dummy as knowledge.
-use somegoal as goals.
+use agentKnowledge as knowledge.
+use agentGoals as goals.
 use tygron as actionspec.
 
 order=linearall.
