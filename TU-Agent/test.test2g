@@ -3,7 +3,7 @@ use agentKnowledge as knowledge.
 use agentGoals as goals.
 use tygron as module.
 
-timeout = 60.
+timeout = 30.
 
 % Test that if nothing happens, the buildhigh goal still exists. This test ensures that the goal is not automatically met by starting the map.
 test tygronagent with
