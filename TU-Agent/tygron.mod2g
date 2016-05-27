@@ -9,6 +9,8 @@ exit=nogoals.
 order=linear.
 
 module tygron {
+	
+	% Call the module demolish to demolish EWI
 	if a-goal(demolishewi)
 		then demolish.
 	

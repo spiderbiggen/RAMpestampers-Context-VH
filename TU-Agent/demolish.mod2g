@@ -4,7 +4,8 @@ use tygron as actionspec.
 order=linearall.
 
 module demolish {
-	% take down ewi
+	
+	% Demolish EWI by calling the building ID of EWI
     if bel(buildings(X), member(building(1542, _, _, _, _, _), X))
         then building_plan_demolish(1542) + delete(demolished(none)) +  insert(demolished(ewi)).
 }
