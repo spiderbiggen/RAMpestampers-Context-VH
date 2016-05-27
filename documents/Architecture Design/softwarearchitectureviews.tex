@@ -17,7 +17,7 @@ The architecture is divided into different subsystems. It consists of the databa
 	\item \textbf{The Tygron Engine Server (\textit{TES})} \\ 
 	The Tygron Engine server is used to serve all the data to the correct clients and agents. The engine is an online 3D project software for urban planners, architects and engineers. It is a tool that streamlines the planning process and substantially reduces the time and costs involved in urban projects according to the Tygron website.
 	\item \textbf{A Client} \\
-	A client is a human interacting with the Tygron Engine Software. There can be multiple clients per \textit{TES}. The client can be a stakeholder and play the game according the strategy the stakeholder has in real live. 
+	A client is a human interacting with the Tygron Engine Software. There can be multiple clients per \textit{TES}. The client can be a stakeholder and play the game according the strategy the stakeholder has in real life. 
 	\item \textbf{The SDK} \\
 	The SDK (Software Development Kit) is used to connect agents to the \textit{TES}.
 	\item \textbf{An Agent} \\
@@ -40,7 +40,7 @@ In this section we'll describe some of the percepts in the connector and how are
   		Parameters &  $<$typeID$>$: Unique identifier for an upgrade type. 
 				\\& $<$upgrade\_pair$>$: The pair of buildings of this upgrade. 
 	\end{tabular}
-	To enable us to upgrade a building the specific ID of that upgrade is needed. This ID is linked to a tuple that specifies the old building and the new building after the upgrade. When we receive this percept we can select the upgrade we need and then call the action to upgrade it. By adding this our agent can upgrade a building instead of demolish and rebuilding it.
+	To enable us to upgrade a building the specific ID of that upgrade is needed. This ID is linked to a tuple that specifies the old building and the new building after the upgrade. When we receive this percept we can select the upgrade we need and then call the action to upgrade it. By adding this our agent can upgrade a building instead of demolishing and rebuilding it.
 	\item \textbf{Indicator} \\ 
 	\begin{tabular}{ l l }
  		 Syntax & indicators($<$indID$>$, $<$currentValue$>$, $<$targetValue$>$) \\
@@ -48,7 +48,7 @@ In this section we'll describe some of the percepts in the connector and how are
 				\\& $<$currentValue$>$: The current value of the indicator. 
 				\\& $<$targetvalue$>$: The target value of the indicator. 
 	\end{tabular}
-	The ultimate goal of the agent is to improve his score, he can do this by looking at its indicator scores and trying to improve these. To do this the agent needs to know what the score is and percept any changes. By enhancing the connector with this percept the agent is able to do this.
+	The ultimate goal of the agent is to improve his score, it can do this by looking at its indicator scores and trying to improve these. To do this the agent needs to know what the score is and percept any changes. By enhancing the connector with this percept the agent is able to do this.
 	\item \textbf{Indicator link} \\ 
 	\begin{tabular}{ l l }
  		 Syntax & indicator\_link($<$indID$>$, $<$stakeIDs$>$, $<$name$>$, $<$weight$>$) \\
@@ -69,7 +69,7 @@ In this section we'll describe some of the percepts in the connector and how are
 				\\& $<$stakeholder\_ID$>$: The ID of the stakeholder that owns this building.
 				\\& $<$constructionYear$>$: The year the building was build.
 	\end{tabular}
-	The connector provides a building percept, that enables our agent to see which building he owns so that he can decide to for example destroy one of these buildings or upgrade it.
+	The connector provides a building percept, that enables our agent to see which building he owns so that he can decide for example to destroy one of these buildings or upgrade it.
 
 \end{itemize}
 
@@ -81,13 +81,8 @@ In this section the hardware/software mapping Tygron uses will be explained, as 
 Tygron has its own servers, from which it communicates with all other entities. For each group of users, there is a seperate server which contains the world that is used for the game and which this group of users can work on. The general Tygron server knows these other servers and will redirect the user to the particular server. So, when a customer wants to connect to Tygron, it will first connect to this general server. Also, this general server has contact with other servers which are not connected to Tygron. For example, when a customer wants to build a part of a city to play on, the general server will connect to some other servers that give information about this place, like where the buildings are and what the use of those buildings is. 
 
 \subsubsection{Our project}
-\begin{figure}[h!]
-  \centering
-  \includegraphics[scale=0.55]{Tygrondatabase3.png}
-  \caption{Diagram of the Tygron Engine connected to the database and the GOAL agent.}
-  \label{fig:tygron2}
-\end{figure}
-In this project there is an own server with all TU Delft students. But there is another thing that needs to be different: the way the connection is set up to that server. Since there are no humans, but agents to play the game, those agents need to connect in some way to the server. To do so, there is a connector between our instance and the server. This connector will use the goal code that is written by our group and will translate this into actions in the game. This way the agent can play the game. Figure 2 illustrates this.
+
+In this project there is an own server with all TU Delft students. But there is another thing that needs to be different: the way the connection is set up to that server. Since there are no humans, but agents to play the game, those agents need to connect in some way to the server. To do so, there is a connector between our instance and the server. This connector will use the goal code that is written by our group and will translate this into actions in the game. This way the agent can play the game. Figure 1 illustrates this.
 
 \newpage
 \subsection{Persistent data management}
