@@ -8,7 +8,18 @@
 :- dynamic groenindicator/1.
 :- dynamic budgetindicator/1.
 :- dynamic slopenindicator/1.
+:- dynamic destroylist/1.
 
 buildhigh :- bouwhoogindicator(100).
 buildeducation :- bouwtudelftindicator(100).
 buildgreen :- groenindicator(100).
+
+findbuildings([],L).
+
+findbuildings([H|T],L) :- iseducation(H),
+		append(L,H,N),
+		findbuildings(T,N).
+	
+findbuildings([H|T],L) :- findbuildings(T,L).
+
+iseducation(building(A,B,['EDUCATION'|C],D)).

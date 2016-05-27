@@ -6,6 +6,8 @@ module tygronEvents {
 	if percept(settings(X)), bel(settings(Y)) then insert(settings(X)) + delete(settings(Y)).
 	if percept(functions(X)), bel(functions(Y)) then insert(functions(X)) + delete(functions(Y)).
 	if percept(buildings(X)), bel(buildings(Y)) then insert(buildings(X)) + delete(buildings(Y)).
+	if bel(buildings(X)) then insert(findbuildings(X,L)).
+	if bel(buildings(X)) then print(X).
 	if percept(indicators(X)), bel(indicators(Y)) then insert(indicators(X)) + delete(indicators(Y)).
 	
 	%%TODO
