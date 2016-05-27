@@ -1,0 +1,10 @@
+use agentKnowledge as knowledge.
+use tygron as actionspec.
+
+order=linearall.
+
+module buyLand {
+	if true
+		then exit-module.
+
+}

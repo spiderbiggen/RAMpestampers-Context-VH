@@ -1,0 +1,11 @@
+use agentKnowledge as knowledge.
+use tygron as actionspec.
+
+order=linearall.
+
+module demolish {
+	
+	if true
+		then exit-module.
+
+}
