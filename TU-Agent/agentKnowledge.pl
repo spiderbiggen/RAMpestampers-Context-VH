@@ -12,3 +12,6 @@
 buildhigh :- bouwhoogindicator(100).
 buildeducation :- bouwtudelftindicator(100).
 buildgreen :- groenindicator(100).
+
+demolished(none).
+demolishewi :- demolished(ewi).
