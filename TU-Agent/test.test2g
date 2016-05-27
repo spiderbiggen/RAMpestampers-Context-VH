@@ -1,4 +1,4 @@
-use TU-Agent as mas.
+use TUAgent as mas.
 use agentKnowledge as knowledge.
 use agentGoals as goals.
 use tygron as module.
