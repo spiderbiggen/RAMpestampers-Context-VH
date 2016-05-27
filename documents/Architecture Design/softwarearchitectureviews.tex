@@ -73,6 +73,12 @@ In this section we'll describe some of the percepts in the connector and how are
 
 \end{itemize}
 
+These Percepts have been created by making a J2$<$something$>$ class in the translators package and adding this to the j2p array in the EisEnv class. Furthermore we added listeners for subjects that are required for the percepts to the EntityEventHandler class. At this point you have to redirect each listener to the createPercepts method while getting the correct content for the required class eg: for the buidings percept we need to listen on Maplinks.Buildings, we then need to get the list with content for the Building class. Then when we call createPercepts it will call the J2Building translator to convert each building to parameters we can then use in goal as a percept.
+
+\subsubsection{Actions}
+
+All available actions have been defined in the sdk, specifically in \\nl.tytech.data.engine.event.ParticipantEventType. All action have a description stated in @EventParamData, this annotation also states the required parameters. The other annotation that all actions have is the @EventIDFields which already fills some of the parameters. these should then not be passed through in goal. Filling these in will result in the action not working at all.
+
 \newpage
 \subsection{Hardware/software mapping}
 In this section the hardware/software mapping Tygron uses will be explained, as well as the way our agent will be connected to this.
