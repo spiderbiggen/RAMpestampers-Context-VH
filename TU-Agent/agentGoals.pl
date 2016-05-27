@@ -1,3 +1,4 @@
 buildhigh.
 buildeducation.
 buildgreen.
+demolishewi.
