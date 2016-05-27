@@ -23,7 +23,7 @@ The architecture is divided into different subsystems. It consists of the databa
 	\item \textbf{An Agent} \\
 	An agent is a computer controlled entity that acts like a client. There can be multiple agents per \textit{TES}. The agent can replace a client.
 	\item \textbf{Connector} \\
-	The connector is the link between the agent and the sdk. The agent needs the connector the run properly in the Tygron Engine. The connector includes information like percepts of the Tygron Engine.
+	The connector is the link between the agent and the sdk. The agent needs the connector the run properly in the Tygron Engine. The connector generates the percepts for the agents and handles the actions that the agent performs. When an action change the environment, the agent can see the results of his action by looking at the percepts it receives from the connector.
 \end{itemize}
 
 \newpage
