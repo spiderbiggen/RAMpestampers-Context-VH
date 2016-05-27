@@ -36,8 +36,6 @@ In this section we'll describe some of the percepts in the connector and how are
 \begin{itemize}
 	\item \textbf{upgrade types} \\ 
 	\begin{tabular}{ l l }
- 		 Description & Information about all the upgrade types of the current project.  \\
-  		Type & Send once. \\
  		 Syntax & indicators($<$typeID$>$, $<$upgrade\_pair$>$) \\
   		Parameters &  $<$typeID$>$: Unique identifier for an upgrade type. 
 				\\& $<$upgrade\_pair$>$: The pair of buildings of this upgrade. 
@@ -45,8 +43,6 @@ In this section we'll describe some of the percepts in the connector and how are
 	To enable us to upgrade a building the specific ID of that upgrade is needed. This ID is linked to a tuple that specifies the old building and the new building after the upgrade. When we receive this percept we can select the upgrade we need and then call the action to upgrade it. By adding this our agent can upgrade a building instead of demolish and rebuilding it.
 	\item \textbf{Indicator} \\ 
 	\begin{tabular}{ l l }
- 		 Description & Values ofl the indicators of the current project.  \\
-  		Type & Send once. \\
  		 Syntax & indicators($<$indID$>$, $<$currentValue$>$, $<$targetValue$>$) \\
   		Parameters &  $<$indID$>$: Unique identifier for an indicator. 
 				\\& $<$currentValue$>$: The current value of the indicator. 
@@ -55,8 +51,6 @@ In this section we'll describe some of the percepts in the connector and how are
 	The ultimate goal of the agent is to improve his score, he can do this by looking at its indicator scores and trying to improve these. To do this the agent needs to know what the score is and percept any changes. By enhancing the connector with this percept the agent is able to do this.
 	\item \textbf{Indicator link} \\ 
 	\begin{tabular}{ l l }
- 		 Description & Information about all the indicators of the current project.  \\
-  		Type & Send once. \\
  		 Syntax & indicators($<$indID$>$, $<$stakeIDs$>$, $<$name$>$, $<$weight$>$) \\
   		Parameters &  $<$indID$>$: Unique identifier for an indicator. 
 				\\& $<$stakeIDs$>$: The ID of the stakeholder that has this indicator. 
@@ -66,8 +60,6 @@ In this section we'll describe some of the percepts in the connector and how are
 	To enable our agent to see what the weights of a certain indicator are and which indicators are his an indicator link percept has been added to the connector. This percept helps to make the indicator percept more usefull for the agent.
 	\item \textbf{Building} \\ 
 	\begin{tabular}{ l l }
- 		 Description & Information about all the indicators of the current project.  \\
-  		Type & Send once. \\
  		 Syntax & indicators($<$ID$>$, $<$name$>$, $<$categories$>$, $<$floors$>$, \\
 		& $<$stakeholder\_ID$>$, $<$constructionYear$>$) \\
   		Parameters &  $<$ID$>$: Unique identifier for an indicator. 
