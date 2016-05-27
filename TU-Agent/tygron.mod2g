@@ -9,12 +9,8 @@ exit=nogoals.
 order=linear.
 
 module tygron {
-	if a-goal(buildhigh)
-		then exit-module.
-	if a-goal(buildeducation)
-		then buildConstruction.
-	if a-goal(buildgreen)
-		then buildConstruction.
+	if a-goal(demolishewi)
+		then demolish.
 	
 	% if we have no room to build we should demolish something or buy land
     % then demolish.

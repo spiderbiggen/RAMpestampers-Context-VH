@@ -4,8 +4,7 @@ use tygron as actionspec.
 order=linearall.
 
 module demolish {
-	
-	if true
-		then exit-module.
-
+	% take down ewi
+    if bel(buildings([building(Id, 'faculty elektrotechniek, wiskunde en informatica', List, Status)|X]))
+        then building_plan_demolish(Id).
 }
