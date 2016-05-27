@@ -5,6 +5,6 @@ order=linearall.
 
 module demolish {
 	% take down ewi
-    if bel(buildings([building(Id, 'faculty elektrotechniek, wiskunde en informatica', List, Status)|X]))
-        then building_plan_demolish(Id).
+    if bel(buildings(X), member(building(1542, _, _, _, _, _), X))
+        then building_plan_demolish(1542) + delete(demolished(none)) +  insert(demolished(ewi)).
 }

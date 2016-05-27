@@ -12,4 +12,6 @@
 buildhigh :- bouwhoogindicator(100).
 buildeducation :- bouwtudelftindicator(100).
 buildgreen :- groenindicator(100).
-demolishewi :- not(buildings([building(Id, 'faculty elektrotechniek, wiskunde en informatica', List, Status)|X])).
+
+demolished(none).
+demolishewi :- demolished(ewi).
