@@ -2,11 +2,11 @@
 
 This is the git for the RAMpestampers group of the the "Virtual humans for serious gaming context"
 
-|Repository|Main-Branch|Status|SIG report|
-|----------|-----------|------|----------|
-|[RAMpestampers-Context-VH](https://github.com/spiderbiggen/RAMpestampers-Context-VH)|[master](https://github.com/spiderbiggen/RAMpestampers-Context-VH/tree/master)|[![Build Status](https://travis-ci.org/spiderbiggen/RAMpestampers-Context-VH.svg?branch=master)](https://travis-ci.org/spiderbiggen/RAMpestampers-Context-VH)|**N/A**|
-|[spiderbiggen/tygron](https://github.com/spiderbiggen/tygron) |[master](https://github.com/spiderbiggen/tygron/tree/master)|[![Build Status](https://travis-ci.org/spiderbiggen/tygron.svg?branch=master)](https://travis-ci.org/spiderbiggen/tygron)|[SIG](https://bettercodehub.sig.eu/#/report/57484034e4b0bc0db0a805ba)|
-|[eishub/tygron](https://github.com/eishub/tygron)| [context](https://github.com/eishub/tygron/tree/context)|[![Build Status](https://travis-ci.org/eishub/tygron.svg?branch=context)](https://travis-ci.org/eishub/tygron)|[SIG](https://bettercodehub.sig.eu/#/report/57481f33e4b043b7637ae79a)|
+|Repository|Main-Branch|Status|
+|----------|-----------|------|
+|[RAMpestampers-Context-VH](https://github.com/spiderbiggen/RAMpestampers-Context-VH)|[master](https://github.com/spiderbiggen/RAMpestampers-Context-VH/tree/master)|[![Build Status](https://travis-ci.org/spiderbiggen/RAMpestampers-Context-VH.svg?branch=master)](https://travis-ci.org/spiderbiggen/RAMpestampers-Context-VH)|
+|[spiderbiggen/tygron](https://github.com/spiderbiggen/tygron) |[master](https://github.com/spiderbiggen/tygron/tree/master)|[![Build Status](https://travis-ci.org/spiderbiggen/tygron.svg?branch=master)](https://travis-ci.org/spiderbiggen/tygron)|
+|[eishub/tygron](https://github.com/eishub/tygron)| [context](https://github.com/eishub/tygron/tree/context)|[![Build Status](https://travis-ci.org/eishub/tygron.svg?branch=context)](https://travis-ci.org/eishub/tygron)|
 
 # Group Members
 
@@ -19,7 +19,6 @@ This is the git for the RAMpestampers group of the the "Virtual humans for serio
 |Job Zoon|[jzoon](https://github.com/jzoon)|[@jzoon](https://tud-contextproject-16.slack.com/team/jzoon)|
 
 # Deliverables
-https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/542d6df0e9e59d2e56a23cd779704b2e6b978812/deliverables/Sprintplans/Sprintplan_1.pdf
 ## Sprints
 |Week | Plan |Retrospective|
 |----:|------|-------------|
@@ -27,10 +26,19 @@ https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/542d6df0e9e59d2e56
 |2    |[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/542d6df0e9e59d2e56a23cd779704b2e6b978812/deliverables/Sprintplans/Sprintplan_2.pdf)[\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/542d6df0e9e59d2e56a23cd779704b2e6b978812/deliverables/Sprintplans/Sprintplan_2.pdf)|[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/2b91979a758c50cf111d892ec2df1a7fe55a1ced/deliverables/Sprintretrospectives/SprintRetrospective2.pdf)[\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/2b91979a758c50cf111d892ec2df1a7fe55a1ced/deliverables/Sprintretrospectives/SprintRetrospective2.pdf)
 |3    |[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/2b91979a758c50cf111d892ec2df1a7fe55a1ced/deliverables/Sprintplans/Sprintplan_3.pdf)[\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/2b91979a758c50cf111d892ec2df1a7fe55a1ced/deliverables/Sprintplans/Sprintplan_3.pdf)|[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/3da4aa6302f14792294b33926f35ba2bcb9bac19/deliverables/Sprintretrospectives/SprintRetrospective3.pdf)[\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/3da4aa6302f14792294b33926f35ba2bcb9bac19/deliverables/Sprintretrospectives/SprintRetrospective3.pdf)|
 |4    |[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/3da4aa6302f14792294b33926f35ba2bcb9bac19/deliverables/Sprintplans/Sprintplan_4%20.pdf)[\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/3da4aa6302f14792294b33926f35ba2bcb9bac19/deliverables/Sprintplans/Sprintplan_4%20.pdf)|[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/9776e1ffd87b887ee9d09bbb5bd070f4c5d9d4f1/deliverables/Sprintretrospectives/SprintRetrospective4.pdf)[\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/9776e1ffd87b887ee9d09bbb5bd070f4c5d9d4f1/deliverables/Sprintretrospectives/SprintRetrospective4.pdf)|
-|5    |[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/9776e1ffd87b887ee9d09bbb5bd070f4c5d9d4f1/deliverables/Sprintplans/Sprintplan_5.pdf)[\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/9776e1ffd87b887ee9d09bbb5bd070f4c5d9d4f1/deliverables/Sprintplans/Sprintplan_5.pdf)|[\[preview\]]()[\[pdf\]]()|
-|6    |[\[preview\]]()[\[pdf\]]()|\[preview\]\[pdf\]|
+|5    |[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/9776e1ffd87b887ee9d09bbb5bd070f4c5d9d4f1/deliverables/Sprintplans/Sprintplan_5.pdf)[\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/9776e1ffd87b887ee9d09bbb5bd070f4c5d9d4f1/deliverables/Sprintplans/Sprintplan_5.pdf)|[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/3cc53a560ab530c3719608dbfde854986b334282/deliverables/Sprintretrospectives/SprintRetrospective5.pdf)[\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/3cc53a560ab530c3719608dbfde854986b334282/deliverables/Sprintretrospectives/SprintRetrospective5.pdf)|
+|6    |[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/3cc53a560ab530c3719608dbfde854986b334282/deliverables/Sprintplans/Sprintplan_6.pdf)[\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/3cc53a560ab530c3719608dbfde854986b334282/deliverables/Sprintplans/Sprintplan_6.pdf)|\[preview\]\[pdf\]|
 |7    |\[preview\]\[pdf\]|\[preview\]\[pdf\]|
 |8    |\[preview\]\[pdf\]|\[preview\]\[pdf\]|
+
+## Architecture design
+
+
+| Version | File | Date |
+|---------|------|------|
+| Draft   |[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/542d6df0e9e59d2e56a23cd779704b2e6b978812/deliverables/Architecture_Design_draft.pdf) [\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/542d6df0e9e59d2e56a23cd779704b2e6b978812/deliverables/Architecture_Design_draft.pdf)| April 29 2016|
+| Week 4  |[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/12d211d0d5ee0b93976b2cd372d35c2df9c993be/deliverables/Architecture_Design_Main_sprint4.pdf) [\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/12d211d0d5ee0b93976b2cd372d35c2df9c993be/deliverables/Architecture_Design_Main_sprint4.pdf)| May 20 2016|
+|Week 5   |[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/0b19ebd70cdf3670e17ad88f94f0c84d5ae73442/deliverables/Architecture_Design_Main_sprint5.pdf) [\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/0b19ebd70cdf3670e17ad88f94f0c84d5ae73442/deliverables/Architecture_Design_Main_sprint5.pdf)| May 27 2016 |
 
 ## Documents
 
@@ -40,12 +48,3 @@ https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/542d6df0e9e59d2e56
 |Product Planning Final|[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/2324f8d6b93f84413ee256e02af49245ad2c6395/deliverables/Product_Planning_Final.pdf) [\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/2324f8d6b93f84413ee256e02af49245ad2c6395/deliverables/Product_Planning_Final.pdf)|
 |Product Vision Draft|[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/61f41b7de1727baa2ca99464f6ff9d933f36ca9a/deliverables/Product_Vision_draft.pdf) [\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/61f41b7de1727baa2ca99464f6ff9d933f36ca9a/deliverables/Product_Vision_draft.pdf)|
 |Product Vision Final|[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/2324f8d6b93f84413ee256e02af49245ad2c6395/deliverables/Product_Vision_Final.pdf) [\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/2324f8d6b93f84413ee256e02af49245ad2c6395/deliverables/Product_Vision_Final.pdf)|
-
-## Architecture design
-
-
-| Version | File | Date |
-|---------|------|------|
-| Draft   |[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/542d6df0e9e59d2e56a23cd779704b2e6b978812/deliverables/Architecture_Design_draft.pdf) [\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/542d6df0e9e59d2e56a23cd779704b2e6b978812/deliverables/Architecture_Design_draft.pdf)| April 29 2016|
-| Week 4  |[\[preview\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/blob/12d211d0d5ee0b93976b2cd372d35c2df9c993be/deliverables/Architecture_Design_Main_sprint4.pdf) [\[pdf\]](https://github.com/spiderbiggen/RAMpestampers-Context-VH/raw/12d211d0d5ee0b93976b2cd372d35c2df9c993be/deliverables/Architecture_Design_Main_sprint4.pdf)| May 20 2016|
-|Week 5   |[\[preview\]]() [\[pdf\]]()| May 27 2016 |
