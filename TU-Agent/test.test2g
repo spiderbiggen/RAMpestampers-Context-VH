@@ -1,10 +1,11 @@
-use Tygron as mas.
+use TUAgent as mas.
 use agentKnowledge as knowledge.
 use agentGoals as goals.
 use tygron as module.
 
-timeout = 60.
+timeout = 30.
 
+% Test that if nothing happens, the buildhigh goal still exists. This test ensures that the goal is not automatically met by starting the map.
 test tygronagent with
 	pre { goal(buildhigh) }
 	in {
@@ -13,7 +14,17 @@ test tygronagent with
 		never done(building_plan_demolish(_)).
 	}
 	post { goal(buildhigh) }
-	
+
+% Test for demolishing EWI. This test ensures that the goal of destroying EWI is met, after the action is executed.	
+test tygronagent with
+	pre { goal(demolishewi) }
+	in {
+		never done(building_plan_construction(_, _, _)).
+		never done(map_buy_land(_, _)).
+		eventually done(building(1542, _, _, _, _, _)).
+	}
+	post { goal-a(demolishewi) }
+
 	tygronagent {
 		do tygron.
 	}

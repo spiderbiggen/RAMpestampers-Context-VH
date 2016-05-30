@@ -14,7 +14,12 @@ buildhigh :- bouwhoogindicator(100).
 buildeducation :- bouwtudelftindicator(100).
 buildgreen :- groenindicator(100).
 
+
 get_old_buildings(Bag,L):-
 	findall(Building, (member(Building, L), iseducation(Building)), Bag).
 
 iseducation(building(_,_,['EDUCATION'|_],_)).
+
+demolished(none).
+demolishewi :- demolished(ewi).
+
