@@ -14,11 +14,12 @@ buildhigh :- bouwhoogindicator(100).
 buildeducation :- bouwtudelftindicator(100).
 buildgreen :- groenindicator(100).
 
-
+% Takes all buildings of L that return from iseducation
 get_old_buildings(Bag,L):-
 	findall(Building, (member(Building, L), iseducation(Building)), Bag).
 
-iseducation(building(_,_,['EDUCATION'|_],_)).
+% Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft
+iseducation(building(_,_,3,_,['EDUCATION'|_],_)).
 
 demolished(none).
 demolishewi :- demolished(ewi).
