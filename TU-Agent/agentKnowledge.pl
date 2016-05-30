@@ -8,25 +8,13 @@
 :- dynamic groenindicator/1.
 :- dynamic budgetindicator/1.
 :- dynamic slopenindicator/1.
+:- dynamic oldbuildings/1.
 
 buildhigh :- bouwhoogindicator(100).
 buildeducation :- bouwtudelftindicator(100).
 buildgreen :- groenindicator(100).
 
-findbuildings([],L,L).
+get_old_buildings(Bag,L):-
+	findall(Building, (member(Building, L), iseducation(Building)), Bag).
 
-findbuildings([H|T],L,L2) :- iseducation(H),
-		append(L,H,N),
-		findbuildings(T,N,L2).
-
-	
-findbuildings([H|T],L,L2) :- findbuildings(T,L,L2).
-
-
-
-findbuilding([H|T],B) :- iseducation(H),
-	B is H.
-	
-findbuilding([H|T],B) :- findbuilding(T,B).
-
-iseducation(building(A,B,C,['EDUCATION'|C],D)).
+iseducation(building(_,_,['EDUCATION'|_],_)).

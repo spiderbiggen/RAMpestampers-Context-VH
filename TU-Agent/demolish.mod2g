@@ -5,6 +5,7 @@ order=linearall.
 
 module demolish {
 	
-	if bel(buildings(X), findbuilding(X,B)) then print(B).
+	if true
+		then exit-module.
 
 }

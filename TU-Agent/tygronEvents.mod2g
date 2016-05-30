@@ -8,6 +8,8 @@ module tygronEvents {
 	if percept(buildings(X)), bel(buildings(Y)) then insert(buildings(X)) + delete(buildings(Y)).
 	if percept(indicators(X)), bel(indicators(Y)) then insert(indicators(X)) + delete(indicators(Y)).
 	
+	if percept(buildings(X)), bel(get_old_buildings(Bag,X)) then insert(oldbuildings(Bag)).
+	
 	%%TODO
 	%%get all the indicatorIDs from the stakeholder believe and add them to the believe base
 	%%update the indicatorbeliefs with the new values
