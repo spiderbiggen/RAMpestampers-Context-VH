@@ -7,6 +7,10 @@ module tygronEvents {
 	if percept(functions(X)), bel(functions(Y)) then insert(functions(X)) + delete(functions(Y)).
 	if percept(buildings(X)), bel(buildings(Y)) then insert(buildings(X)) + delete(buildings(Y)).
 	if percept(indicators(X)), bel(indicators(Y)) then insert(indicators(X)) + delete(indicators(Y)).
+	if percept(lands(X)), bel(lands(Y)) then insert(lands(X)) + delete(lands(Y)).
+	if percept(zones(X)), bel(zones(Y)) then insert(zones(X)) + delete(zones(Y)).
+	if percept(requests(X)), bel(requests(Y)) then insert(requests(X)) + delete(requests(Y)).
+	if percept(actions(X)), bel(actions(Y)) then insert(actions(X)) + delete(actions(Y)).
 	
 	%%TODO
 	%%get all the indicatorIDs from the stakeholder believe and add them to the believe base
