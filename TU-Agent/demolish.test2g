@@ -1,7 +1,7 @@
 use TUAgent as mas.
 use agentKnowledge as knowledge.
 use agentGoals as goals.
-use tygron as module.
+use demolish as module.
 
 timeout = 30.
 
