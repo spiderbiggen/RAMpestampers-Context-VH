@@ -2,7 +2,7 @@ use agentKnowledge as knowledge.
 
 module tygronEvents {
 	%%%%% Percept Processing %%%%%
-	if percept(stakeholders(X)), bel(stakeholders(Y)) then insert( stakeholders(X) ) + delete(stakeholders(Y)).
+	if percept(stakeholders(X)), bel(stakeholders(Y)) then insert(stakeholders(X)) + delete(stakeholders(Y)).
 	if percept(settings(X)), bel(settings(Y)) then insert(settings(X)) + delete(settings(Y)).
 	if percept(functions(X)), bel(functions(Y)) then insert(functions(X)) + delete(functions(Y)).
 	if percept(buildings(X)), bel(buildings(Y)) then insert(buildings(X)) + delete(buildings(Y)).
@@ -12,7 +12,7 @@ module tygronEvents {
 	if percept(requests(X)), bel(requests(Y)) then insert(requests(X)) + delete(requests(Y)).
 	if percept(actions(X)), bel(actions(Y)) then insert(actions(X)) + delete(actions(Y)).
 	
-	%%TODO
-	%%get all the indicatorIDs from the stakeholder believe and add them to the believe base
-	%%update the indicatorbeliefs with the new values
+	%Update indicatorlink%
+	if percept(stakeholders(X)), bel(member([stakeholder(3, _, Budget, _), indicatorLink(_ ,Weights)], X))
+		then insert(indicatorlink(Weights)).
 }

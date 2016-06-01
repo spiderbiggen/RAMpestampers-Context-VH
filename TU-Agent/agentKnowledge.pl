@@ -18,6 +18,9 @@
 buildhigh :- bouwhoogindicator(100).
 buildeducation :- bouwtudelftindicator(100).
 buildgreen :- groenindicator(100).
+%Other beliefs
+:- dynamic indicatorlink/1.
+
 
 demolished(none).
 demolishewi :- demolished(ewi).
