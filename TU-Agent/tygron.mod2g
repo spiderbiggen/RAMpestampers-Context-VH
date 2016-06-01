@@ -10,7 +10,7 @@ order=linear.
 
 module tygron {
 	
-	% Call the module demolish to demolish EWI
+	% Call the module demolish to demolish a building on the demolish list
 	if true
 		then demolish.
 	
