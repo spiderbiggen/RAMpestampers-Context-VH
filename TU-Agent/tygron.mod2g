@@ -10,8 +10,8 @@ order=linear.
 
 module tygron {
 	
-	% Call the module demolish to demolish EWI
-	if a-goal(demolishewi)
+	% Call the module demolish to demolish a building on the demolish list
+	if true
 		then demolish.
 	
 	% if we have no room to build we should demolish something or buy land

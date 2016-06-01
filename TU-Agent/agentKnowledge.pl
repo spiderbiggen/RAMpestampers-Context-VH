@@ -14,10 +14,22 @@
 :- dynamic groenindicator/1.
 :- dynamic budgetindicator/1.
 :- dynamic slopenindicator/1.
+:- dynamic oldbuildings/1.
+:- dynamic no_old_buildings/0.
+
 %The goals and how to achieve them.
 buildhigh :- bouwhoogindicator(100).
 buildeducation :- bouwtudelftindicator(100).
 buildgreen :- groenindicator(100).
 
+% Takes all buildings of L that return from iseducation and removes all duplicates
+get_old_buildings(Bag,L):-
+	findall(Building, (member(Building, L), iseducation(Building)), Bag1),
+	sort(Bag1,Bag).
+
+% Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft
+iseducation(building(_,_,3,_,_,884,_,_)).
+
 demolished(none).
 demolishewi :- demolished(ewi).
+
