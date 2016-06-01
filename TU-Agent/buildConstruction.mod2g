@@ -6,5 +6,5 @@ order=linearall.
 module buildConstruction {
 	
 	if bel(functions(FS), member([Name,Id,L],FS), member('EDUCATION',L), demolishedPolygon(MP))
-		then building_plan_construction(Id, 1, MP).
+		then building_plan_construction(Id, 5, MP) + delete(demolishedPolygon(MP)).
 }

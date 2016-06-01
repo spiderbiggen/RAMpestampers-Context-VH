@@ -14,7 +14,7 @@ module tygron {
 		then buildConstruction.
 	
 	% Call the module demolish to demolish EWI
-	if true
+	if not(bel(demolishedPolygon(MP)))
 		then demolish.
 	
 	% if we have no room to build we should demolish something or buy land
