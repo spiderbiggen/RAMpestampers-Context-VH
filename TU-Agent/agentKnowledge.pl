@@ -9,6 +9,8 @@
 :- dynamic budgetindicator/1.
 :- dynamic slopenindicator/1.
 :- dynamic oldbuildings/1.
+:- dynamic demolishedPolygon/1.
+
 
 buildhigh :- bouwhoogindicator(100).
 buildeducation :- bouwtudelftindicator(100).
@@ -19,7 +21,7 @@ get_old_buildings(Bag,L):-
 	findall(Building, (member(Building, L), iseducation(Building)), Bag).
 
 % Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft
-iseducation(building(_,_,3,_,['EDUCATION'|_],_)).
+iseducation(building(_,_,3,_,['EDUCATION'|_],_,_,_)).
 
 demolished(none).
 demolishewi :- demolished(ewi).
