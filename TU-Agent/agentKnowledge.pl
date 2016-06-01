@@ -9,6 +9,7 @@
 :- dynamic budgetindicator/1.
 :- dynamic slopenindicator/1.
 :- dynamic oldbuildings/1.
+:- dynamic no_old_buildings/0.
 
 buildhigh :- bouwhoogindicator(100).
 buildeducation :- bouwtudelftindicator(100).
