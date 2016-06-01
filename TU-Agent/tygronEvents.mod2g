@@ -12,7 +12,7 @@ module tygronEvents {
 	if percept(requests(X)), bel(requests(Y)) then insert(requests(X)) + delete(requests(Y)).
 	if percept(actions(X)), bel(actions(Y)) then insert(actions(X)) + delete(actions(Y)).
 	
-	%Update indicatorlink%
-	if percept(stakeholders(X)), bel(member([stakeholder(3, _, Budget, _), indicatorLink(_ ,Weights)], X))
-		then insert(indicatorlink(Weights)).
+	%Retrieve the indicatorlink for our stakeholder
+	if bel(readIndicatorlink, stakeholders(X), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,Weights)], X))
+		then insert(indicatorlink(Weights)) + delete(readIndicatorlink).
 }

@@ -21,6 +21,7 @@ buildgreen :- groenindicator(100).
 %Other beliefs
 :- dynamic indicatorlink/1.
 
+readIndicatorlink.
 
 demolished(none).
 demolishewi :- demolished(ewi).
