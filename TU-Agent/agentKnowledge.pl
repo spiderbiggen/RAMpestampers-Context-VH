@@ -21,6 +21,8 @@ buildgreen :- groenindicator(100).
 %Other beliefs
 :- dynamic indicatorlink/1.
 
+%this believe ensures that indicatorlink gets generated only once
+%it gets deleted after indicatorlink is inserted as believe
 readIndicatorlink.
 
 demolished(none).

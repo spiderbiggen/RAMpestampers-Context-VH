@@ -15,4 +15,6 @@ module tygronEvents {
 	%Retrieve the indicatorlink for our stakeholder
 	if bel(readIndicatorlink, stakeholders(X), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,Weights)], X))
 		then insert(indicatorlink(Weights)) + delete(readIndicatorlink).
+		
+	%TODO update the indicator beliefs with the current score
 }
