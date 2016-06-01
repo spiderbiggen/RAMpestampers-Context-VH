@@ -17,6 +17,8 @@
 %The goals and how to achieve them.
 %once we see one indicatorgoal we can assume we've adopted them all.
 getindicatorgoals :- indicatorgoal(_,_).
+%an indicatorgoal is met if the current goal is the target goal
+indicatorgoal(Name, Current) :- indicator(Id, Name, _, Current).
 %Other beliefs
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
