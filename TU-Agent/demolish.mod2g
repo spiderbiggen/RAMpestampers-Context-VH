@@ -10,4 +10,5 @@ module demolish {
 	if bel(oldbuildings([building(N,A,B,C,D,E,F,G)|Tail]))
 		then building_plan_demolish(N) + delete(oldbuildings([building(N,A,B,C,D,E,F,G)|Tail])) + insert(oldbuildings(Tail)) + insert(demolishedPolygon(G)).
 
+
 }
