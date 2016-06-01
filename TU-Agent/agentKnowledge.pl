@@ -22,9 +22,10 @@ buildhigh :- bouwhoogindicator(100).
 buildeducation :- bouwtudelftindicator(100).
 buildgreen :- groenindicator(100).
 
-% Takes all buildings of L that return from iseducation
+% Takes all buildings of L that return from iseducation and removes all duplicates
 get_old_buildings(Bag,L):-
-	bagof(Building, (member(Building, L), iseducation(Building)), Bag).
+	findall(Building, (member(Building, L), iseducation(Building)), Bag1),
+	sort(Bag1,Bag).
 
 % Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft
 iseducation(building(_,_,3,_,_,884,_,_)).
