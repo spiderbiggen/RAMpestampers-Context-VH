@@ -9,9 +9,13 @@ exit=nogoals.
 order=linear.
 
 module tygron {
+
+	% Call the module buildConstruction when there is a multipolygon available.
+	if bel(demolishedPolygon(MP)) 
+		then buildConstruction.
 	
-	% Call the module demolish to demolish a building on the demolish list
-	if true
+	% Call the module demolish to demolish EWI
+	if not(bel(demolishedPolygon(MP)))
 		then demolish.
 	
 	% if we have no room to build we should demolish something or buy land

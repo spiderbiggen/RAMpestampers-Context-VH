@@ -15,6 +15,7 @@
 :- dynamic budgetindicator/1.
 :- dynamic slopenindicator/1.
 :- dynamic oldbuildings/1.
+:- dynamic demolishedPolygon/1.
 :- dynamic no_old_buildings/0.
 
 %The goals and how to achieve them.
@@ -28,6 +29,7 @@ get_old_buildings(Bag,L):-
 	sort(Bag1,Bag).
 
 % Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft
+
 iseducation(building(_,_,3,_,_,884,_,_)).
 
 demolished(none).
