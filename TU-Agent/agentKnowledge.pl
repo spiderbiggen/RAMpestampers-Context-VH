@@ -8,6 +8,7 @@
 :- dynamic zones/1.
 :- dynamic requests/1.
 :- dynamic actions/1.
+:- dynamic upgrade_types/1.
 %The indicator percepts
 :- dynamic bouwhoogindicator/1.
 :- dynamic bouwtudelftindicator/1.
@@ -43,3 +44,6 @@ iseducation(building(_,_,3,_,_,884,_,_)).
 
 demolished(none).
 demolishewi :- demolished(ewi).
+
+upgraded([]).
+upgradebuilding :- upgraded([X|T]).

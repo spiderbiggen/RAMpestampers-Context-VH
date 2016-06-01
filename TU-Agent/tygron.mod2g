@@ -3,10 +3,11 @@ use tygron as actionspec.
 use demolish as module.
 use buildConstruction as module.
 use buyLand as module.
+use upgrade as module.
 
 
 exit=nogoals.
-order=linear.
+order=linearall.
 
 module tygron {
 
@@ -21,4 +22,7 @@ module tygron {
 	% if we have no room to build we should demolish something or buy land
     % then demolish.
 	% then buyLand.
+	
+	if goal(upgradebuilding)
+		then upgrade.
 }

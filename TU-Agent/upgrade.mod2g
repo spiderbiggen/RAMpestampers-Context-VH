@@ -1,0 +1,11 @@
+use agentKnowledge as knowledge.
+use tygron as actionspec.
+
+order=linearall.
+
+module upgrade {
+	
+	if bel(buildings(X), upgrade_types(Y), member(building(ID,_, 3, _, _, SrcID, _, MultiPolygon), X), 
+		member(upgrade_type(UpgradeID, Z), Y), member(upgrade_pair(SrcID, _), Z), upgraded(T))
+		then building_plan_upgrade(UpgradeID, MultiPolygon) + delete(upgraded(T)) + insert(upgraded([ID|T])).
+}

@@ -1,3 +1,5 @@
 getindicatorgoals.
 
 demolishewi.
+
+upgradebuilding.
