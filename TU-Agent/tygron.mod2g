@@ -10,6 +10,9 @@ order=linear.
 
 module tygron {
 	
+	if bel(demolishedPolygon(MP)) 
+		then buildConstruction.
+	
 	% Call the module demolish to demolish EWI
 	if true
 		then demolish.

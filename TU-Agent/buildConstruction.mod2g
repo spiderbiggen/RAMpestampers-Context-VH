@@ -5,6 +5,6 @@ order=linearall.
 
 module buildConstruction {
 	
-	if true
-		then exit-module.
+	if bel(functions(FS), member([Name,Id,L],FS), member('EDUCATION',L), demolishedPolygon(MP))
+		then building_plan_construction(Id, 1, MP).
 }
