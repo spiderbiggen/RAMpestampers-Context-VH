@@ -19,9 +19,18 @@
 :- dynamic no_old_buildings/0.
 
 %The goals and how to achieve them.
-buildhigh :- bouwhoogindicator(100).
-buildeducation :- bouwtudelftindicator(100).
-buildgreen :- groenindicator(100).
+%once we see one indicatorgoal we can assume we've adopted them all.
+getindicatorgoals :- indicatorgoal(_,_).
+%an indicatorgoal is met if the current goal is the target goal
+indicatorgoal(Name, Current) :- indicator(Id, Name, _, Current).
+%Other beliefs
+:- dynamic indicatorlink/1.
+:- dynamic indicator/4.
+:- dynamic indicatorgoal/2.
+
+%this believe ensures that indicatorlink gets generated only once
+%it gets deleted after indicatorlink is inserted as believe
+readIndicatorlink.
 
 % Takes all buildings of L that return from iseducation and removes all duplicates
 get_old_buildings(Bag,L):-
@@ -34,4 +43,3 @@ iseducation(building(_,_,3,_,_,884,_,_)).
 
 demolished(none).
 demolishewi :- demolished(ewi).
-
