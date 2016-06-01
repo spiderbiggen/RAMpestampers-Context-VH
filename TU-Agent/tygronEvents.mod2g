@@ -2,15 +2,15 @@ use agentKnowledge as knowledge.
 
 module tygronEvents {
 	%%%%% Percept Processing %%%%%
-	if percept(stakeholders(X)), bel(stakeholders(Y)) then insert(stakeholders(X)) + delete(stakeholders(Y)).
-	if percept(settings(X)), bel(settings(Y)) then insert(settings(X)) + delete(settings(Y)).
-	if percept(functions(X)), bel(functions(Y)) then insert(functions(X)) + delete(functions(Y)).
-	if percept(buildings(X)), bel(buildings(Y)) then insert(buildings(X)) + delete(buildings(Y)).
-	if percept(indicators(X)), bel(indicators(Y)) then insert(indicators(X)) + delete(indicators(Y)).
-	if percept(lands(X)), bel(lands(Y)) then insert(lands(X)) + delete(lands(Y)).
-	if percept(zones(X)), bel(zones(Y)) then insert(zones(X)) + delete(zones(Y)).
-	if percept(requests(X)), bel(requests(Y)) then insert(requests(X)) + delete(requests(Y)).
-	if percept(actions(X)), bel(actions(Y)) then insert(actions(X)) + delete(actions(Y)).
+	if percept(stakeholders(X)), bel(stakeholders(Y)) then delete(stakeholders(Y)) + insert(stakeholders(X)).
+	if percept(settings(X)), bel(settings(Y)) then delete(settings(Y)) + insert(settings(X)).
+	if percept(functions(X)), bel(functions(Y)) then delete(functions(Y)) + insert(functions(X)).
+	if percept(buildings(X)), bel(buildings(Y)) then delete(buildings(Y)) + insert(buildings(X)).
+	if percept(indicators(X)), bel(indicators(Y)) then delete(indicators(Y)) + insert(indicators(X)).
+	if percept(lands(X)), bel(lands(Y)) then delete(lands(Y)) + insert(lands(X)).
+	if percept(zones(X)), bel(zones(Y)) then delete(zones(Y)) + insert(zones(X)).
+	if percept(requests(X)), bel(requests(Y)) then delete(requests(Y)) + insert(requests(X)).
+	if percept(actions(X)), bel(actions(Y)) then delete(actions(Y)) + insert(actions(X)).
 	
 	%Retrieve the indicatorlink for our stakeholder
 	if bel(readIndicatorlink, stakeholders(X), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,Weights)], X))
