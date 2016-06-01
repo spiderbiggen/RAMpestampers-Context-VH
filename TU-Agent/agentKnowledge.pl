@@ -15,11 +15,12 @@
 :- dynamic budgetindicator/1.
 :- dynamic slopenindicator/1.
 %The goals and how to achieve them.
-buildhigh :- bouwhoogindicator(100).
-buildeducation :- bouwtudelftindicator(100).
-buildgreen :- groenindicator(100).
+%once we see one indicatorgoal we can assume we've adopted them all.
+getindicatorgoals :- indicatorgoal(_,_).
 %Other beliefs
 :- dynamic indicatorlink/1.
+:- dynamic indicator/4.
+:- dynamic indicatorgoal/2.
 
 %this believe ensures that indicatorlink gets generated only once
 %it gets deleted after indicatorlink is inserted as believe

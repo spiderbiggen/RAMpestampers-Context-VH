@@ -1,4 +1,3 @@
-buildhigh.
-buildeducation.
-buildgreen.
+getindicatorgoals.
+
 demolishewi.
