@@ -10,6 +10,7 @@ order=linear.
 
 module tygron {
 	
+	% Call the module buildConstruction when there is a multipolygon available.
 	if bel(demolishedPolygon(MP)) 
 		then buildConstruction.
 	
