@@ -1,0 +1,20 @@
+use TUAgent as mas.
+use agentKnowledge as knowledge.
+use agentGoals as goals.
+use buildConstruction as module.
+
+test tygronagent with
+	%check if there is at least an oldbuilding believe.
+	pre {bel(demolishedPolygon(X))}
+	in {
+		%these actions should never be called within the demolish module
+		never done(building_plan_demolish(_)).
+		never done(map_buy_land(_, _)).
+		never done(map_sell_land(_, _, _)).
+		never done(building_plan_upgrade(_, _)).
+	}
+	post {not(bel(demolishedPolygon(X)))}
+
+	tygronagent {
+		do buildConstruction.
+	}

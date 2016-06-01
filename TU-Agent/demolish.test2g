@@ -1,0 +1,23 @@
+use TUAgent as mas.
+use agentKnowledge as knowledge.
+use agentGoals as goals.
+use demolish as module.
+
+timeout = 30.
+
+test tygronagent with
+	%check if there is at least an oldbuilding believe.
+	pre {bel(oldbuildings(X))}
+	in {
+		%these actions should never be called within the demolish module
+		never done(building_plan_construction(_, _, _)).
+		never done(map_buy_land(_, _)).
+		never done(map_sell_land(_, _, _)).
+		never done(building_plan_upgrade(_, _)).
+	}
+	post {bel(oldbuildings(X))}
+
+	tygronagent {
+		do demolish.
+	}
+	
