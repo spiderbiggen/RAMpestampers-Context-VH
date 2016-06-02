@@ -4,7 +4,7 @@ use agentGoals as goals.
 use tygron as module.
 use tygron as actionspec.
 
-timeout = 60.
+timeout = 30.
 
 test tygron with
 	%this module should start with at least an indicatorgoal
@@ -28,13 +28,15 @@ test tygron with
 		percept(buildings(X)) leadsto buildings(X).
 		percept(buildings(X)), bel(buildings(Y), not(X = Y)) leadsto not(bel(buildings(Y))).
 		percept(indicators(X)) leadsto indicators(X).
-		percept(indicators(X)), bel(indicators(Y), not(X = Y)) leadsto not(bel(indicators(Y))).
+		%TODO are these really on change percepts?
+		%percept(indicators(X)), bel(indicators(Y), not(X = Y)) leadsto not(bel(indicators(Y))).
 		percept(lands(X)) leadsto lands(X).
 		percept(lands(X)), bel(lands(Y), not(X = Y)) leadsto not(bel(lands(Y))).
 		percept(zones(X)) leadsto zones(X).
 		percept(zones(X)), bel(zones(Y), not(X = Y)) leadsto not(bel(zones(Y))).
+		%TODO are these really on change percepts?
 		percept(requests(X)) leadsto requests(X).
-		percept(requests(X)), bel(requests(Y), not(X = Y)) leadsto not(bel(requests(Y))).
+		%percept(requests(X)), bel(requests(Y), not(X = Y)) leadsto not(bel(requests(Y))).
 		percept(actions(X)) leadsto actions(X).
 		percept(actions(X)), bel(actions(Y), not(X = Y)) leadsto not(bel(actions(Y))).
 	}
