@@ -7,12 +7,12 @@ timeout = 30.
 
 % Test that if nothing happens, the buildhigh goal still exists. This test ensures that the goal is not automatically met by starting the map.
 test tygronagent with
-	pre {}
+	pre {true}
 	in {
 		never done(building_plan_construction(_, _, _)).
 		never done(map_buy_land(_, _)).
 	}
-	post {}
+	post {true}
 
 	tygronagent {
 		do tygron.
