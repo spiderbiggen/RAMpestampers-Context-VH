@@ -5,7 +5,7 @@ use demolish as module.
 
 timeout = 30.
 
-test tygronagent with
+test demolish with
 	%check if there is at least an oldbuilding believe.
 	pre {bel(oldbuildings([building(X,A,B,C,D,E,F,G)|Tail]))}
 	in {
@@ -28,7 +28,7 @@ test tygronagent with
 	}
 	post {bel(oldbuildings(Tail), availableLandPolygon(G))}
 
-	tygronagent {
+	demolish {
 		do demolish.
 	}
 	
