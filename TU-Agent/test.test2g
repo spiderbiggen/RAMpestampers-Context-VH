@@ -9,13 +9,35 @@ test tygron with
 	%this module should start with at least an indicatorgoal
 	pre {goal(indicatorgoal(_, _))}
 	in {
-		%these actions should never be called in the main module, they should be handled in seperate modules
-  		never done(building_plan_construction(_, _, _)).
-  		never done(map_buy_land(_, _)).
-  		never done(building_plan_demolish(_)).
-  		never done(building_plan_upgrade(_, _)).
-		%TODO test if certain conditions lead to the call of certain modules
-			
+	%Template A-incorrect
+		%never plan a construcation when there's no available land	
+  		never done(building_plan_construction(FunctionId, Floors, MultiPolygon)), not(bel(availableLandPolygon(_))).
+	%Template A-selected (A1)
+		%the goal to build high buildings, should lead to construction
+		goal(indicatorgoal('Bouwen hoge gebouwen', _)) leadsto done(building_plan_construction(FunctionId, Floors, MultiPolygon)).
+	%Template G-reconsideration (G2)
+		%never have a goal to createLandToBuild when theres available land
+		bel(availableLandPolygon(MP)) leadsto not(goal(createLandToBuild))
+	%Template P-on-change
+		%these are all the on-change percepts
+		percept(stakeholders(X)) leadsto stakeholders(X).
+		percept(stakeholders(X)), bel(stakeholders(Y), not(X = Y)) leadsto not(bel(stakeholders(Y)).
+		percept(settings(X)) leadsto settings(X).
+		percept(settings(X)), bel(settings(Y), not(X = Y)) leadsto not(bel(settings(Y)).
+		percept(functions(X)) leadsto functions(X).
+		percept(functions(X)), bel(functions(Y), not(X = Y)) leadsto not(bel(functions(Y)).
+		percept(buildings(X)) leadsto buildings(X).
+		percept(buildings(X)), bel(buildings(Y), not(X = Y)) leadsto not(bel(buildings(Y)).
+		percept(indicators(X)) leadsto indicators(X).
+		percept(indicators(X)), bel(indicators(Y), not(X = Y)) leadsto not(bel(indicators(Y)).
+		percept(lands(X)) leadsto lands(X).
+		percept(lands(X)), bel(lands(Y), not(X = Y)) leadsto not(bel(lands(Y)).
+		percept(zones(X)) leadsto zones(X).
+		percept(zones(X)), bel(zones(Y), not(X = Y)) leadsto not(bel(zones(Y)).
+		percept(requests(X)) leadsto requests(X).
+		percept(requests(X)), bel(requests(Y), not(X = Y)) leadsto not(bel(requests(Y)).
+		percept(actions(X)) leadsto actions(X).
+		percept(actions(X)), bel(actions(Y), not(X = Y)) leadsto not(bel(actions(Y)).
 	}
 	
 	%the agent should have no goals when exiting the module
