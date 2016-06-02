@@ -41,3 +41,7 @@ get_old_buildings(Bag,L):-
 
 % Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft
 iseducation(building(_,_,3,_,_,884,_,_)).
+
+%restored these lines to check why the build is failing.
+demolished(none).
+demolishewi :- demolished(ewi).
