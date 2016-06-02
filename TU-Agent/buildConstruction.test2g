@@ -5,7 +5,7 @@ use buildConstruction as module.
 
 test buildConstruction with
 	%check if there is at least an oldbuilding believe.
-	pre { bel(availableLandPolygon(MP)) }
+	pre { true }
 	in {
 		%these actions should never be called within the demolish module
 		never done(building_plan_demolish(_)).
@@ -13,13 +13,13 @@ test buildConstruction with
 		never done(map_sell_land(_, _, _)).
 		never done(building_plan_upgrade(_, _)).
 		
-		always done(building_plan_construction(_, _, MP)), not(bel(availableLandPolygon(MP))).
-		always done(building_plan_construction(_, _, _)).
-		
+		%If there is land available, something is build on it
+		%If there is no land available, a goal to create land is adopted.
+		bel(availableLandPolygon(_)) leadsto done(building_plan_construction(_)).			
 		not(bel(availableLandPolygon(_))) leadsto goal(createLandToBuild).	
 		
 	}
-	post { not(bel(availableLandPolygon(MP))) }
+	post { not(bel(availableLandPolygon(MP))); goal(createLandToBuild) }
 
 	buildConstruction {
 		do buildConstruction.
