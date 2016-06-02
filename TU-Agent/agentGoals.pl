@@ -1,5 +1,2 @@
 getindicatorgoals.
-
-demolishewi.
-
 upgradebuilding.

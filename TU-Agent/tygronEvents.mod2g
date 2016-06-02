@@ -21,13 +21,22 @@ module tygronEvents {
 		then insert(indicatorlink(Weights)) + delete(readIndicatorlink).
 		
 	%insert indicator when it doesn't exist at all
-	forall bel(indicatorlink(Weights), member(indicatorWeights(Id, Name, Score), Weights), indicators(Indicators), member(indicator(Id, Current, Target), Indicators)), not(bel(indicator(Id, Name, _, Target)))
+	forall bel(indicatorlink(Weights), member(indicatorWeights(Id, Name, Score), Weights), indicators(Indicators), member(indicator(Id, Current, Target, _), Indicators)), not(bel(indicator(Id, Name, _, Target)))
 		do insert(indicator(Id, Name, Current, Target)).
 	%update indicator when it does exist but is changed.
-	forall percept(indicators(X)), bel(indicatorlink(Weights), member(indicatorWeights(Id, Name, Score), Weights), indicators(Indicators), member(indicator(Id, Current, Target), Indicators)), bel(indicator(Id, Name, OldCurrent, Target))
+	forall percept(indicators(X)), bel(indicatorlink(Weights), member(indicatorWeights(Id, Name, Score), Weights), indicators(Indicators), member(indicator(Id, Current, Target, _), Indicators)), bel(indicator(Id, Name, OldCurrent, Target))
 		do delete(indicator(Id, Name, OldCurrent, Target)) + insert(indicator(Id, Name, Current, Target)).
 	
 	%set up the goals for the indicators
 	forall bel(indicator(Id, Name, Current, Target)), goal(getindicatorgoals)
 		do adopt(indicatorgoal(Name, Target)).
+	
+	%we can drop this after the first run%
+	if goal(getindicatorgoals)
+		then drop(getindicatorgoals).
+		
+	if bel(readUpgrades, buildings(Buildings), upgrade_types(UpgradeTypes), functions(Functions), get_useable_upgrades(Buildings, Functions, UpgradeTypes, Bag), upgrades(T))
+		then delete(readUpgrades) + delete(upgrades(T)) + insert(upgrades([Bag|T])). 
+		
+ 
 }
