@@ -5,15 +5,21 @@ use buildConstruction as module.
 
 test tygronagent with
 	%check if there is at least an oldbuilding believe.
-	pre {true}
+	pre { availableLandPolygon(MP) }
 	in {
 		%these actions should never be called within the demolish module
 		never done(building_plan_demolish(_)).
 		never done(map_buy_land(_, _)).
 		never done(map_sell_land(_, _, _)).
 		never done(building_plan_upgrade(_, _)).
+		
+		always done(building_plan_construction(_, _, MP)), not(bel(availableLandPolygon(MP))).
+		always done(building_plan_construction(_, _, _)).
+		
+		not(bel(availableLandPolygon(_))) leadsto goal(createLandToBuild).	
+		
 	}
-	post {true}
+	post { true }
 
 	tygronagent {
 		do buildConstruction.
