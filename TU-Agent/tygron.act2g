@@ -4,8 +4,8 @@ use agentKnowledge as knowledge.
 % Plan a new building
 % params = FunctionId, Amount of Floors, MultiPolygon describing the build contour
 define	building_plan_construction(FunctionId, Floors, MultiPolygon) with
-   pre{ true }
-   post{ true }
+   pre{ demolishedPolygon(MultiPolygon) }
+   post{ not(demolishedPolygon(MultiPolygon)) }
   
 % Define the buy land action
 % Buy the land defined by the polygon for given price
@@ -28,13 +28,6 @@ define map_sell_land(StakeholderId, MultiPolygon, Price) with
 define building_plan_demolish(BuildingId) with
   pre{ true }
   post{ true }
-  
-% Define the new message action
-% Send a message between Stakeholders
-% params = Receiving Stakeholder ID, Subject, Content, Motivation needed
-define message_new(StakeholderId, Subject, Content, IsMotivationNeeded) with
-	pre{ true }
-	post { true}
 	
 % Define the upgrade building action
 % Plan the upgrade of a building
