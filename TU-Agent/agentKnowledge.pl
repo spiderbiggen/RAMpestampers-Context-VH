@@ -43,20 +43,19 @@ get_old_buildings(Bag,L):-
 % Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft
 iseducation(building(_,_,3,_,_,884,_,_)).
 
-% Beliefs for upgrades.
+%creates a list of all available upgrades.
 get_useable_upgrades(Buildings, Functions, UpgradeTypes, Bag):-
 	findall(Name, 
-		(	
-			member(building(ID,_, 3, _, _, SrcID, _, MultiPolygon), Buildings), 
-			member(upgrade_type(UpgradeID, Z), UpgradeTypes), 
-			member(upgrade_pair(SrcID, TrgtID), Z), 
-			member([Name,TrgtID,L], Functions)
-		), 
-		Bag).
-	
-upgradebuilding :- upgrades([H|T]).
-upgrades([]).
+		( member(building(ID,_, 3, _, _, SrcID, _, MultiPolygon), Buildings), 
+		member(upgrade_type(UpgradeID, Z), UpgradeTypes), 
+		member(upgrade_pair(SrcID, TrgtID), Z), 
+		member([Name,TrgtID,L], Functions)), Bag1),
+	sort(Bag1, Bag).
+% to ensure we only create one upgrades list 
 readUpgrades.
+% Beliefs for upgrades.	
+upgrades([]).
+
 
 
 
