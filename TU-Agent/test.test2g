@@ -5,12 +5,20 @@ use tygron as module.
 
 timeout = 30.
 
-% Test that if nothing happens, the buildhigh goal still exists. This test ensures that the goal is not automatically met by starting the map.
 test tygronagent with
+	%this module should start with at least an indicatorgoal
 	pre {true}
 	in {
+		%these actions should never be called in the main module, they should be handled in seperate modules
 		never done(building_plan_construction(_, _, _)).
 		never done(map_buy_land(_, _)).
+		never done(building_plan_demolish(_)).
+		never done(building_plan_upgrade(_, _)).
+		%these actions should always be called in the main module
+		always done(building_plan_construction(_, _, _)).
+		always done(map_buy_land(_, _)).
+		always done(building_plan_demolish(_)).
+		always done(building_plan_upgrade(_, _)).
 	}
 	post {true}
 
