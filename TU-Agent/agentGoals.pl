@@ -1,3 +1,1 @@
 getindicatorgoals.
-
-demolishewi.
