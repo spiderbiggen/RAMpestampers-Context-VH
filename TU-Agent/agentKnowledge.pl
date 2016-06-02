@@ -15,7 +15,7 @@
 :- dynamic budgetindicator/1.
 :- dynamic slopenindicator/1.
 :- dynamic oldbuildings/1.
-:- dynamic demolishedPolygon/1.
+:- dynamic availableLandPolygon/1.
 :- dynamic no_old_buildings/0.
 
 %The goals and how to achieve them.
@@ -24,7 +24,7 @@ getindicatorgoals :- false.
 %an indicatorgoal is met if the current score is the target score
 indicatorgoal(Name, Target) :- indicator(Id, Name, Target, _).
 %createLandToBuild needs a demolished polygon
-createLandToBuild :- demolishedPolygon(_).
+createLandToBuild :- availableLandPolygon(_).
 %Other beliefs
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
