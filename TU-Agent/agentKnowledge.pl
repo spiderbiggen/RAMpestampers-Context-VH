@@ -23,6 +23,8 @@
 getindicatorgoals :- false.
 %an indicatorgoal is met if the current score is the target score
 indicatorgoal(Name, Target) :- indicator(Id, Name, Target, _).
+%createLandToBuild needs a demolished polygon
+createLandToBuild :- demolishedPolygon(_).
 %Other beliefs
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.

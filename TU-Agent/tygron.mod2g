@@ -9,7 +9,24 @@ exit=nogoals.
 order=linear.
 
 module tygron {
-
+	
+	
+	%TODO check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
+	
+	%if the buildConstruction module adopted the goal to create land we should enter the demolish module
+	%TODO: We could also buy land to create buildable land
+	if goal(createLandToBuild)
+		then demolish.
+	
+	%If we have the goal to build high buildings, we should enter the build module
+	if goal(indicatorgoal('bouwen hoge gebouwen', _))
+		then buildConstruction.
+	
+	%If the goal to build high buildings is met but we still have the demolish goal, we should enter the demolish module
+	if goal(indicatorgoal('Slopen oud gebouwen', _))
+		then demolish.
+	
+	
 	% Call the module buildConstruction when there is a multipolygon available.
 	if bel(demolishedPolygon(MP)) 
 		then buildConstruction.
@@ -17,8 +34,4 @@ module tygron {
 	% Call the module demolish to demolish EWI
 	if not(bel(demolishedPolygon(MP)))
 		then demolish.
-	
-	% if we have no room to build we should demolish something or buy land
-    % then demolish.
-	% then buyLand.
 }
