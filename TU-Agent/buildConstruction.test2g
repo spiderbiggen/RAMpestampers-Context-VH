@@ -3,7 +3,7 @@ use agentKnowledge as knowledge.
 use agentGoals as goals.
 use buildConstruction as module.
 
-test tygronagent with
+test buildConstruction with
 	%check if there is at least an oldbuilding believe.
 	pre { bel(availableLandPolygon(MP)) }
 	in {
@@ -21,6 +21,6 @@ test tygronagent with
 	}
 	post { not(bel(availableLandPolygon(MP))) }
 
-	tygronagent {
+	buildConstruction {
 		do buildConstruction.
 	}
