@@ -10,6 +10,7 @@ order=linear.
 
 module tygron {
 	
+	%TODO budget?
 	
 	%TODO check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
 	
@@ -25,13 +26,6 @@ module tygron {
 	%If the goal to build high buildings is met but we still have the demolish goal, we should enter the demolish module
 	if goal(indicatorgoal('Slopen oud gebouwen', _))
 		then demolish.
-	
-	
-	% Call the module buildConstruction when there is a multipolygon available.
-	if bel(demolishedPolygon(MP)) 
-		then buildConstruction.
-	
-	% Call the module demolish to demolish EWI
-	if not(bel(demolishedPolygon(MP)))
-		then demolish.
+		
+	%TODO: parken en groen
 }
