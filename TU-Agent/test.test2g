@@ -7,20 +7,18 @@ timeout = 30.
 
 test tygronagent with
 	%this module should start with at least an indicatorgoal
-	pre {true}
+	pre {goal(indicatorgoal(_, _))}
 	in {
 		%these actions should never be called in the main module, they should be handled in seperate modules
 		never done(building_plan_construction(_, _, _)).
 		never done(map_buy_land(_, _)).
 		never done(building_plan_demolish(_)).
 		never done(building_plan_upgrade(_, _)).
-		%these actions should always be called in the main module
-		always done(building_plan_construction(_, _, _)).
-		always done(map_buy_land(_, _)).
-		always done(building_plan_demolish(_)).
-		always done(building_plan_upgrade(_, _)).
+		%TODO test if certain conditions lead to the call of certain modules
+			
 	}
-	post {true}
+	%the agent should have no goals when exiting the module
+	post {not(goal(true))}
 
 	tygronagent {
 		do tygron.
