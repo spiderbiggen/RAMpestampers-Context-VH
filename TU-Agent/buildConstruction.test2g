@@ -5,7 +5,7 @@ use buildConstruction as module.
 
 test buildConstruction with
 	%check if there is at least an oldbuilding believe.
-	pre { true }
+	pre { goal(indicatorgoal('Bouwen hoge gebouwen', _)) }
 	in {
 		%these actions should never be called within the demolish module
 		never done(building_plan_demolish(_)).
