@@ -40,8 +40,4 @@ get_old_buildings(Bag,L):-
 	sort(Bag1,Bag).
 
 % Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft
-
 iseducation(building(_,_,3,_,_,884,_,_)).
-
-demolished(none).
-demolishewi :- demolished(ewi).
