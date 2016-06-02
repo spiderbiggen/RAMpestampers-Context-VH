@@ -7,15 +7,26 @@ timeout = 30.
 
 test tygronagent with
 	%check if there is at least an oldbuilding believe.
-	pre {bel(oldbuildings(X))}
+	pre {bel(oldbuildings([building(X,A,B,C,D,E,F,G)|Tail]))}
 	in {
 		%these actions should never be called within the demolish module
 		never done(building_plan_construction(_, _, _)).
 		never done(map_buy_land(_, _)).
 		never done(map_sell_land(_, _, _)).
 		never done(building_plan_upgrade(_, _)).
+		
+		always done(building_plan_demolish(_)).
+		
+		always done(building_plan_demolish(X)), bel(oldbuildings([building(X,A,B,C,D,E,F,G)|Tail])).
+		
+		never goal(createLandToBuild), bel(oldbuildings(Tail)).
+		
+		never done(building_plan_demolish(_)), not(goal(createLandToBuild)).
+		
+		goal(createLandToBuild) leadsto done(building_plan_demolish(_)).
+		
 	}
-	post {bel(oldbuildings(X))}
+	post {bel(oldbuildings(Tail), availableLandPolygon(G))}
 
 	tygronagent {
 		do demolish.
