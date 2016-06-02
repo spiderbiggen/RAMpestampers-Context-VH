@@ -19,10 +19,10 @@
 :- dynamic no_old_buildings/0.
 
 %The goals and how to achieve them.
-%once we see one indicatorgoal we can assume we've adopted them all.
-getindicatorgoals :- indicatorgoal(_,_).
-%an indicatorgoal is met if the current goal is the target goal
-indicatorgoal(Name, Current) :- indicator(Id, Name, _, Current).
+%we have to retrieve this only once and the goal will be dropped by hand
+getindicatorgoals :- false.
+%an indicatorgoal is met if the current score is the target score
+indicatorgoal(Name, Target) :- indicator(Id, Name, Target, _).
 %Other beliefs
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
