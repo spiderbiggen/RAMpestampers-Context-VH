@@ -57,6 +57,7 @@ get_useable_upgrades(Buildings, Functions, UpgradeTypes, Bag):-
 readUpgrades.
 % Beliefs for upgrades.	
 upgrades([]).
+upgraded([]).
 
 
 

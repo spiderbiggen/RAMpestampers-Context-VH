@@ -32,8 +32,6 @@ define building_plan_demolish(BuildingId) with
 % Define the upgrade building action
 % Plan the upgrade of a building
 % params = the UpgradeID of the upgrade type, Multipolygon describing the area to be upgraded
-%TODO:
-%Check if the same building is upgraded, through the UpgradeID.
 define building_plan_upgrade(UpgradeID, MultiPolygon) with
-  pre{ true }
-  post{ true }
+  pre{ upgraded(Tail), not(member(UpgradeID, Tail)) }
+  post{ upgraded([UpgradeID, Tail]) }
