@@ -73,7 +73,7 @@ In this section we'll describe some of the percepts in the connector and how are
 
 \end{itemize}
 
-These Percepts have been created by making a J2$<$something$>$ class in the translators package and adding this to the j2p array in the EisEnv class. Furthermore we added listeners for subjects that are required for the percepts to the EntityEventHandler class. At this point you have to redirect each listener to the createPercepts method while getting the correct content for the required class eg: for the buidings percept we need to listen on Maplinks.Buildings, we then need to get the list with content for the Building class. Then when we call createPercepts it will call the J2Building translator to convert each building to parameters we can then use in goal as a percept.
+These Percepts have been created by making a J2$<$something$>$ class in the translators package and adding this to the J2P array in the EisEnv class. J2P is responsible for translating a java object to a GOAL parameter. Furthermore we added listeners for subjects that are required for the percepts to the EntityEventHandler class. At this point you have to redirect each listener to the createPercepts method while getting the correct content for the required class eg: for the buidings percept we need to listen on Maplinks.Buildings, we then need to get the list with content for the Building class. Then when we call createPercepts it will call the J2Building translator to convert each building to parameters we can then use in goal as a percept.
 
 \subsubsection{Actions}
 
