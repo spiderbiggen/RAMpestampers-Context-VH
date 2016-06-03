@@ -4,7 +4,7 @@ use agentGoals as goals.
 use tygron as module.
 use tygron as actionspec.
 
-timeout = 120.
+timeout = 30.
 
 test tygron with
 	%this module should start with at least an indicatorgoal
