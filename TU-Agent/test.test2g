@@ -10,6 +10,7 @@ timeout = 30.
 test tygron with
 	pre {goal(indicatorgoal(_, _))}
 	in {
+		percept(stakeholders(X)) leadsto bel(stakeholders(X)).
 	}
  	post { }
 
