@@ -81,6 +81,12 @@ These Percepts have been created by making a J2$<$something$>$ class in the tran
 
 All available actions have been defined in the sdk, specifically in \\nl.tytech.data.engine.event.ParticipantEventType. All action have a description stated in @EventParamData, this annotation also states the required parameters. The other annotation that all actions have is the @EventIDFields which already fills some of the parameters. these should then not be passed through in goal. Filling these in will result in the action not working at all.
 
+\subsubsection{GOAL}
+
+In this section, the way GOAL is used in our agent will be explained.\\
+
+Our agent works with submodules and one main module. The main module calls the other modules when needed. The other modules are the buildConstruction and the demolish modules. The buildConstruction module is called when there is an indicator goal to build high buildings. In this module, either a building is build or a goal is adopted to create land.  The demolish module is called when there is a goal to create land or an indicator goal to demolish buildings. The demolish module demolishes a building from the list of old buildings.
+
 \newpage
 \subsection{Hardware/software mapping}
 In this section the hardware/software mapping Tygron uses will be explained, as well as the way our agent will be connected to this.
