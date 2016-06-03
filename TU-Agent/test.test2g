@@ -12,7 +12,7 @@ test tygron with
 	in {
 		%apparently travis doesn't allow us to test the in clauses
 	}
- 	post { }
+ 	post {true}
 
 	tygronagent {
 		do tygron.
