@@ -83,9 +83,13 @@ All available actions have been defined in the sdk, specifically in \\nl.tytech.
 
 \subsubsection{GOAL}
 
-In this section, the way GOAL is used in our agent will be explained.\\
+In this section we'll explain how we organised our goal code.
 
-Our agent works with submodules and one main module. The main module calls the other modules when needed. The other modules are the buildConstruction and the demolish modules. The buildConstruction module is called when there is an indicator goal to build high buildings. In this module, either a building is build or a goal is adopted to create land.  The demolish module is called when there is a goal to create land or an indicator goal to demolish buildings. The demolish module demolishes a building from the list of old buildings.
+We have devided our code in multiple modules, where the main module calls the other modules when appropiate. 
+Every other module fullfills a certain function for our agent. 
+For the construction of buildings we have the buildConstrucation.mod2g module that handles the construction of buildings. It is called when theres a goal to build high buildings for example. In this module, either a building is build or a goal is adopted to create land when the agent was not able to build a building.
+The demolish.mod2g module is called when there is a goal to create land or an indicator goal to demolish buildings. The demolish module demolishes a building by selecting an old building that needs to be destroyed. We are currently working on a module for buying land, handling requests and upgrading buildings.
+For every module there is also a test to make sure that the module is working correctly.
 
 \newpage
 \subsection{Hardware/software mapping}
