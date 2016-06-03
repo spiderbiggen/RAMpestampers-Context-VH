@@ -10,7 +10,35 @@ test tygron with
 	%this module should start with at least an indicatorgoal
 	pre {}
 	in {
-		
+	%Template A-incorrect
+		%never plan a construcation when there's no available land	
+		%TODO: fix this test, it should pass according to the programming guide
+  			%never done(building_plan_construction(FunctionId, Floors, MultiPolygon)), not(bel(availableLandPolygon(MultiPolygon))).
+	%Template G-reconsideration (G2)
+		%never have a goal to createLandToBuild when theres available land
+		%bel(availableLandPolygon(MP)) leadsto not(goal(createLandToBuild)).
+	%Template P-on-change
+		%these are all the on-change percepts
+		percept(stakeholders(X)) leadsto stakeholders(X).
+		percept(stakeholders(X)), bel(stakeholders(Y), not(X = Y)) leadsto not(bel(stakeholders(Y))).
+		percept(settings(X)) leadsto settings(X).
+		percept(settings(X)), bel(settings(Y), not(X = Y)) leadsto not(bel(settings(Y))).
+		percept(functions(X)) leadsto functions(X).
+		percept(functions(X)), bel(functions(Y), not(X = Y)) leadsto not(bel(functions(Y))).
+		percept(buildings(X)) leadsto buildings(X).
+		percept(buildings(X)), bel(buildings(Y), not(X = Y)) leadsto not(bel(buildings(Y))).
+		percept(indicators(X)) leadsto indicators(X).
+		%TODO are these really on change percepts?
+		%percept(indicators(X)), bel(indicators(Y), not(X = Y)) leadsto not(bel(indicators(Y))).
+		percept(lands(X)) leadsto lands(X).
+		percept(lands(X)), bel(lands(Y), not(X = Y)) leadsto not(bel(lands(Y))).
+		percept(zones(X)) leadsto zones(X).
+		percept(zones(X)), bel(zones(Y), not(X = Y)) leadsto not(bel(zones(Y))).
+		%TODO are these really on change percepts?
+		percept(requests(X)) leadsto requests(X).
+		%percept(requests(X)), bel(requests(Y), not(X = Y)) leadsto not(bel(requests(Y))).
+		percept(actions(X)) leadsto actions(X).
+		percept(actions(X)), bel(actions(Y), not(X = Y)) leadsto not(bel(actions(Y))).
 	}
 	
 	%since this module will never finish during the runtime we will not define any post conditions to prevent strange behaviour
