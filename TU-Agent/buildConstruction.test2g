@@ -2,18 +2,27 @@ use TUAgent as mas.
 use agentKnowledge as knowledge.
 use agentGoals as goals.
 use buildConstruction as module.
+use tygron as actionspec.
 
-test tygronagent with
+test buildConstruction with
 	%check if there is at least an oldbuilding believe.
-	pre {true}
+	pre { goal(indicatorgoal('Bouwen hoge gebouwen', _)) }
 	in {
 		%these actions should never be called within the demolish module
 		never done(building_plan_demolish(_)).
 		never done(map_buy_land(_, _)).
 		never done(map_sell_land(_, _, _)).
 		never done(building_plan_upgrade(_, _)).
+		
+		%If there is land available, something is build on it
+		bel(availableLandPolygon(_)) leadsto done(building_plan_construction(_)).
+		%If there is no land available, a goal to create land is adopted.		
+		not(bel(availableLandPolygon(_))) leadsto goal(createLandToBuild).	
+		
 	}
-	post {true}
+	%TODO: find a way to create an OR in the post condition, below is not working
+	%not(bel(availableLandPolygon(MP))) ; goal(createLandToBuild) 
+	post { true }
 
 	tygronagent {
 		do buildConstruction.
