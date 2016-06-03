@@ -8,21 +8,13 @@ timeout = 30.
 
 test tygron with
 	%this module should start with at least an indicatorgoal
-	pre {goal(indicatorgoal(_, _))}
+	pre {}
 	in {
-	%Template A-incorrect
-		%never plan a construcation when there's no available land	
-		%TODO: fix this test, it should pass according to the programming guide
-  			%never done(building_plan_construction(FunctionId, Floors, MultiPolygon)), not(bel(availableLandPolygon(MultiPolygon))).
-	%Template G-reconsideration (G2)
-		%never have a goal to createLandToBuild when theres available land
-		bel(availableLandPolygon(MP)) leadsto not(goal(createLandToBuild)).
-	%Template P-on-change
-
+		
 	}
 	
 	%since this module will never finish during the runtime we will not define any post conditions to prevent strange behaviour
- 	post {true}
+ 	post {}
 
 	tygronagent {
 		do tygron.
