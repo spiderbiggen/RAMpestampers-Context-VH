@@ -12,8 +12,7 @@ order=linear.
 module tygron {
 	
 	%TODO: parken en groen
-	if bel(upgrades(T), not(upgrades([])))
-		then upgrade.
+
 	%TODO budget?
 	
 	%TODO check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
@@ -36,5 +35,8 @@ module tygron {
 	if goal(indicatorgoal('Slopen oude gebouwen', _))
 		then demolish.
 		
+	%Call the upgrade module if there are any remaining upgrades
+	if bel(upgrades(T), not(upgrades([])))
+		then upgrade.
 
 }
