@@ -23,7 +23,8 @@
 %we have to retrieve this only once and the goal will be dropped by hand
 getindicatorgoals :- false.
 %an indicatorgoal is met if the current score is the target score
-indicatorgoal(Name, Target) :- indicator(Id, Name, Target, _).
+indicatorgoal(Name, Target) :- indicator(Id, Name, Current, _), Target > 0, Current >= Target.
+indicatorgoal(Name, Target) :- indicator(Id, Name, Current, _), Target =< 0, Current =< Target.
 %createLandToBuild needs a demolished polygon
 createLandToBuild :- demolishedPolygon(_).
 %Other beliefs
