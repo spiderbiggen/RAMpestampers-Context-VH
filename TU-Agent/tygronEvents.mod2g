@@ -36,7 +36,7 @@ module tygronEvents {
 		then drop(getindicatorgoals).
 		
 	if bel(readUpgrades, buildings(Buildings), upgrade_types(UpgradeTypes), functions(Functions), get_useable_upgrades(Buildings, Functions, UpgradeTypes, Bag), upgrades(T))
-		then delete(readUpgrades) + delete(upgrades(T)) + insert(upgrades([Bag|T])). 
+		then delete(readUpgrades) + delete(upgrades(T)) + insert(upgrades(Bag)). 
 		
  
 }

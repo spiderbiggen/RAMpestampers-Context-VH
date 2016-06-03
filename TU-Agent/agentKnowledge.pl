@@ -23,7 +23,7 @@
 %we have to retrieve this only once and the goal will be dropped by hand
 getindicatorgoals :- false.
 %an indicatorgoal is met if the current score is the target score
-indicatorgoal(Name, Target) :- indicator(Id, Name, Target, _).
+indicatorgoal(Name, Target) :- indicator(Id, Name, Current, _), Current >= Target.
 %createLandToBuild needs a demolished polygon
 createLandToBuild :- demolishedPolygon(_).
 %Other beliefs
@@ -45,11 +45,13 @@ iseducation(building(_,_,3,_,_,884,_,_)).
 
 %creates a list of all available upgrades.
 get_useable_upgrades(Buildings, Functions, UpgradeTypes, Bag):-
-	findall([Name, UpgradeID, SrcID], 
-		( member(building(_, _, 3, _, _, SrcID, _, _), Buildings), 
+	findall([Multipolygon, UpgradeID, SrcID], 
+		( member(building(_, _, 3, _, _, SrcID, _, Multipolygon), Buildings), 
 		member(upgrade_type(UpgradeID, UpgradePairs), UpgradeTypes), 
 		member(upgrade_pair(SrcID, TrgtID), UpgradePairs), 
-		member([Name, TrgtID, _], Functions)), Bag1),
+		member([Name, TrgtID, _], Functions),
+		sub_string(Name, _, _, _, 'groen')),
+		Bag1),
 	sort(Bag1, Bag).
 % to ensure we only create one upgrades list 
 readUpgrades.

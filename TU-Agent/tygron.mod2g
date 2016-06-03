@@ -30,10 +30,10 @@ module tygron {
 		then buildConstruction.
 	
 	%If the goal to build high buildings is met but we still have the demolish goal, we should enter the demolish module
-	if goal(indicatorgoal('Slopen oud gebouwen', _))
+	if goal(indicatorgoal('Slopen oude gebouwen', _))
 		then demolish.
 		
 	%TODO: parken en groen
-	if bel(upgrades(T))
+	if bel(upgrades(T), not(upgrades([])))
 		then upgrade.
 }
