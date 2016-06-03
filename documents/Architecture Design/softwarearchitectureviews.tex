@@ -61,13 +61,15 @@ In this section we'll describe some of the percepts in the connector and how are
 	\item \textbf{Building} \\ 
 	\begin{tabular}{ l l }
  		 Syntax & building($<$ID$>$, $<$name$>$, $<$categories$>$, $<$floors$>$, \\
-		& $<$stakeholder\_ID$>$, $<$constructionYear$>$) \\
+		& $<$stakeholder\_ID$>$, $<$constructionYear$>$, $<$functionID$>$, $<$multiPolygon$>$) \\
   		Parameters &  $<$ID$>$: Unique identifier for an indicator. 
 				\\& $<$name$>$: The name of the building according to the tygron environment.
 				\\& $<$categories$>$: The categorie of this building.
 				\\& $<$floors$>$: The amount of floors of this building.
 				\\& $<$stakeholder\_ID$>$: The ID of the stakeholder that owns this building.
 				\\& $<$constructionYear$>$: The year the building was build.
+				\\& $<$functionID$>$: The function ID of the building.
+				\\& $<$multiPolygon$>$: The multipolygon of the building.
 	\end{tabular}
 	The connector provides a building percept, that enables our agent to see which building he owns so that he can decide for example to destroy one of these buildings or upgrade it.
 
