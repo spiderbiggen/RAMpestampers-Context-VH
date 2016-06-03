@@ -37,3 +37,11 @@ define building_plan_demolish(BuildingId) with
 define building_plan_upgrade(UpgradeID, MultiPolygon) with
   pre{ true }
   post{ true }
+  
+  
+% Define the answer to a popup action
+% Answer another stakeholders request
+% params = RequestID, AnswerID
+define popup_answer(RequestID, AnswerID) with
+  pre{ true }
+  post{ true } 		

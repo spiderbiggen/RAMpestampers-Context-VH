@@ -3,6 +3,7 @@ use tygron as actionspec.
 use demolish as module.
 use buildConstruction as module.
 use buyLand as module.
+use answerToRequest as module.
 
 
 exit=nogoals.
@@ -13,6 +14,12 @@ module tygron {
 	%TODO budget?
 	
 	%TODO check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
+	
+	
+		% Call the module to answer a request by another stakeholder
+	if a-goal(answer(RequestID))
+		then answerToRequest.
+	
 	
 	%if the buildConstruction module adopted the goal to create land we should enter the demolish module
 	%TODO: We could also buy land to create buildable land

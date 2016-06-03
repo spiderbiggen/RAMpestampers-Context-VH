@@ -33,4 +33,7 @@ module tygronEvents {
 	%we can drop this after the first run%
 	if goal(getindicatorgoals)
 		then drop(getindicatorgoals).
+		
+	% If the agent gets a request from another stakeholder, adopt the goal of answering this request
+	if bel(requests(X), not(empty(X)), member(request(T, RequestID, L), X)) then adopt(answer(RequestID)).
 }

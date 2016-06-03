@@ -1,0 +1,11 @@
+use agentKnowledge as knowledge.
+use tygron as actionspec.
+
+order=linear.
+
+module answerToRequest {
+	
+	% Answer the request of the stakeholder with a "no" if the agent is planning on building there
+	if bel(requests(X), member(request(_, RequestID, _), X))
+		then popup_answer(RequestID, 0) + drop(answer(RequestID)).
+}

@@ -18,6 +18,7 @@
 :- dynamic demolishedPolygon/1.
 :- dynamic no_old_buildings/0.
 :- dynamic no_buildings/0.
+:- dynamic answered/1.
 
 %The goals and how to achieve them.
 %we have to retrieve this only once and the goal will be dropped by hand
@@ -43,3 +44,9 @@ get_old_buildings(Bag,L):-
 
 % Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft
 iseducation(building(_,_,3,_,_,884,_,_)).
+
+%The knowledge for responding to a request
+answer(RequestID) :- answered(RequestID).
+% Knowledge about the size of a list
+empty(L) :- length(L, 0).
+lengthOne(L) :- length(L, 1).
