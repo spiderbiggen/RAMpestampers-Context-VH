@@ -8,7 +8,7 @@ module buildConstruction {
 	% Build an education construction at an available place.
 	% This place is the multypolygon of an demolished building.
 	if bel(functions(FS), member([Name,Id,L],FS), member('EDUCATION',L), demolishedPolygon(MP))
-		then building_plan_construction(Id, 5, MP) + delete(demolishedPolygon(MP)).
+		then building_plan_construction(487, 30, MP) + delete(demolishedPolygon(MP)).
 	
 	if not(bel(demolishedPolygon(_)))
 		then adopt(createLandToBuild).

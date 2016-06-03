@@ -17,6 +17,7 @@
 :- dynamic oldbuildings/1.
 :- dynamic demolishedPolygon/1.
 :- dynamic no_old_buildings/0.
+:- dynamic no_buildings/0.
 
 %The goals and how to achieve them.
 %we have to retrieve this only once and the goal will be dropped by hand
