@@ -8,10 +8,9 @@ timeout = 30.
 
 %We're running into very strange problems with this file in travis
 test tygron with
-	pre { }
+	pre {goal(indicatorgoal(_, _))}
 	in {
 	}
-	
  	post { }
 
 	tygronagent {
