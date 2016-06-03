@@ -10,6 +10,9 @@ timeout = 30.
 test tygron with
 	pre {goal(indicatorgoal(_, _))}
 	in {
+	%Template G-reconsideration (G2)
+		%never have a goal to createLandToBuild when theres available land
+		bel(availableLandPolygon(MP)) leadsto not(goal(createLandToBuild)).
 	}
  	post { }
 
