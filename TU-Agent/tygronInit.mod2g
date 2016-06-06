@@ -26,6 +26,4 @@ module tygronInit {
 		then insert(actions([])).	
 	if true 
 		then insert(noOldBuildings).
-	if true
-		then insert(noBuildings).
 }

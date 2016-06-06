@@ -10,16 +10,26 @@ timeout = 30.
 test tygron with
 	pre {goal(indicatorGoal(_, _))}
 	in {
-		percept(buildings(X)), bel(noBuildings) leadsto bel(buildings(X)).
+		%Percept tests%
+		percept(buildings(X)), bel(buildings([])) leadsto bel(buildings(X)).
 		percept(stakeholders(X)) leadsto bel(stakeholders(X)).
+		percept(stakeholders(X)), bel(stakeholders(Y), not(X=Y)) leadsto not(bel(stakeholders(Y))).
 		percept(settings(X)) leadsto bel(settings(X)).
-		percept(functions(X)), bel(functions(Y)) leadsto bel(functions(X)).
+		percept(settings(X)), bel(settings(Y), not(X=Y)) leadsto not(bel(settings(Y))).
+		percept(functions(X)) leadsto bel(functions(X)).
+		percept(functions(X)), bel(functions(Y), not(X=Y)) leadsto not(bel(functions(Y))).
 		percept(indicators(X)) leadsto bel(indicators(X)).
-		percept(lands(X)), bel(lands(Y)) leadsto bel(lands(X)).
-		percept(zones(X)), bel(zones(Y)) leadsto bel(zones(X)).
-		percept(requests(X)), bel(requests(Y)) leadsto bel(requests(X)).
-		percept(actions(X)), bel(actions(Y)) leadsto bel(actions(X)).
-		percept(upgradeTypes(X)), bel(upgradeTypes(Y)) leadsto bel(upgradeTypes(X)).
+		percept(indicators(X)), bel(indicators(Y), not(X=Y)) leadsto not(bel(indicators(Y))).
+		percept(lands(X)) leadsto bel(lands(X)).
+		percept(lands(X)), bel(lands(Y), not(X=Y)) leadsto not(bel(lands(Y))).
+		percept(zones(X)) leadsto bel(zones(X)).
+		percept(zones(X)), bel(zones(Y), not(X=Y)) leadsto not(bel(zones(Y))).
+		percept(requests(X)) leadsto bel(requests(X)).
+		percept(requests(X)), bel(requests(Y), not(X=Y)) leadsto not(bel(requests(Y))).
+		percept(actions(X)) leadsto bel(actions(X)).
+		percept(actions(X)), bel(actions(Y), not(X=Y)) leadsto not(bel(actions(Y))).
+		percept(upgradeTypes(X)) leadsto bel(upgradeTypes(X)).
+		percept(upgradeTypes(X)), bel(upgradeTypes(Y), not(X=Y)) leadsto not(bel(upgradeTypes(Y))).
 	}
  	post {true}
 
