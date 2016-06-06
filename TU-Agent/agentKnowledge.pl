@@ -8,14 +8,10 @@
 :- dynamic zones/1.
 :- dynamic requests/1.
 :- dynamic actions/1.
-%The indicator percepts
-:- dynamic bouwhoogindicator/1.
-:- dynamic bouwtudelftindicator/1.
-:- dynamic groenindicator/1.
-:- dynamic budgetindicator/1.
-:- dynamic slopenindicator/1.
+
+%Believes
 :- dynamic oldbuildings/1.
-:- dynamic demolishedPolygon/1.
+:- dynamic availableLandPolygon/1.
 :- dynamic no_old_buildings/0.
 :- dynamic no_buildings/0.
 :- dynamic answered/1.
@@ -27,7 +23,7 @@ getindicatorgoals :- false.
 indicatorgoal(Name, Target) :- indicator(Id, Name, Current, _), Target > 0, Current >= Target.
 indicatorgoal(Name, Target) :- indicator(Id, Name, Current, _), Target =< 0, Current =< Target.
 %createLandToBuild needs a demolished polygon
-createLandToBuild :- demolishedPolygon(_).
+createLandToBuild :- availableLandPolygon(_).
 %Other beliefs
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.

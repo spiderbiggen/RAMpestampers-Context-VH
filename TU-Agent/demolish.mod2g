@@ -8,7 +8,7 @@ module demolish {
 	% Takes the first building of the list of destroyable buildings
 	% Destroys this building and deletes it of the list
 	if bel(oldbuildings([building(N,A,B,C,D,E,F,G)|Tail]))
-		then building_plan_demolish(N) + delete(oldbuildings([building(N,A,B,C,D,E,F,G)|Tail])) + insert(oldbuildings(Tail)) + insert(demolishedPolygon(G)).
+		then building_plan_demolish(N) + delete(oldbuildings([building(N,A,B,C,D,E,F,G)|Tail])) + insert(oldbuildings(Tail)) + insert(availableLandPolygon(G)).
 
 
 }
