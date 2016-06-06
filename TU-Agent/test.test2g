@@ -6,12 +6,13 @@ use tygron as actionspec.
 
 timeout = 30.
 
-%We're running into very strange problems with this file in travis
 test tygron with
 	pre {goal(indicatorGoal(_, _))}
 	in {
 		%Percept tests%
+		%We only percept this only once because of the empty list believe.
 		percept(buildings(X)), bel(buildings([])) leadsto bel(buildings(X)).
+		%Tests for percepts that are only send on change, according to template P-on-change
 		percept(stakeholders(X)) leadsto bel(stakeholders(X)).
 		percept(stakeholders(X)), bel(stakeholders(Y), not(X=Y)) leadsto not(bel(stakeholders(Y))).
 		percept(settings(X)) leadsto bel(settings(X)).
@@ -32,8 +33,10 @@ test tygron with
 		percept(upgradeTypes(X)), bel(upgradeTypes(Y), not(X=Y)) leadsto not(bel(upgradeTypes(Y))).
 		
 		%Goal tests%
+		%The goal should be reconsidered and dropped because of the believe, according to template G2.
 		bel(availableLandPolygon(_)) leadsto not(goal(createLandToBuild)).
 		bel(indicator(_, Name, _, Target)), goal(getIndicatorGoals) leadsto goal(indicatorGoal(Name, Target)).
+		%The believe is the reason for not having the goal here, according to template G3.
 		never goal(indicatorGoal(Name, Target)), bel(indicator(_, Name, Current, _), Target > 0, Current >= Target). 
 		never goal(indicatorGoal(Name, Target)), bel(indicator(_, Name, Current, _), Target =< 0, Current =< Target).	
 	}
