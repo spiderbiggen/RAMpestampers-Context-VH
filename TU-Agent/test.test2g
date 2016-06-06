@@ -10,7 +10,16 @@ timeout = 30.
 test tygron with
 	pre {goal(indicatorGoal(_, _))}
 	in {
-		%apparently travis doesn't allow us to test the in clauses
+		percept(buildings(X)), bel(noBuildings) leadsto bel(buildings(X)).
+		percept(stakeholders(X)) leadsto bel(stakeholders(X)).
+		percept(settings(X)) leadsto bel(settings(X)).
+		percept(functions(X)), bel(functions(Y)) leadsto bel(functions(X)).
+		percept(indicators(X)) leadsto bel(indicators(X)).
+		percept(lands(X)), bel(lands(Y)) leadsto bel(lands(X)).
+		percept(zones(X)), bel(zones(Y)) leadsto bel(zones(X)).
+		percept(requests(X)), bel(requests(Y)) leadsto bel(requests(X)).
+		percept(actions(X)), bel(actions(Y)) leadsto bel(actions(X)).
+		percept(upgradeTypes(X)), bel(upgradeTypes(Y)) leadsto bel(upgradeTypes(X)).
 	}
  	post {true}
 
