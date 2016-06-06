@@ -16,12 +16,12 @@ test demolish with
 		never done(map_buy_land(_, _)).
 		never done(map_sell_land(_, _, _)).
 		never done(building_plan_upgrade(_, _)).
-		
-		always done(building_plan_demolish(_)).
-		
-		always done(building_plan_demolish(X)), bel(buildings(List), member(building(X,A,B,C,D,E,F,G), List)).
-						
-		goal(createLandToBuild) leadsto done(building_plan_demolish(_)).
+				
+		always done(building_plan_demolish(_)).		
+		always done(building_plan_demolish(X)), bel(buildings(List), member(building(X,A,B,C,D,E,F,G), List)).	
+							
+		goal(createLandToBuild) 
+			leadsto done(building_plan_demolish(_)).
 		
 	}
 	post {bel(oldbuildings(_), availableLandPolygon(_))}

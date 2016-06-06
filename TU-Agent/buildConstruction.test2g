@@ -15,9 +15,11 @@ test buildConstruction with
 		never done(building_plan_upgrade(_, _)).
 		
 		%If there is land available, something is build on it
-		bel(availableLandPolygon(_)) leadsto done(building_plan_construction(_)).
+		bel(availableLandPolygon(_)) 
+			leadsto done(building_plan_construction(_)).
 		%If there is no land available, a goal to create land is adopted.		
-		not(bel(availableLandPolygon(_))) leadsto goal(createLandToBuild).	
+		not(bel(availableLandPolygon(_))) 
+			leadsto goal(createLandToBuild).	
 		
 	}
 	%TODO: find a way to create an OR in the post condition, below is not working
