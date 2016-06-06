@@ -40,7 +40,7 @@ module tygronEvents {
 	
 	%set up the goals for the indicators
 	forall bel(indicator(_, Name, _, Target)), goal(getIndicatorGoals)
-		do adopt(indicatorgoal(Name, Target)).
+		do adopt(indicatorGoal(Name, Target)).
 	
 	%we can drop this after the first run%
 	if goal(getIndicatorGoals)

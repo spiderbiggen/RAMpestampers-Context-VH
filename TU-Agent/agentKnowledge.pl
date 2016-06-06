@@ -19,14 +19,14 @@
 %we have to retrieve this only once and the goal will be dropped by hand
 getIndicatorGoals :- false.
 %an indicatorgoal is met if the current score is the target score
-indicatorgoal(Name, Target) :- indicator(_, Name, Current, _), Target > 0, Current >= Target.
-indicatorgoal(Name, Target) :- indicator(_, Name, Current, _), Target =< 0, Current =< Target.
+indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target > 0, Current >= Target.
+indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target =< 0, Current =< Target.
 %createLandToBuild needs a demolished polygon
 createLandToBuild :- availableLandPolygon(_).
 %Other beliefs
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
-:- dynamic indicatorgoal/2.
+:- dynamic indicatorGoal/2.
 
 %this believe ensures that indicatorlink gets generated only once
 %it gets deleted after indicatorlink is inserted as believe

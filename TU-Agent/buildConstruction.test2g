@@ -6,7 +6,7 @@ use tygron as actionspec.
 
 test buildConstruction with
 	%check if there is at least an oldbuilding believe.
-	pre { goal(indicatorgoal('Bouwen hoge gebouwen', _)) }
+	pre { goal(indicatorGoal('Bouwen hoge gebouwen', _)) }
 	in {
 		%these actions should never be called within the demolish module
 		never done(building_plan_demolish(_)).
