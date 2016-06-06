@@ -30,6 +30,12 @@ test tygron with
 		percept(actions(X)), bel(actions(Y), not(X=Y)) leadsto not(bel(actions(Y))).
 		percept(upgradeTypes(X)) leadsto bel(upgradeTypes(X)).
 		percept(upgradeTypes(X)), bel(upgradeTypes(Y), not(X=Y)) leadsto not(bel(upgradeTypes(Y))).
+		
+		%Goal tests%
+		bel(availableLandPolygon(_)) leadsto not(goal(createLandToBuild)).
+		bel(indicator(_, Name, _, Target)), goal(getIndicatorGoals) leadsto goal(indicatorGoal(Name, Target)).
+		never goal(indicatorGoal(Name, Target)), bel(indicator(_, Name, Current, _), Target > 0, Current >= Target). 
+		never goal(indicatorGoal(Name, Target)), bel(indicator(_, Name, Current, _), Target =< 0, Current =< Target).	
 	}
  	post {true}
 
