@@ -1,5 +1,5 @@
 use "tygronenv-1.0.9-jar-with-dependencies.jar" as environment 
-	with project = "vhprojectdupram" ,
+	with project = "vhramp" ,
 	stakeholders = ["TU"],
 	domain = "tudelft".
 

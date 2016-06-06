@@ -11,6 +11,7 @@ module tygronEvents {
 	if percept(zones(X)), bel(zones(Y)) then delete(zones(Y)) + insert(zones(X)).
 	if percept(requests(X)), bel(requests(Y)) then delete(requests(Y)) + insert(requests(X)).
 	if percept(actions(X)), bel(actions(Y)) then delete(actions(Y)) + insert(actions(X)).
+	if percept(upgrade_types(X)), bel(upgrade_types(Y)) then delete(upgrade_types(Y)) + insert(upgrade_types(X)).
 
 	%insert oldbuildings once
 	if bel(no_old_buildings, buildings(X), get_old_buildings(Bag,X)) then insert(oldbuildings(Bag)) + delete(no_old_buildings).
@@ -33,4 +34,9 @@ module tygronEvents {
 	%we can drop this after the first run%
 	if goal(getindicatorgoals)
 		then drop(getindicatorgoals).
+		
+	if bel(readUpgrades, buildings(Buildings), upgrade_types(UpgradeTypes), functions(Functions), get_useable_upgrades(Buildings, Functions, UpgradeTypes, Bag), upgrades(T))
+		then delete(readUpgrades) + delete(upgrades(T)) + insert(upgrades(Bag)). 
+		
+ 
 }

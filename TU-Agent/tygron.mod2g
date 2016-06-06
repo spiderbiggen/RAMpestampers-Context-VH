@@ -3,6 +3,7 @@ use tygron as actionspec.
 use demolish as module.
 use buildConstruction as module.
 use buyLand as module.
+use upgrade as module.
 
 
 exit=nogoals.
@@ -10,6 +11,8 @@ order=linear.
 
 module tygron {
 	
+	%TODO: parken en groen
+
 	%TODO budget?
 	
 	%TODO check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
@@ -19,13 +22,21 @@ module tygron {
 	if goal(createLandToBuild)
 		then demolish.
 	
+	% if we have no room to build we should demolish something or buy land
+    % then demolish.
+	% then buyLand.
+	
+	
 	%If we have the goal to build high buildings, we should enter the build module
 	if goal(indicatorgoal('Bouwen hoge gebouwen', _))
 		then buildConstruction.
 	
 	%If the goal to build high buildings is met but we still have the demolish goal, we should enter the demolish module
-	if goal(indicatorgoal('Slopen oud gebouwen', _))
+	if goal(indicatorgoal('Slopen oude gebouwen', _))
 		then demolish.
 		
-	%TODO: parken en groen
+	%Call the upgrade module if there are any remaining upgrades
+	if bel(upgrades(T), not(upgrades([])))
+		then upgrade.
+
 }
