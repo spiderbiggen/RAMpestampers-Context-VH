@@ -32,14 +32,14 @@ module tygronEvents {
 		then insert(indicatorlink(Weights)) + delete(readIndicatorlink).
 		
 	%insert indicator when it doesn't exist at all
-	forall bel(indicatorlink(Weights), member(indicatorWeights(Id, Name, Score), Weights), indicators(Indicators), member(indicator(Id, Current, Target, _), Indicators)), not(bel(indicator(Id, Name, _, Target)))
-		do insert(indicator(Id, Name, Current, Target)).
+	forall bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), not(bel(indicator(IndicatorID, Name, _, Target)))
+		do insert(indicator(IndicatorID, Name, Current, Target)).
 	%update indicator when it does exist but is changed.
-	forall percept(indicators(X)), bel(indicatorlink(Weights), member(indicatorWeights(Id, Name, Score), Weights), indicators(Indicators), member(indicator(Id, Current, Target, _), Indicators)), bel(indicator(Id, Name, OldCurrent, Target))
-		do delete(indicator(Id, Name, OldCurrent, Target)) + insert(indicator(Id, Name, Current, Target)).
+	forall percept(indicators(X)), bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), bel(indicator(IndicatorID, Name, OldCurrent, Target))
+		do delete(indicator(IndicatorID, Name, OldCurrent, Target)) + insert(indicator(IndicatorID, Name, Current, Target)).
 	
 	%set up the goals for the indicators
-	forall bel(indicator(Id, Name, Current, Target)), goal(getIndicatorGoals)
+	forall bel(indicator(_, Name, _, Target)), goal(getIndicatorGoals)
 		do adopt(indicatorgoal(Name, Target)).
 	
 	%we can drop this after the first run%

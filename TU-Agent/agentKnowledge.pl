@@ -19,8 +19,8 @@
 %we have to retrieve this only once and the goal will be dropped by hand
 getIndicatorGoals :- false.
 %an indicatorgoal is met if the current score is the target score
-indicatorgoal(Name, Target) :- indicator(Id, Name, Current, _), Target > 0, Current >= Target.
-indicatorgoal(Name, Target) :- indicator(Id, Name, Current, _), Target =< 0, Current =< Target.
+indicatorgoal(Name, Target) :- indicator(_, Name, Current, _), Target > 0, Current >= Target.
+indicatorgoal(Name, Target) :- indicator(_, Name, Current, _), Target =< 0, Current =< Target.
 %createLandToBuild needs a demolished polygon
 createLandToBuild :- availableLandPolygon(_).
 %Other beliefs
@@ -33,8 +33,8 @@ createLandToBuild :- availableLandPolygon(_).
 readIndicatorlink.
 
 % Takes all buildings of L that return from iseducation and removes all duplicates
-getOldBuildings(Bag,L):-
-	findall(Building, (member(Building, L), isEducation(Building)), Bag1),
+getOldBuildings(Bag,List):-
+	findall(Building, (member(Building, List), isEducation(Building)), Bag1),
 	sort(Bag1,Bag).
 
 % Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft

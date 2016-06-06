@@ -31,7 +31,7 @@ module tygron {
 		then demolish.
 		
 	%Call the upgrade module if there are any remaining upgrades
-	if bel(upgrades(T), not(upgrades([])))
+	if bel(upgrades(_), not(upgrades([])))
 		then upgrade.
 
 }
