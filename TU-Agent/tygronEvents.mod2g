@@ -20,12 +20,12 @@ module tygronEvents {
 		then delete(requests(Y)) + insert(requests(X)).
 	if percept(actions(X)), bel(actions(Y)) 
 		then delete(actions(Y)) + insert(actions(X)).
-	if percept(upgrade_types(X)), bel(upgrade_types(Y)) 
-		then delete(upgrade_types(Y)) + insert(upgrade_types(X)).
+	if percept(upgradeTypes(X)), bel(upgradeTypes(Y)) 
+		then delete(upgradeTypes(Y)) + insert(upgradeTypes(X)).
 
 	%insert oldbuildings once
-	if bel(no_old_buildings, buildings(X), get_old_buildings(Bag,X)) 
-		then insert(oldbuildings(Bag)) + delete(no_old_buildings).
+	if bel(noOldBuildings, buildings(X), getOldBuildings(Bag,X)) 
+		then insert(oldBuildings(Bag)) + delete(noOldBuildings).
 	
 	%Retrieve the indicatorlink for our stakeholder
 	if bel(readIndicatorlink, stakeholders(X), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,Weights)], X))
@@ -39,14 +39,14 @@ module tygronEvents {
 		do delete(indicator(Id, Name, OldCurrent, Target)) + insert(indicator(Id, Name, Current, Target)).
 	
 	%set up the goals for the indicators
-	forall bel(indicator(Id, Name, Current, Target)), goal(getindicatorgoals)
+	forall bel(indicator(Id, Name, Current, Target)), goal(getIndicatorGoals)
 		do adopt(indicatorgoal(Name, Target)).
 	
 	%we can drop this after the first run%
-	if goal(getindicatorgoals)
-		then drop(getindicatorgoals).
+	if goal(getIndicatorGoals)
+		then drop(getIndicatorGoals).
 		
-	if bel(readUpgrades, buildings(Buildings), upgrade_types(UpgradeTypes), functions(Functions), get_useable_upgrades(Buildings, Functions, UpgradeTypes, Bag), upgrades(T))
+	if bel(readUpgrades, buildings(Buildings), upgradeTypes(UpgradeTypes), functions(Functions), getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag), upgrades(T))
 		then delete(readUpgrades) + delete(upgrades(T)) + insert(upgrades(Bag)). 
 		
  

@@ -20,12 +20,7 @@ module tygron {
 	%if the buildConstruction module adopted the goal to create land we should enter the demolish module
 	%TODO: We could also buy land to create buildable land
 	if goal(createLandToBuild)
-		then demolish.
-	
-	% if we have no room to build we should demolish something or buy land
-    % then demolish.
-	% then buyLand.
-	
+		then demolish.	
 	
 	%If we have the goal to build high buildings, we should enter the build module
 	if goal(indicatorgoal('Bouwen hoge gebouwen', _))
