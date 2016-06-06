@@ -8,7 +8,7 @@ timeout = 30.
 
 %We're running into very strange problems with this file in travis
 test tygron with
-	pre {goal(indicatorgoal(_, _))}
+	pre {goal(indicatorGoal(_, _))}
 	in {
 		%apparently travis doesn't allow us to test the in clauses
 	}

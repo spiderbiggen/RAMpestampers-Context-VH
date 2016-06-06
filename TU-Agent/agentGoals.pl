@@ -1,1 +1,1 @@
-getindicatorgoals.
+getIndicatorGoals.
