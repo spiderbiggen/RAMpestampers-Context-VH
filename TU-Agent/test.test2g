@@ -11,31 +11,61 @@ test tygron with
 	in {
 		%Percept tests%
 		%We only percept this only once because of the empty list believe.
-		percept(buildings(X)), bel(buildings([])) leadsto bel(buildings(X)).
+		percept(buildings(X)), bel(buildings([])) 
+			leadsto bel(buildings(X)).
 		%Tests for percepts that are only send on change, according to template P-on-change
-		percept(stakeholders(X)) leadsto bel(stakeholders(X)).
-		percept(stakeholders(X)), bel(stakeholders(Y), not(X=Y)) leadsto not(bel(stakeholders(Y))).
-		percept(settings(X)) leadsto bel(settings(X)).
-		percept(settings(X)), bel(settings(Y), not(X=Y)) leadsto not(bel(settings(Y))).
-		percept(functions(X)) leadsto bel(functions(X)).
-		percept(functions(X)), bel(functions(Y), not(X=Y)) leadsto not(bel(functions(Y))).
-		percept(indicators(X)) leadsto bel(indicators(X)).
-		percept(indicators(X)), bel(indicators(Y), not(X=Y)) leadsto not(bel(indicators(Y))).
-		percept(lands(X)) leadsto bel(lands(X)).
-		percept(lands(X)), bel(lands(Y), not(X=Y)) leadsto not(bel(lands(Y))).
-		percept(zones(X)) leadsto bel(zones(X)).
-		percept(zones(X)), bel(zones(Y), not(X=Y)) leadsto not(bel(zones(Y))).
-		percept(requests(X)) leadsto bel(requests(X)).
-		percept(requests(X)), bel(requests(Y), not(X=Y)) leadsto not(bel(requests(Y))).
-		percept(actions(X)) leadsto bel(actions(X)).
-		percept(actions(X)), bel(actions(Y), not(X=Y)) leadsto not(bel(actions(Y))).
-		percept(upgradeTypes(X)) leadsto bel(upgradeTypes(X)).
-		percept(upgradeTypes(X)), bel(upgradeTypes(Y), not(X=Y)) leadsto not(bel(upgradeTypes(Y))).
+		%Test stakeholders percept
+		percept(stakeholders(X)) 
+			leadsto bel(stakeholders(X)).
+		percept(stakeholders(X)), bel(stakeholders(Y), not(X=Y)) 
+			leadsto not(bel(stakeholders(Y))).
+		%Test settings percept
+		percept(settings(X)) 
+			leadsto bel(settings(X)).
+		percept(settings(X)), bel(settings(Y), not(X=Y)) 
+			leadsto not(bel(settings(Y))).
+		%Test functions percept
+		percept(functions(X)) 
+			leadsto bel(functions(X)).
+		percept(functions(X)), bel(functions(Y), not(X=Y)) 
+			leadsto not(bel(functions(Y))).
+		%Test indicators percept
+		percept(indicators(X)) 
+			leadsto bel(indicators(X)).
+		percept(indicators(X)), bel(indicators(Y), not(X=Y)) 
+			leadsto not(bel(indicators(Y))).
+		%Test lands percept
+		percept(lands(X)) 
+			leadsto bel(lands(X)).
+		percept(lands(X)), bel(lands(Y), not(X=Y)) 
+			leadsto not(bel(lands(Y))).
+		%Test zones percept
+		percept(zones(X)) 
+			leadsto bel(zones(X)).
+		percept(zones(X)), bel(zones(Y), not(X=Y)) 
+			leadsto not(bel(zones(Y))).
+		%Test requests percept
+		percept(requests(X)) 
+			leadsto bel(requests(X)).
+		percept(requests(X)), bel(requests(Y), not(X=Y)) 
+			leadsto not(bel(requests(Y))).
+		%Test actions percept
+		percept(actions(X)) 
+			leadsto bel(actions(X)).
+		percept(actions(X)), bel(actions(Y), not(X=Y)) 
+			leadsto not(bel(actions(Y))).
+		%Test upgradeTypes percept
+		percept(upgradeTypes(X)) 
+			leadsto bel(upgradeTypes(X)).
+		percept(upgradeTypes(X)), bel(upgradeTypes(Y), not(X=Y)) 
+			leadsto not(bel(upgradeTypes(Y))).
 		
 		%Goal tests%
 		%The goal should be reconsidered and dropped because of the believe, according to template G2.
-		bel(availableLandPolygon(_)) leadsto not(goal(createLandToBuild)).
-		bel(indicator(_, Name, _, Target)), goal(getIndicatorGoals) leadsto goal(indicatorGoal(Name, Target)).
+		bel(availableLandPolygon(_)) 
+			leadsto not(goal(createLandToBuild)).
+		bel(indicator(_, Name, _, Target)), goal(getIndicatorGoals) 
+			leadsto goal(indicatorGoal(Name, Target)).
 		%The believe is the reason for not having the goal here, according to template G3.
 		never goal(indicatorGoal(Name, Target)), bel(indicator(_, Name, Current, _), Target > 0, Current >= Target). 
 		never goal(indicatorGoal(Name, Target)), bel(indicator(_, Name, Current, _), Target =< 0, Current =< Target).	
