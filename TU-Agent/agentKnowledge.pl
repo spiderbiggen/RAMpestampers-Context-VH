@@ -9,7 +9,6 @@
 :- dynamic requests/1.
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
-:- dynamic noBuildings/0.
 
 %Believes
 :- dynamic oldBuildings/1.
