@@ -7,7 +7,15 @@ use tygron as actionspec.
 timeout = 30.
 
 test tygron with
-	pre {goal(indicatorGoal(_, _))}
+	pre {
+		%We should have at least an indicatorGoal for this module to run
+		goal(indicatorGoal(_, _)),
+		%Tests for some important believes which are needed for this module to function.
+		bel(functions(FunctionsList), not(empty(FunctionsList))),
+		bel(stakeholders(StakeholdersList), not(empty(StakeholdersList))),
+		bel(buildings(BuildingsList), not(empty(BuildingsList))),
+		bel(indicators(IndicatorsList), not(empty(IndicatorsList)))
+		}
 	in {
 		%Percept tests%
 		%We only percept this only once because of the empty list believe.
