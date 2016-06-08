@@ -33,48 +33,77 @@ In this section some specific behaviour between the agent and the connector will
 \subsubsection{Percepts}
 In this section we'll describe some of the percepts in the connector and how are agent uses them.
 
-\begin{itemize}
-	\item \textbf{upgrade types} \\ 
-	\begin{tabular}{ l l }
- 		 Syntax & upgrade\_type($<$typeID$>$, $<$upgrade\_pair$>$) \\
-  		Parameters &  $<$typeID$>$: Unique identifier for an upgrade type. 
-				\\& $<$upgrade\_pair$>$: The pair of buildings of this upgrade. 
-	\end{tabular}
-	To enable us to upgrade a building the specific ID of that upgrade is needed. This ID is linked to a tuple that specifies the old building and the new building after the upgrade. When we receive this percept we can select the upgrade we need and then call the action to upgrade it. By adding this our agent can upgrade a building instead of demolishing and rebuilding it.
-	\item \textbf{Indicator} \\ 
-	\begin{tabular}{ l l }
- 		 Syntax & indicators($<$indID$>$, $<$currentValue$>$, $<$targetValue$>$) \\
-  		Parameters &  $<$indID$>$: Unique identifier for an indicator. 
-				\\& $<$currentValue$>$: The current value of the indicator. 
-				\\& $<$targetvalue$>$: The target value of the indicator. 
-	\end{tabular}
-	The ultimate goal of the agent is to improve his score, it can do this by looking at its indicator scores and trying to improve these. To do this the agent needs to know what the score is and percept any changes. By enhancing the connector with this percept the agent is able to do this.
-	\item \textbf{Indicator link} \\ 
-	\begin{tabular}{ l l }
- 		 Syntax & indicator\_link($<$indID$>$, $<$stakeIDs$>$, $<$name$>$, $<$weight$>$) \\
-  		Parameters &  $<$indID$>$: Unique identifier for an indicator. 
-				\\& $<$stakeIDs$>$: The ID of the stakeholder that has this indicator. 
-				\\& $<$name$>$: The name of this indicator. 
-				\\& $<$weight$>$: The weight that this indicator has for the total score. 
-	\end{tabular}
-	To enable our agent to see what the weights of a certain indicator are and which indicators are his an indicator link percept has been added to the connector. This percept helps to make the indicator percept more usefull for the agent.
-	\item \textbf{Building} \\ 
-	\begin{tabular}{ l l }
- 		 Syntax & building($<$ID$>$, $<$name$>$, $<$categories$>$, $<$floors$>$, \\
-		& $<$stakeholder\_ID$>$, $<$constructionYear$>$, $<$functionID$>$, $<$multiPolygon$>$) \\
-  		Parameters &  $<$ID$>$: Unique identifier for an indicator. 
-				\\& $<$name$>$: The name of the building according to the tygron environment.
-				\\& $<$categories$>$: The categorie of this building.
-				\\& $<$floors$>$: The amount of floors of this building.
-				\\& $<$stakeholder\_ID$>$: The ID of the stakeholder that owns this building.
-				\\& $<$constructionYear$>$: The year the building was build.
-				\\& $<$functionID$>$: The function ID of the building.
-				\\& $<$multiPolygon$>$: The multipolygon of the building.
-	\end{tabular}
-	The connector provides a building percept, that enables our agent to see which building he owns so that he can decide for example to destroy one of these buildings or upgrade it.
+	\subsubsection*{upgrade\_types percept}
+		\begin{small}
+			\begin{tabular}{p{2cm}p{9cm}}
+				Description 	& List of upgrade types available on the map.\\
+				Type 		& Send on change.\\
+				Syntax 	& \verb|upgrade_types([upgrade_type(<upgradeTypeID>,|\\
+						& \verb|[upgrade_pair(<sourceFunctionID>, |\\
+						& \verb|<targetFunctionID>)...])...])|\\
+				Parameters 	& \verb|<upgradeTypeID>|: Unique identifier for an upgrade type.\\
+						& \verb|<sourceFunctionID>|: Unique identifier of the function before the upgrade.\\
+						& \verb|<targetFunctionID>|:  Unique identifier of the function after the upgrade.\\
+			\end{tabular}
+		\end{small}
+	\\To enable us to upgrade a building the specific ID of that upgrade is needed. This ID is linked to a tuple that specifies the old building and the new building after the upgrade. When we receive this percept we can select the upgrade we need and then call the action to upgrade it. By adding this our agent can upgrade a building instead of demolishing and rebuilding it.
 
-\end{itemize}
+	\subsubsection*{indicators percept}
+		\begin{small}
+			\begin{tabular}{p{2cm}p{9cm}}
+				Description 	& List of indicators.\\
+				Type 		& Send on change.\\
+				Syntax 	& \verb|indicators([indicator(<indicatorID>, <currentValue>, |\\
+						& \verb| <targetValue>, [zone_link(<zoneID>, <indicatorID>, |\\
+						& \verb| <currentValueZone>, <targetValueZone>)...])...])|\\
+				Parameters 	& \verb|<indicatorID>|: Unique identifier of the indicator.\\
+						& \verb|<currentValue>|: Current value of the indicator.\\
+						& \verb|<targetValue>|:  Target value of the indicator\\
+						& \verb|<zoneID>|: Unique identifier of the zone.\\
+						& \verb|<indicatorID>|:  Unique identifier of the indicator.\\
+						& \verb|<currentValueZone>|:  Current value of the indicator for this zone.\\
+						& \verb|<targetValueZone>|:  Target value of the indicator for this zone.\\
+			\end{tabular}
+		\end{small}
+	\\The ultimate goal of the agent is to improve his score, it can do this by looking at its indicator scores and trying to improve these. To do this the agent needs to know what the score is and percept any changes. By enhancing the connector with this percept the agent is able to do this.
 
+	\subsubsection*{indicator\_link percept}
+		\begin{small}
+			\begin{tabular}{p{2cm}p{9cm}}
+				Description 	& Gives info about the stakeholder and weight of an indicator.\\
+				Type 		& Send on change.\\
+				Syntax 	& \verb|indicator_link([indicator(<indicatorID>, |\\
+					 	& \verb|<stakeholderID>, <name>, <weight>...]) |\\
+				Parameters 	& \verb|<indicatorID>|: Unique identifier of the indicator.\\
+						& \verb|<stakeholderID>|: Unique identifier of the indicator.\\
+						& \verb|<name>|:  Name of the indicator so it can be identified.\\
+						& \verb|<weight>|: Weight of this indicator for the total score.\\
+			\end{tabular}
+		\end{small}
+	\\To enable our agent to see what the weights of a certain indicator are and which indicators are his an indicator link percept has been added to the connector. This percept helps to make the indicator percept more usefull for the agent.
+
+	\subsubsection*{buildings percept}
+		\begin{small}
+			\begin{tabular}{p{2cm}p{9cm}}
+				Description 	& Gives info about the buildings on the map.\\
+				Type 		& Send on change.\\
+				Syntax 	& \verb|buildings([building(<buildingID>, <name>, |\\
+					 	& \verb|<stakeholderID>, <constructionYear>, |\\
+					 	& \verb|<([<categories>...]), <functionID>, <floors>, |\\
+					 	& \verb|<multipolygon>...]) |\\
+				Parameters 	& \verb|<buildingID>|: Unique identifier of the building.\\
+						& \verb|<name>|: Name of the building.\\
+						& \verb|<stakeholderID>|:  Unique identifier of stakeholder that owns the building.\\
+						& \verb|<constructionYear>|: The construction year.\\
+						& \verb|<categories>|: The categories to which this building belongs.\\
+						& \verb|<functionID>|: Unique identifier of the function of this building.\\
+						& \verb|<floors>|: Amount of floors of this building.\\
+						& \verb|<multipolygon>|: Multipolygon of the location of this building.\\
+			\end{tabular}
+		\end{small}
+	\\The connector provides a building percept, that enables our agent to see which building he owns so that he can decide for example to destroy one of these buildings or upgrade it.
+\\
+\\
 These Percepts have been created by making a J2$<$something$>$ class in the translators package and adding this to the J2P array in the EisEnv class. J2P is responsible for translating a java object to a GOAL parameter. Furthermore we added listeners for subjects that are required for the percepts to the EntityEventHandler class. At this point you have to redirect each listener to the createPercepts method while getting the correct content for the required class eg: for the buidings percept we need to listen on Maplinks.Buildings, we then need to get the list with content for the Building class. Then when we call createPercepts it will call the J2Building translator to convert each building to parameters we can then use in goal as a percept.
 
 \subsubsection{Actions}
