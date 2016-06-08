@@ -89,19 +89,41 @@ In this section we'll describe some of the percepts in the connector and how are
 				Type 		& Send on change.\\
 				Syntax 	& \verb|buildings([building(<buildingID>, <name>, |\\
 					 	& \verb|<stakeholderID>, <constructionYear>, |\\
-					 	& \verb|<([<categories>...]), <functionID>, <floors>, |\\
+					 	& \verb|([<category>...]), <functionID>, <floors>, |\\
 					 	& \verb|<multipolygon>...]) |\\
 				Parameters 	& \verb|<buildingID>|: Unique identifier of the building.\\
 						& \verb|<name>|: Name of the building.\\
 						& \verb|<stakeholderID>|:  Unique identifier of stakeholder that owns the building.\\
 						& \verb|<constructionYear>|: The construction year.\\
-						& \verb|<categories>|: The categories to which this building belongs.\\
+						& \verb|<category>|: The categories to which this building belongs.\\
 						& \verb|<functionID>|: Unique identifier of the function of this building.\\
 						& \verb|<floors>|: Amount of floors of this building.\\
 						& \verb|<multipolygon>|: Multipolygon of the location of this building.\\
 			\end{tabular}
 		\end{small}
 	\\The connector provides a building percept, that enables our agent to see which building he owns so that he can decide for example to destroy one of these buildings or upgrade it.
+
+	\subsubsection*{requests percept}
+		\begin{small}
+			\begin{tabular}{p{2cm}p{9cm}}
+				Description 	& Gives info about all the requests.\\
+				Type 		& Send on change.\\
+				Syntax 	& \verb|requests([request(<type>, <category>, |\\
+					 	& \verb|<popupID>, <contentlinkID>, |\\
+					 	& \verb|([<visibleStakeholderID>...]), ([answer(<answerID>, <description>)...]), |\\
+					 	& \verb|<price>, <multipolygon>...]) |\\
+				Parameters 	& \verb|<type>|: Type of the interaction.\\
+						& \verb|<category>|: Category of the interaction.\\
+						& \verb|<popupID>|:  Unique identifier of the request.\\
+						& \verb|<contentlinkID>|: ...\\
+						& \verb|<visibleStakeholderID>|: Unique ID of a stakeholder that can see this request visually in the user interface.\\
+						& \verb|<answerID>|: Unique identifier of the answer.\\
+						& \verb|<description>|: Answer as litteral string.\\
+						& \verb|<price>|: Price of this requests if applicable.\\
+						& \verb|<multipolygon>|: Multipolygon of the location of the request, usefull when for example a request is about land.\\
+			\end{tabular}
+		\end{small}
+	\\The connector provides a request percept, that enables our agent to answer to all the requests that the engine generates for our agent. For example when another stakeholder wants to buy something or asks permission.
 \\
 \\
 These Percepts have been created by making a J2$<$something$>$ class in the translators package and adding this to the J2P array in the EisEnv class. J2P is responsible for translating a java object to a GOAL parameter. Furthermore we added listeners for subjects that are required for the percepts to the EntityEventHandler class. At this point you have to redirect each listener to the createPercepts method while getting the correct content for the required class eg: for the buidings percept we need to listen on Maplinks.Buildings, we then need to get the list with content for the Building class. Then when we call createPercepts it will call the J2Building translator to convert each building to parameters we can then use in goal as a percept.
