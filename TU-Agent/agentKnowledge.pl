@@ -9,6 +9,7 @@
 :- dynamic requests/1.
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
+:- dynamic requestAnswered/2.
 
 %Believes
 :- dynamic oldBuildings/1.
@@ -27,6 +28,10 @@ createLandToBuild :- availableLandPolygon(_).
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
 :- dynamic indicatorGoal/2.
+
+%Knowledge for answering a request
+answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
+empty(X) :- length(X, 0).
 
 %this believe ensures that indicatorlink gets generated only once
 %it gets deleted after indicatorlink is inserted as believe
