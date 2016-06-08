@@ -9,7 +9,6 @@
 :- dynamic requests/1.
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
-:- dynamic noBuildings/0.
 
 %Believes
 :- dynamic oldBuildings/1.
@@ -56,6 +55,8 @@ readUpgrades.
 % Beliefs for upgrades.	
 upgrades([]).
 upgraded([]).
+% Knowledge about the size of a list
+empty(L) :- length(L, 0).
 
 
 

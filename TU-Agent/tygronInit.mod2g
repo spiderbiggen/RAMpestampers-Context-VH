@@ -21,11 +21,7 @@ module tygronInit {
 	if true 
 		then insert(actions([])).
 	if true 
-		then insert(upgradeTypes([])).	
-	if true 
-		then insert(actions([])).	
+		then insert(upgradeTypes([])).		
 	if true 
 		then insert(noOldBuildings).
-	if true
-		then insert(noBuildings).
 }
