@@ -4,6 +4,7 @@ use demolish as module.
 use buildConstruction as module.
 use buyLand as module.
 use answerToRequest as module.
+use buildGreen as module.
 
 
 exit=nogoals.
@@ -20,6 +21,8 @@ module tygron {
 	if a-goal(answer(RequestID))
 		then answerToRequest.
 	
+	if not(goal(indicatorgoal('Bouwen hoge gebouwen', _))), bel(availableLandPolygon(_))
+		then buildGreen.
 	
 	%if the buildConstruction module adopted the goal to create land we should enter the demolish module
 	%TODO: We could also buy land to create buildable land
