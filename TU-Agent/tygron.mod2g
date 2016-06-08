@@ -4,7 +4,7 @@ use demolish as module.
 use buildConstruction as module.
 use buyLand as module.
 use upgrade as module.
-
+use handleRequest as module.
 
 exit=nogoals.
 order=linear.
@@ -16,6 +16,8 @@ module tygron {
 	%TODO budget?
 	
 	%TODO check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
+	 if goal(answerRequest(Category, PopupID))
+		then handleRequest.
 	
 	%if the buildConstruction module adopted the goal to create land we should enter the demolish module
 	%TODO: We could also buy land to create buildable land
