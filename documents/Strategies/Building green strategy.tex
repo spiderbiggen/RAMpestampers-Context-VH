@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+
+\author{Job Zoon}
+\title{Strategy for building trees}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\maketitle{}
+\newpage{}
+
+\section{Introduction}
+In this document the strategy about building trees will be explained. In the first section the reason to build trees will be defined, and in the second section the choice for a particular type of tree will be clarified. This document will be used to implement the following user story:\\
+\\
+\textit{"As an agent\\
+I want to build green constructions\\
+to improve my indicator score"}
+
+\section{When/why to build trees}
+In this section the reasons to build trees will be explained. 
+
+There is only one reason to build trees: to improve our green indicator. This indicator's score goes up when the TU-wijk contains more trees or parks, so when we build more trees this indicator's score will get to 100\%. This is our least important indicator: so the priority on building trees is not that high. The Municipality also wants to build parks and trees, so we can already profit from their efforts. If they don't build enough for us, and we don't need to build something else, we will also build some trees. We might want to build some land for this or destroy an old buiding, but only if our budget keeps positive.
+
+\section{Which trees to build}
+There are a lot of different kinds of trees and parks, and they all have the same effect on our indicator, so it doesn't really matter which one we use. The agent shouldn't have to make a decision on this, because there are no reason to choose one above the other that our agent can understand. We decided to only build 'loofbomen', because they look nice and are realistic for the TU Delft to build. So, there is not an advanced tactic to do this.
+
+\section{Summary}
+To achieve our goals we might need to build some trees, so we will have to add a module that builds 'loofbomen'. This module will only be used when we don't need to build more buildings.
+
+\end{document}
