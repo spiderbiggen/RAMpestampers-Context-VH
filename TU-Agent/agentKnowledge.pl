@@ -58,6 +58,9 @@ upgraded([]).
 % Knowledge about the size of a list
 empty(L) :- length(L, 0).
 
+randomFloor(Floors) :- Floors is random(20)+20.
+
+
 
 
 
