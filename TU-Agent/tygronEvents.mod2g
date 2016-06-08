@@ -23,17 +23,6 @@ module tygronEvents {
 	if percept(upgradeTypes(X)), bel(upgradeTypes(Y)) 
 		then delete(upgradeTypes(Y)) + insert(upgradeTypes(X)).
 
-	%insert oldbuildings once
-	if bel(noOldBuildings, buildings(X), getOldBuildings(Bag,X)) 
-		then insert(oldBuildings(Bag)) + delete(noOldBuildings).
-	
-	%Retrieve the indicatorlink for our stakeholder
-	if bel(readIndicatorlink, stakeholders(X), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,Weights)], X))
-		then insert(indicatorlink(Weights)) + delete(readIndicatorlink).
-		
-	%insert indicator when it doesn't exist at all
-	forall bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), not(bel(indicator(IndicatorID, Name, _, Target)))
-		do insert(indicator(IndicatorID, Name, Current, Target)).
 	%update indicator when it does exist but is changed.
 	forall percept(indicators(X)), bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), bel(indicator(IndicatorID, Name, OldCurrent, Target))
 		do delete(indicator(IndicatorID, Name, OldCurrent, Target)) + insert(indicator(IndicatorID, Name, Current, Target)).
@@ -43,11 +32,7 @@ module tygronEvents {
 		do adopt(indicatorGoal(Name, Target)).
 	
 	%we can drop this after the first run%
+	%we can't seem to fix this by placing it in the init module""
 	if goal(getIndicatorGoals)
 		then drop(getIndicatorGoals).
-		
-	if bel(readUpgrades, buildings(Buildings), upgradeTypes(UpgradeTypes), functions(Functions), getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag), upgrades(T))
-		then delete(readUpgrades) + delete(upgrades(T)) + insert(upgrades(Bag)). 
-		
- 
 }
