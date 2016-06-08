@@ -27,7 +27,7 @@ module tygron {
 	if goal(indicatorGoal('Bouwen hoge gebouwen', _))
 		then buildConstruction.
 		
-	%If we have the goel to build green things, we should enter the buildGreen module
+	%If we have the goal to build green constructions, we should enter the buildGreen module
 	if goal(indicatorGoal('Parken en groen', _))
 		then buildGreen.
 	
