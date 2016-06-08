@@ -22,13 +22,14 @@ module tygron {
 	%TODO: We could also buy land to create buildable land
 	if goal(createLandToBuild)
 		then demolish.
-		
-	if goal(indicatorGoal('Parken en groen', _)), not(goal(indicatorGoal('Bouwen hoge gebouwen', _)))
-		then buildGreen.
 	
 	%If we have the goal to build high buildings, we should enter the build module
 	if goal(indicatorGoal('Bouwen hoge gebouwen', _))
 		then buildConstruction.
+		
+	%If we have the goel to build green things, we should enter the buildGreen module
+	if goal(indicatorGoal('Parken en groen', _))
+		then buildGreen.
 	
 	%If the goal to build high buildings is met but we still have the demolish goal, we should enter the demolish module
 	if goal(indicatorGoal('Slopen oude gebouwen', _))

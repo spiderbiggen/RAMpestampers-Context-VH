@@ -5,11 +5,12 @@ order=linearall.
 
 module buildGreen {
 	
-	% Build an education construction at an available place.
+	% Build trees at an available pleace
 	% This place is the multypolygon of an demolished building.
 	if bel(functions(Functions), member(['loofbomen',BuildingID,List],Functions), availableLandPolygon(MultiPolygon))
 		then building_plan_construction(BuildingID, 1, MultiPolygon) + delete(availableLandPolygon(MultiPolygon)).
 		
+	% If there is no available land, we should adopt the goal to create land
 	if not(bel(availableLandPolygon(_)))
 		then adopt(createLandToBuild).
 }
