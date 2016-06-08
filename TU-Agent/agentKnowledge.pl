@@ -60,6 +60,8 @@ readUpgrades.
 % Beliefs for upgrades.	
 upgrades([]).
 upgraded([]).
+% Knowledge about the size of a list
+empty(L) :- length(L, 0).
 
 
 
