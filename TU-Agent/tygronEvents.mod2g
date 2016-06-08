@@ -23,10 +23,8 @@ module tygronEvents {
 	if percept(upgradeTypes(X)), bel(upgradeTypes(Y)) 
 		then delete(upgradeTypes(Y)) + insert(upgradeTypes(X)).
 		
-	if bel(requests(X)) then print(X).
-		
 	%Add the goal of answering a request every time the agent receives one
-	if bel(requests(X), not(empty(X)), member(request(Type, Category, PopupID, ContentlinkID, VisibleStakeholderIDs, Answers, ActionLogIDS, Price, Multipolygon), X))
+	if bel(requests(X), not(empty(X)), member(request(Type, Category, PopupID, ContentlinkID, VisibleStakeholderIDs, ActionLogIDS, Price, Multipolygon, AreaSize, Answers), X))
 		then adopt(answerRequest(Category, PopupID)).
 
 	%insert oldbuildings once

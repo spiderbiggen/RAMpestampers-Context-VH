@@ -7,8 +7,6 @@ use upgrade as module.
 use handleRequest as module.
 use buildGreen as module.
 
-
-
 exit=nogoals.
 order=linear.
 

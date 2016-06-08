@@ -6,10 +6,10 @@ order=linear.
 module handleRequest {
 	
 	% Answer all permits with yes (PopupID = 0) since thats the only option
-	if bel(requests(X), member(request(Type, 'PERMIT', PopupID, ContentlinkID, VisibleStakeholderIDs, Answers, ActionLogIDS, Price, Multipolygon), X))
+	if bel(requests(X), member(request(Type, 'PERMIT', PopupID, ContentlinkID, VisibleStakeholderIDs, ActionLogIDS, Price, Multipolygon, AreaSize, Answers), X))
 		then popup_answer(PopupID, 0) + insert(requestAnswered('PERMIT', PopupID)).
 		
 	% Answer all permits with yes (PopupID = 0) since thats the only option
-	if bel(requests(X), member(request(Type, 'BUY_LAND', PopupID, ContentlinkID, VisibleStakeholderIDs, Answers, ActionLogIDS, Price, Multipolygon), X))
-		then popup_answer(PopupID, 0) + insert(requestAnswered('PERMIT', PopupID)).
+	if bel(requests(X), member(request(Type, 'BUY_LAND', PopupID, ContentlinkID, VisibleStakeholderIDs, ActionLogIDS, Price, Multipolygon, AreaSize, Answers), X))
+		then popup_answer(PopupID, 0) + insert(requestAnswered('BUY_LAND', PopupID)).
 }
