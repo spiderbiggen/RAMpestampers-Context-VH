@@ -1,0 +1,15 @@
+use agentKnowledge as knowledge.
+use tygron as actionspec.
+
+order=linearall.
+
+module buildGreen {
+	
+	% Build an education construction at an available place.
+	% This place is the multypolygon of an demolished building.
+	if bel(functions(Functions), member(['luxe variant',BuildingID,List],Functions), availableLandPolygon(MultiPolygon))
+		then building_plan_construction(BuildingID, 30, MultiPolygon) + delete(availableLandPolygon(MultiPolygon)).
+	
+	if not(bel(availableLandPolygon(_)))
+		then adopt(createLandToBuild).
+}
