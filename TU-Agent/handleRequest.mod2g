@@ -6,12 +6,12 @@ order=linear.
 module handleRequest {
 			
 	% Answer all permits with yes (PopupID = 0) since thats the only option
-	if bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price))
+	if bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID)))
 		then popup_answer(PopupID, 1) + insert(requestAnswered('BUY_LAND', PopupID)).
 		
 	% Answer all confirmation popups with yes (PopupID = 0) since thats the only option
-	if bel(requests(X), member(request(_, _, PopupID, _, _, _, _, _, _, _), X))
-		then popup_answer(PopupID, 0) + insert(requestAnswered('PERMIT', PopupID)).
+	if bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
+		then popup_answer(PopupID, 0) + insert(requestAnswered(Category, PopupID)).
 		
 	if bel(requests(X), empty(X))
 		then exit-module.
