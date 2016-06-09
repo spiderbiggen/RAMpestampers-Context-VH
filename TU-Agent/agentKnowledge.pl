@@ -9,11 +9,11 @@
 :- dynamic requests/1.
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
+:- dynamic upgrades/1.
 
 %Believes
 :- dynamic oldBuildings/1.
 :- dynamic availableLandPolygon/1.
-:- dynamic noOldBuildings/0.
 
 %The goals and how to achieve them.
 %we have to retrieve this only once and the goal will be dropped by hand
@@ -27,10 +27,6 @@ createLandToBuild :- availableLandPolygon(_).
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
 :- dynamic indicatorGoal/2.
-
-%this believe ensures that indicatorlink gets generated only once
-%it gets deleted after indicatorlink is inserted as believe
-readIndicatorlink.
 
 % Takes all buildings of L that return from iseducation and removes all duplicates
 getOldBuildings(Bag,List):-
@@ -50,10 +46,7 @@ getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag):-
 		sub_string(Name, _, _, _, 'groen')),
 		Bag1),
 	sort(Bag1, Bag).
-% to ensure we only create one upgrades list 
-readUpgrades.
 % Beliefs for upgrades.	
-upgrades([]).
 upgraded([]).
 % Knowledge about the size of a list
 empty(L) :- length(L, 0).
