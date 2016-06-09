@@ -23,7 +23,7 @@ test handleRequest with
 		bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID)))
 			leadsto popup_answer(PopupID, 1).
 		
-		%Test for handling confirmations
+		%Test for handling confirmations popups which only require the answer "yes"
 		bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
 			leadsto done(popup_answer(PopupID, 0)).
 	}
