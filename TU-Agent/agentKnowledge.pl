@@ -10,11 +10,13 @@
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
 :- dynamic requestAnswered/2.
+:- dynamic upgrades/1.
 
 %Believes
 :- dynamic oldBuildings/1.
-:- dynamic availableLandPolygon/1.
-:- dynamic noOldBuildings/0.
+
+%Custom actions beliefs
+:- dynamic relevant_areas/2.
 
 %The goals and how to achieve them.
 %we have to retrieve this only once and the goal will be dropped by hand
@@ -23,11 +25,12 @@ getIndicatorGoals :- false.
 indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target > 0, Current >= Target.
 indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target =< 0, Current =< Target.
 %createLandToBuild needs a demolished polygon
-createLandToBuild :- availableLandPolygon(_).
+createLandToBuild :- relevant_areas(0, MPList), not(empty(MPList)).
 %Other beliefs
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
 :- dynamic indicatorGoal/2.
+
 
 %Knowledge for answering a request
 answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
@@ -36,6 +39,8 @@ empty(X) :- length(X, 0).
 %this believe ensures that indicatorlink gets generated only once
 %it gets deleted after indicatorlink is inserted as believe
 readIndicatorlink.
+
+
 
 % Takes all buildings of L that return from iseducation and removes all duplicates
 getOldBuildings(Bag,List):-
@@ -55,19 +60,10 @@ getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag):-
 		sub_string(Name, _, _, _, 'groen')),
 		Bag1),
 	sort(Bag1, Bag).
-% to ensure we only create one upgrades list 
-readUpgrades.
 % Beliefs for upgrades.	
-upgrades([]).
 upgraded([]).
 % Knowledge about the size of a list
 empty(L) :- length(L, 0).
 isNumber(X) :- number(X).
 
-
-
-
-
-
-
-
+randomFloor(Floors) :- Floors is random(20)+20.

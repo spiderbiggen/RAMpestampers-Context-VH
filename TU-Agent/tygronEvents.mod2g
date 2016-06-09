@@ -27,17 +27,14 @@ module tygronEvents {
 	if bel(requests(X), not(empty(X)), member(request(Type, Category, PopupID, ContentlinkID, VisibleStakeholderIDs, ActionLogIDS, Price, Multipolygon, AreaSize, Answers), X))
 		then adopt(answerRequest(Category, PopupID)).
 
-	%insert oldbuildings once
-	if bel(noOldBuildings, buildings(X), getOldBuildings(Bag,X)) 
-		then insert(oldBuildings(Bag)) + delete(noOldBuildings).
-	
-	%Retrieve the indicatorlink for our stakeholder
-	if bel(readIndicatorlink, stakeholders(X), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,Weights)], X))
-		then insert(indicatorlink(Weights)) + delete(readIndicatorlink).
-		
-	%insert indicator when it doesn't exist at all
-	forall bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), not(bel(indicator(IndicatorID, Name, _, Target)))
-		do insert(indicator(IndicatorID, Name, Current, Target)).
+	%Custom actions percepts
+	%If we have no believe about this CallID insert it
+	if percept(relevant_areas(CallID,MPList)), not(bel(relevant_areas(CallID, _)))
+		then insert(relevant_areas(CallID,MPList)).
+	%If we have a believe about this CallID update it
+	if percept(relevant_areas(CallID,MPList)), bel(relevant_areas(CallID, OldMPList))
+		then delete(relevant_areas(CallID, OldMPList))+ insert(relevant_areas(CallID,MPList)).
+
 	%update indicator when it does exist but is changed.
 	forall percept(indicators(X)), bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), bel(indicator(IndicatorID, Name, OldCurrent, Target))
 		do delete(indicator(IndicatorID, Name, OldCurrent, Target)) + insert(indicator(IndicatorID, Name, Current, Target)).
@@ -47,12 +44,7 @@ module tygronEvents {
 		do adopt(indicatorGoal(Name, Target)).
 	
 	%we can drop this after the first run%
+	%we can't seem to fix this by placing it in the init module""
 	if goal(getIndicatorGoals)
 		then drop(getIndicatorGoals).
-		
-	%Update the upgrade type list
-	if bel(readUpgrades, buildings(Buildings), upgradeTypes(UpgradeTypes), functions(Functions), getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag), upgrades(T))
-		then delete(readUpgrades) + delete(upgrades(T)) + insert(upgrades(Bag)). 
-		
- 
 }

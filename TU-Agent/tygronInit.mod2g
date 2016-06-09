@@ -2,26 +2,40 @@ use agentKnowledge as beliefs.
 use agentGoals as goals.
 
 module tygronInit {
-	if true 
-		then insert(settings([])).
-	if true 
-		then insert(functions([])).
-	if true 
-		then insert(stakeholders([])).
-	if true 	
-		then insert(buildings([])).
-	if true 
-		then insert(indicators([])).
-	if true 
-		then insert(lands([])).
-	if true 
-		then insert(zones([])).
-	if true 
-		then insert(requests([])).
-	if true 
-		then insert(actions([])).
-	if true 
-		then insert(upgradeTypes([])).		
-	if true 
-		then insert(noOldBuildings).
+	%%%%% Percept Processing %%%%%
+	if percept(stakeholders(X))
+		then insert(stakeholders(X)).
+	if percept(settings(X))
+		then insert(settings(X)).
+	if percept(functions(X)) 
+		then insert(functions(X)).
+	if percept(buildings(X))
+		then insert(buildings(X)).
+	if percept(indicators(X))
+		then insert(indicators(X)).
+	if percept(lands(X))
+		then insert(lands(X)).
+	if percept(zones(X))
+		then insert(zones(X)).
+	if percept(requests(X))
+		then insert(requests(X)).
+	if percept(actions(X))
+		then insert(actions(X)).
+	if percept(upgradeTypes(X))
+		then insert(upgradeTypes(X)).
+
+	%insert the oldbuildings
+	if bel(buildings(X), getOldBuildings(Bag,X)) 
+		then insert(oldBuildings(Bag)).
+	
+	%Retrieve the indicatorlink for our stakeholder
+	if bel(stakeholders(X), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,Weights)], X))
+		then insert(indicatorlink(Weights)).
+		
+	%insert indicator when it doesn't exist at all
+	forall bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), not(bel(indicator(IndicatorID, Name, _, Target)))
+		do insert(indicator(IndicatorID, Name, Current, Target)).
+	
+	if bel(buildings(Buildings), upgradeTypes(UpgradeTypes), functions(Functions), getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag))
+		then insert(upgrades(Bag)). 
 }
