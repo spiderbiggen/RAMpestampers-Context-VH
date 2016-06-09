@@ -13,7 +13,6 @@
 
 %Believes
 :- dynamic oldBuildings/1.
-:- dynamic availableLandPolygon/1.
 
 %Custom actions beliefs
 :- dynamic relevant_areas/2.
