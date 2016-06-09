@@ -1,0 +1,31 @@
+use TUAgent as mas.
+use agentKnowledge as knowledge.
+use agentGoals as goals.
+use handleRequest as module.
+use tygron as actionspec.
+
+test handleRequest with
+	%check if there is at least an oldbuilding believe.
+	pre { true }
+	in {
+		%these actions should never be called within the handleRequest module
+		never done(building_plan_construction(_, _, _)).		
+		never done(map_buy_land(_, _)).
+		never done(map_sell_land(_, _, _)).
+		never done(building_plan_upgrade(_, _)).
+		never done(building_plan_demolish(_)).
+		
+		%Test for answering permits
+		bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID))) 
+			leadsto done(popup_answer(PopupID, 1)).
+		
+		%Test for handling confirmations
+		bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
+			leadsto done(popup_answer(PopupID, 0)).
+	}
+
+	post { true }
+
+	tygronagent {
+		do handleRequest.
+	}
