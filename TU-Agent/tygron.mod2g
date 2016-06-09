@@ -17,7 +17,7 @@ module tygron {
 	%TODO budget?
 	
 	%TODO check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
-	 if goal(answerRequest(Category, PopupID))
+	 if goal(answerRequest(Category, PopupID)), bel(requests(X)), not(bel(requestAnswered(Category, PopupID), empty(X)))
 		then handleRequest.
 	
 	%if the buildConstruction module adopted the goal to create land we should enter the demolish module

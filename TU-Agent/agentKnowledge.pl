@@ -62,6 +62,7 @@ upgrades([]).
 upgraded([]).
 % Knowledge about the size of a list
 empty(L) :- length(L, 0).
+isNumber(X) :- number(X).
 
 
 
