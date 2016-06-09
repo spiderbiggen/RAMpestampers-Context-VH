@@ -35,3 +35,11 @@ define building_plan_demolish(BuildingId) with
 define building_plan_upgrade(UpgradeID, MultiPolygon) with
 	pre{ upgraded(Tail), not(member(UpgradeID, Tail)) }
 	post{ upgraded([UpgradeID, Tail]) }
+
+	
+%Custom actions
+
+%This returns relevant areas from the tygron environment.
+define get_relevant_areas(Id, ActionType, Filters) with
+	pre { true }
+	post{ true }

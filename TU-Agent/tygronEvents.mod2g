@@ -23,6 +23,14 @@ module tygronEvents {
 	if percept(upgradeTypes(X)), bel(upgradeTypes(Y)) 
 		then delete(upgradeTypes(Y)) + insert(upgradeTypes(X)).
 
+	%Custom actions percepts
+	%If we have no believe about this CallID insert it
+	if percept(relevant_areas(CallID,MPList)), not(bel(relevant_areas(CallID, _)))
+		then insert(relevant_areas(CallID,MPList)).
+	%If we have a believe about this CallID update it
+	if percept(relevant_areas(CallID,MPList)), bel(relevant_areas(CallID, OldMPList))
+		then delete(relevant_areas(CallID, OldMPList))+ insert(relevant_areas(CallID,MPList)).
+
 	%insert oldbuildings once
 	if bel(noOldBuildings, buildings(X), getOldBuildings(Bag,X)) 
 		then insert(oldBuildings(Bag)) + delete(noOldBuildings).
@@ -48,6 +56,4 @@ module tygronEvents {
 		
 	if bel(readUpgrades, buildings(Buildings), upgradeTypes(UpgradeTypes), functions(Functions), getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag), upgrades(T))
 		then delete(readUpgrades) + delete(upgrades(T)) + insert(upgrades(Bag)). 
-		
- 
 }

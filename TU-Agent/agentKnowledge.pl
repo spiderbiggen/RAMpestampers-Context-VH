@@ -15,6 +15,9 @@
 :- dynamic availableLandPolygon/1.
 :- dynamic noOldBuildings/0.
 
+%Custom actions beliefs
+:- dynamic relevant_areas/2.
+
 %The goals and how to achieve them.
 %we have to retrieve this only once and the goal will be dropped by hand
 getIndicatorGoals :- false.
@@ -22,7 +25,7 @@ getIndicatorGoals :- false.
 indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target > 0, Current >= Target.
 indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target =< 0, Current =< Target.
 %createLandToBuild needs a demolished polygon
-createLandToBuild :- availableLandPolygon(_).
+createLandToBuild :- relevant_areas(0, MPList), not(empty(MPList)).
 %Other beliefs
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
