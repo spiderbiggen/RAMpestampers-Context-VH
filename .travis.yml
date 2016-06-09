@@ -3,7 +3,7 @@ jdk:
 - oraclejdk8
 install:
 # login to the environment email and password should be set on travis
-- java -cp TU-Agent/tygronenv-*-jar-with-dependencies.jar login.Login $email $password
+- java -cp TU-Agent/contextvh-*-jar-with-dependencies.jar login.Login $email $password
 script:
 # run the Goal Test with a 60s timeout
 - timeout 60 java -cp com.github.goalhub.runtime.jar-with-dependencies_2.0.2.20160601191828.jar goal.tools.Run TU-Agent/test.test2g -v > result.txt || echo 0
