@@ -5,14 +5,15 @@ order=linear.
 
 module handleRequest {
 			
-	% Accept a request to buy land if the indicator goal of building high buildings has been satisfied
+	% Accept (ActionID = 0) a request to buy land if the indicator goal of building high buildings has been satisfied
+	if bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID))), not(goal(indicatorGoal('Bouwen hoge gebouwen', _)))
 		then popup_answer(PopupID, 0) + insert(requestAnswered('BUY_LAND', PopupID)).
 		
-	% Decline a request to buy land if there is a plan to build on that land
+	% Decline (ActionID = 1) a request to buy land if there is a plan to build (on that land)
 	if bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID)))
 		then popup_answer(PopupID, 1) + insert(requestAnswered('BUY_LAND', PopupID)).
 		
-	% Answer all confirmation popups with yes (PopupID = 0) since that is the only option
+	% Answer all confirmation popups with yes (ActionID = 0) since that is the only option
 	if bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
 		then popup_answer(PopupID, 0) + insert(requestAnswered(Category, PopupID)).
 		
