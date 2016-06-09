@@ -1,15 +1,20 @@
 use agentKnowledge as knowledge.
 use tygron as actionspec.
 
-order=linearall.
+order=linear.
 
 module buildConstruction {
 	
 	% Build an education construction at an available place.
-	% This place is the multypolygon of an demolished building.
-	if bel(functions(Functions), member(['luxe variant',BuildingID,List],Functions), availableLandPolygon(MultiPolygon), randomFloor(Floors))
-		then building_plan_construction(BuildingID, Floors, MultiPolygon) + delete(availableLandPolygon(MultiPolygon)).
+	% Delete this place from relevant_areas
+	if 	bel(functions(Functions), member(['luxe variant',BuildingID,List],Functions), relevant_areas(0,[[MultiPolygon, Area]|Tail]), randomFloor(Floors))
+		then 	building_plan_construction(BuildingID, Floors, MultiPolygon) + 
+				delete(relevant_areas(0,[[MultiPolygon, Area]|Tail])) + 
+				insert(relevant_areas(0,[Tail])).
 	
-	if not(bel(availableLandPolygon(_)))
-		then adopt(createLandToBuild).
+	%If the believe is empty, or we dont have the believe at all.
+	if 	bel(relevant_areas(0, MPList), empty(MPList))
+		then 	adopt(createLandToBuild).
+	if 	not(bel(relevant_areas(0, _)))
+		then 	adopt(createLandToBuild).
 }

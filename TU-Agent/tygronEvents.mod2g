@@ -23,6 +23,14 @@ module tygronEvents {
 	if percept(upgradeTypes(X)), bel(upgradeTypes(Y)) 
 		then delete(upgradeTypes(Y)) + insert(upgradeTypes(X)).
 
+	%Custom actions percepts
+	%If we have no believe about this CallID insert it
+	if percept(relevant_areas(CallID,MPList)), not(bel(relevant_areas(CallID, _)))
+		then insert(relevant_areas(CallID,MPList)).
+	%If we have a believe about this CallID update it
+	if percept(relevant_areas(CallID,MPList)), bel(relevant_areas(CallID, OldMPList))
+		then delete(relevant_areas(CallID, OldMPList))+ insert(relevant_areas(CallID,MPList)).
+
 	%update indicator when it does exist but is changed.
 	forall percept(indicators(X)), bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), bel(indicator(IndicatorID, Name, OldCurrent, Target))
 		do delete(indicator(IndicatorID, Name, OldCurrent, Target)) + insert(indicator(IndicatorID, Name, Current, Target)).
