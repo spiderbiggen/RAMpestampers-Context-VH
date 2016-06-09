@@ -15,9 +15,13 @@ test handleRequest with
 		never done(building_plan_upgrade(_, _)).
 		never done(building_plan_demolish(_)).
 		
-		%Test for answering permits
-		bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID))) 
-			leadsto done(popup_answer(PopupID, 1)).
+		%Test for answering buy land type requests when the agent is not in need of land
+		bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID))), not(goal(indicatorGoal('Bouwen hoge gebouwen', _))) 
+			leadsto done(popup_answer(PopupID, 0)).
+			
+		%Test for answering buy land type requests when the agent needs the land for itself
+		bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID)))
+			leadsto popup_answer(PopupID, 1).
 		
 		%Test for handling confirmations
 		bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
