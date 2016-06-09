@@ -12,5 +12,6 @@ module demolish {
 		then building_plan_demolish(BuildingID) + 
 			 delete(oldBuildings([building(BuildingID,A,B,C,D,E,F,MultiPolygon)|Tail])) + 
 			 insert(oldBuildings(Tail)) + 
+			 insert(greenspace(MultiPolygon,1)) +
 			 get_relevant_areas(0, build, []).
 }

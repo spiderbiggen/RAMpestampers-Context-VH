@@ -10,6 +10,7 @@
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
 :- dynamic upgrades/1.
+:- dynamic greenspace/2.
 
 %Believes
 :- dynamic oldBuildings/1.
