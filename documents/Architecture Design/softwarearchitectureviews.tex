@@ -111,7 +111,7 @@ In this section we'll describe some of the percepts in the connector and how our
 				Syntax 	& \verb|requests([request(<type>, <category>, |\\
 					 	& \verb|<popupID>, <contentlinkID>, |\\
 					 	& \verb|([<visibleStakeholderID>...]), ([answer(<answerID>, <description>)...]), |\\
-					 	& \verb|<price>, <multipolygon>...]) |\\
+					 	& \verb|<price>, <multipolygon>, <area>...]) |\\
 				Parameters 	& \verb|<type>|: Type of the interaction.\\
 						& \verb|<category>|: Category of the interaction.\\
 						& \verb|<popupID>|:  Unique identifier of the request.\\
@@ -121,6 +121,7 @@ In this section we'll describe some of the percepts in the connector and how our
 						& \verb|<description>|: Answer as litteral string.\\
 						& \verb|<price>|: Price of this requests if applicable.\\
 						& \verb|<multipolygon>|: Multipolygon of the location of the request, usefull when for example a request is about land.\\
+						& \verb|<area>|: The area of the land as in the amount of surface\\
 			\end{tabular}
 		\end{small}
 	\\
@@ -135,7 +136,7 @@ Here you want to register the event listener for the appropriate type, for examp
 From here you can call the same method most percepts use with the appropriate type for it's argument or you can create a custom method if your percept is a little more involved.
 If you use the usual method you're now done creating your new percept, but if you created a custom method make sure to add the percept to the \verb|collectedPercepts| hashmap with the event type as the key.\\
 \\
-After you are done creating the percept the only thing left to do is using it it a GOAL project. You can access your new percept by it's default name which it gets from the type so for \verb|Maplink.BUILDINGS| this would be |buildings|. You could also give the percept a custom name in which case you can access it with that name. Note that anyhing in GOAL/prolog that starts with a capital character will be seen as a variable so giving the percept a custom name of \verb|Buildings| wouldn't work as it won't accept a variable name as an argument in the \verb|percept| action.
+After you are done creating the percept the only thing left to do is using it in a GOAL project. You can access your new percept by it's default name which it gets from the type so for \verb|Maplink.BUILDINGS| this would be |buildings|. You could also give the percept a custom name in which case you can access it with that name. Note that anyhing in GOAL/prolog that starts with a capital character will be seen as a variable so giving the percept a custom name of \verb|Buildings| wouldn't work as it won't accept a variable name as an argument in the \verb|percept| action.
 
 \subsubsection{Actions}
 
