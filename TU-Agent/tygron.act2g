@@ -26,7 +26,7 @@ define map_sell_land(StakeholderId, MultiPolygon, Price) with
 % Plan the demolition of a building
 % params = BuildingId
 define building_plan_demolish(BuildingId) with
-	pre{oldBuildings([building(N,A,B,C,D,E,F,G)|Tail])}
+	pre{oldBuildings([building(N,A,B,C,D,E,F,G,H)|Tail])}
 	post{oldBuildings(Tail)}
 	
 % Define the upgrade building action
@@ -34,7 +34,7 @@ define building_plan_demolish(BuildingId) with
 % params = the UpgradeID of the upgrade type, Multipolygon describing the area to be upgraded
 define building_plan_upgrade(UpgradeID, MultiPolygon) with
 	pre{ upgraded(Tail), not(member(UpgradeID, Tail)) }
-	post{ upgraded([UpgradeID, Tail]) }
+	post{ upgraded([UpgradeID|Tail]) }
 
 	
 %Custom actions
