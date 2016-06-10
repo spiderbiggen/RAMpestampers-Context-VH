@@ -123,14 +123,32 @@ In this section we'll describe some of the percepts in the connector and how our
 						& \verb|<multipolygon>|: Multipolygon of the location of the request, usefull when for example a request is about land.\\
 			\end{tabular}
 		\end{small}
-	\\The connector provides a request percept, that enables our agent to answer to all the requests that the engine generates for our agent. For example when another stakeholder wants to buy something or asks permission.
+	\\
+	\\The connector provides a request percept, that enables our agent to answer to all the requests that the engine generates for our agent. For example when another stakeholder wants to buy something or asks permission.\\
+
+\subsubsection{Add a percept}
+To add a new percept you will first need to create a translator, which translates java objects to parameters used in GOAL/prolog, for the object type you want to percept. Say you want to add a new buildings percept you would then create a translator for the \verb|Building| class that transforms the data you want into parameters you can use within GOAL/prolog.
+After you have created this translator you want to add it to the appropriate array, \verb|Java2Parameter|, in the environment class, \verb|ContextEnv|, this will then automatically register the translator once you start a GOAL project using the environment.\\
 \\
+After you have done this you want to go to the \verb|ContextEntityEventHandler| class to actually start using the percept.
+Here you want to register the event listener for the appropriate type, for example you would add \verb|Maplink.BUILDINGS|, then you would go to the \verb|notifyListener| method and add a case to the switch for your type, so \verb|case: BUILDINGS| for the buildings percept.
+From here you can call the same method most percepts use with the appropriate type for it's argument or you can create a custom method if your percept is a little more involved.
+If you use the usual method you're now done creating your new percept, but if you created a custom method make sure to add the percept to the \verb|collectedPercepts| hashmap with the event type as the key.\\
 \\
-These Percepts have been created by making a J2$<$something$>$ class in the translators package and adding this to the J2P array in the EisEnv class. J2P is responsible for translating a java object to a GOAL parameter. Furthermore we added listeners for subjects that are required for the percepts to the EntityEventHandler class. At this point you have to redirect each listener to the createPercepts method while getting the correct content for the required class eg: for the buidings percept we need to listen on Maplinks.Buildings, we then need to get the list with content for the Building class. Then when we call createPercepts it will call the J2Building translator to convert each building to parameters we can then use in goal as a percept.
+After you are done creating the percept the only thing left to do is using it it a GOAL project. You can access your new percept by it's default name which it gets from the type so for \verb|Maplink.BUILDINGS| this would be |buildings|. You could also give the percept a custom name in which case you can access it with that name. Note that anyhing in GOAL/prolog that starts with a capital character will be seen as a variable so giving the percept a custom name of \verb|Buildings| wouldn't work as it won't accept a variable name as an argument in the \verb|percept| action.
 
 \subsubsection{Actions}
 
-All available actions have been defined in the sdk, specifically in \\nl.tytech.data.engine.event.ParticipantEventType. All action have a description stated in @EventParamData, this annotation also states the required parameters. The other annotation that all actions have is the @EventIDFields which already fills some of the parameters. these should then not be passed through in goal. Filling these in will result in the action not working at all.
+All available actions have been defined in the sdk, specifically in \\\verb|nl.tytech.data.engine.event.ParticipantEventType|. 
+All action have a description stated in @EventParamData, this annotation also states the required parameters. 
+The other annotation that all actions have is the @EventIDFields which already fills some of the parameters. 
+These should then not be passed through in goal. 
+Filling these in will result in the action not working at all.\\
+\\
+When the action you want to use requires anything but a standard string or number (float, double or integer), you will want to go ahead and add a translator for that object.
+You can do this in much the same was adding a percept.
+You start of with creating a translator, but where for a percept you are converting a java object to parameters here you are translating parameters to java objects.
+After you have created this translator you want to register this in the environment too, but you want to put it in a different array, \verb|Parameter2Java|, and then you are done.
 
 \subsubsection{GOAL}
 
