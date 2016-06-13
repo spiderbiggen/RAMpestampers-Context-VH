@@ -1,0 +1,11 @@
+use agentKnowledge as knowledge.
+use tygron as actionspec.
+
+order=linear.
+
+module sellLand {
+	
+	%for the emptySpace that has no building on it, try selling it to the Municipality.
+	forall bel(emptySpace(MultiPolygon, Area, false), generousPrice(Price, Area))
+		do map_sell_land(0, MultiPolygon, Price) + delete(emptySpace(MultiPolygon, Area, false)).
+}
