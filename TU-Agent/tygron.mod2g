@@ -19,6 +19,8 @@ module tygron {
 	%TODO check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
 	
 	%If we have the goal to build green constructions, we should enter the buildGreen module
+	%But we need to have a place to build trees: greenspace
+	%Also we must not be able to build more buildings on this area: so the list in relevant_areas has to be empty
 	if goal(indicatorGoal('Parken en groen', _)), bel(relevant_areas(0,[]), greenspace(_))
 		then buildGreen.
 	

@@ -23,7 +23,6 @@ test buildGreen with
 			leadsto done(building_plan_construction(_)).
 			
 		
-		
 	}
 	%TODO: find a way to create an OR in the post condition, below is not working
 	%not(bel(availableLandPolygon(MP))) ; goal(createLandToBuild) 

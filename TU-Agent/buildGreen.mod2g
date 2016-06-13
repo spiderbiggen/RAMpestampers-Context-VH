@@ -5,8 +5,8 @@ order=linear.
 
 module buildGreen {
 	
-	% Build trees at an available pleace
-	% This place is the multypolygon of an demolished building.
+	% Build trees at an available place
+	% This place is the multypolygon of a demolished building, this is stored in greenspace
 	if bel(functions(Functions), member(['loofbomen',BuildingID,List],Functions), greenspace(MultiPolygon))
 		then building_plan_construction(BuildingID,1,MultiPolygon) + delete(greenspace(MultiPolygon)).
 		
