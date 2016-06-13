@@ -51,11 +51,13 @@ getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag):-
 % Beliefs for upgrades.	
 upgraded([]).
 % Knowledge about the size of a list
-empty(L) :- length(L, 0).
+empty(List) :- length(List, 0).
 
+%Gets a random number between 20 and 40
 randomFloor(Floors) :- Floors is random(20)+20.
 
-
+%Filters the list of areas for only large areas
+getLargeAreas(OldList, NewList):- findall([MultiPolygon, Area], (member([MultiPolygon, Area], OldList), Area>200), NewList).
 
 
 
