@@ -35,15 +35,20 @@ define building_plan_demolish(BuildingId) with
 define building_plan_upgrade(UpgradeID, MultiPolygon) with
 	pre{ upgraded(Tail), not(member(UpgradeID, Tail)) }
 	post{ upgraded([UpgradeID|Tail]) }
-
-
 	
 % Define the answer to a popup action
 % Answer another stakeholders request
 % params = RequestID, AnswerID
 define popup_answer(RequestID, AnswerID) with
   pre{ true }
-  post{ true } 		
+  post{ true } 
+  
+% Define the answer to a popup with a date action
+% Answer another stakeholders request
+% params = RequestID, AnswerID, Date
+define popup_answer_with_date(RequestID, AnswerID, Date) with
+ 	pre{ true }
+ 	post{ true }
 
 %Custom actions
 
