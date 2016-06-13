@@ -7,11 +7,6 @@ module buildConstruction {
 	% Build an education construction at an available place.
 	% Repercept the relevant areas
 	if bel(functions(Functions), member(['luxe variant',BuildingID,List],Functions), 
-		relevant_areas(0,[[MultiPolygon, Area]|Tail]), randomFloor(Floors), greenspace(MultiPolygon2,1))
-		then building_plan_construction(BuildingID, Floors, MultiPolygon) + get_relevant_areas(0, build, []) + 
-			delete(greenspace(MultiPolygon2,1)) + insert(greenspace(MultiPolygon2,0)).
-			
-	if bel(functions(Functions), member(['luxe variant',BuildingID,List],Functions), 
 		relevant_areas(0,[[MultiPolygon, Area]|Tail]), randomFloor(Floors))
 		then building_plan_construction(BuildingID, Floors, MultiPolygon) + get_relevant_areas(0, build, []).
 	

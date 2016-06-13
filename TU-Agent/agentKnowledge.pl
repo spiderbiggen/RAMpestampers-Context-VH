@@ -13,7 +13,7 @@
 
 %Believes
 :- dynamic oldBuildings/1.
-:- dynamic greenspace/2.
+:- dynamic greenspace/1.
 
 %Custom actions beliefs
 :- dynamic relevant_areas/2.
