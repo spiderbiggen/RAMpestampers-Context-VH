@@ -20,7 +20,7 @@ test handleRequest with
 			leadsto done(popup_answer(PopupID, 0)).
 			
 		%Test for answering a buy land type request in which the price is not acceptable in which case the goal should still exist
-		bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(acceptablePrice(Price, Area)), not(requestAnswered('BUY_LAND', PopupID))), not(goal(indicatorGoal('Bouwen hoge gebouwen', _))) 
+		bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(acceptablePrice(Price, Area)), not(requestAnswered('BUY_LAND', PopupID))) 
 			leadsto a-goal(answerRequest('BUY_LAND', PopupID)).
 		
 		%Test for answering buy land type requests when the agent needs the land for itself
