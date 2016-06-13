@@ -34,6 +34,10 @@ module tygronEvents {
 	%If we have a believe about this CallID update it
 	if percept(relevant_areas(CallID,MPList)), bel(relevant_areas(CallID, OldMPList))
 		then delete(relevant_areas(CallID, OldMPList))+ insert(relevant_areas(CallID,MPList)).
+		
+	%Remove areas from the list that are smaller then 200
+	if bel(relevant_areas(CallID, OldMPList), getLargeAreas(OldMPList, NewMPList))
+		then delete(relevant_areas(CallID, OldMPList)) + insert(relevant_areas(CallID, NewMPList)).
 
 	%update indicator when it does exist but is changed.
 	forall percept(indicators(X)), bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), bel(indicator(IndicatorID, Name, OldCurrent, Target))

@@ -48,12 +48,12 @@ getOldBuildings(Bag,List):-
 	sort(Bag1,Bag).
 
 % Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft
-isEducation(building(_,_,3,_,_,884,_,_)).
+isEducation(building(_,_,3,_,_,884,_,_,_)).
 
 %creates a list of all available upgrades.
 getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag):-
 	findall([Multipolygon, UpgradeID, SrcID], 
-		( member(building(_, _, 3, _, _, SrcID, _, Multipolygon), Buildings), 
+		( member(building(_, _, 3, _, _, SrcID, _, Multipolygon, _), Buildings), 
 		member(upgrade_type(UpgradeID, UpgradePairs), UpgradeTypes), 
 		member(upgrade_pair(SrcID, TrgtID), UpgradePairs), 
 		member([Name, TrgtID, _], Functions),
@@ -63,7 +63,13 @@ getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag):-
 % Beliefs for upgrades.	
 upgraded([]).
 % Knowledge about the size of a list
-empty(L) :- length(L, 0).
 isNumber(X) :- number(X).
+empty(List) :- length(List, 0).
 
 randomFloor(Floors) :- Floors is random(20)+20.
+
+%Gets a random number between 20 and 40
+randomFloor(Floors) :- Floors is random(20)+20.
+
+%Filters the list of areas for only large areas
+getLargeAreas(OldList, NewList):- findall([MultiPolygon, Area], (member([MultiPolygon, Area], OldList), Area>200), NewList).
