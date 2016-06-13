@@ -44,3 +44,16 @@ There is only one indicator that benefits from destroying buildings, and that in
 
 Once all old buildings are already destroyed and there still needs to be destroyed more, there is one more reason to choose a specific building. There is one indicator that needs high buildings to get a higher score. So if all old buildings are destroyed the next building to destroy is the lowest one, to make room for a high one.
 
+\subsection{Building green strategy}
+In this section the strategy about building trees will be explained. In the first part the reason to build trees will be defined, and in the second part the choice for a particular type of tree will be clarified. This section will be used to implement the following user story:\\
+\\
+\textit{"As an agent\\
+I want to build green constructions\\
+to improve my indicator score"}
+
+\subsubsection{When and why building trees}
+There is only one reason to build trees: to improve our green indicator. This indicator's score goes up when the TU-wijk contains more trees or parks, so when we build more trees this indicator's score will get to 100\%. This is our least important indicator: so the priority on building trees is not that high. The Municipality also wants to build parks and trees, so we can already profit from their efforts. If they don't build enough for us, and we don't need to build something else, we will also build some trees. We might want to build some land for this or destroy an old building, but only if our budget keeps positive.
+
+\subsubsection{Which trees to build}
+There are a lot of different kinds of trees and parks, and they all have the same effect on our indicator, so it doesn't really matter which one we use. The agent shouldn't have to make a decision on this, because there are no reason to choose one above the other that our agent can understand. We decided to only build 'loofbomen', because they look nice and are realistic for the TU Delft to build. So, there is not an advanced tactic to do this.
+
