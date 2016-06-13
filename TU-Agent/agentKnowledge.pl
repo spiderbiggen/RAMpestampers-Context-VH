@@ -36,6 +36,9 @@ createLandToBuild :- relevant_areas(0, MPList), not(empty(MPList)).
 answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
 empty(X) :- length(X, 0).
 
+%The agent finds a price to be acceptable when the offered price is at least 50 euro higher than the ground price for offices in Delft (252)
+acceptablePrice(Price, Areasize) :- Areasize * 252 + 50 < Price.
+
 %this believe ensures that indicatorlink gets generated only once
 %it gets deleted after indicatorlink is inserted as believe
 readIndicatorlink.
