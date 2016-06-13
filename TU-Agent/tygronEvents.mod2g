@@ -1,4 +1,5 @@
 use agentKnowledge as knowledge.
+use permitHandler as module.
 
 module tygronEvents {
 	%%%%% Percept Processing %%%%%
@@ -43,4 +44,7 @@ module tygronEvents {
 	%we can't seem to fix this by placing it in the init module""
 	if goal(getIndicatorGoals)
 		then drop(getIndicatorGoals).
+		
+	%Ask for permits and confirm answers
+	if true then permitHandler.
 }
