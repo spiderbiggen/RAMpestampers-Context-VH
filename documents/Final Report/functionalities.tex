@@ -1,1 +1,46 @@
 \section{Description of the developed functionalities}
+In this section our functionalities will be described. The functionalities are based on the strategy of our agent. This strategy consists of four parts, each part will be explained in the following subsections.
+
+\subsection{Building strategy}
+In this part the strategy about the decision of building buildings and which buildings to be build will be explained. In the first section the reason to build a building will be defined, and in the second section the choice for a particular building will be clarified. This document will be used to implement the following user story:\\
+\\
+\textit{"As an agent\\
+When in a simulation\\
+I am able to build a construction if I think 
+this is benificial for me\\
+To optimize a certain indicator."}
+
+\subsubsection{Why building a construction}
+The first reason to build a construction, is that it can influence an indicator in a positive way. Another reason why to build something, is that a building can give you profit in terms of your budget.
+
+\subsubsection{Influence of building a construction}
+There is one direct reason to build a building. We created an indicator that has the goal to make high buildings. The more high buildings, the better the indicator will be. Another indicator we have, is the extension of education space. So to achieve this we need to build more education buildings. The agent will build stuff as long as the budget holds and as long as it gives a positive influence on the indicators.
+
+\subsubsection{Which construction to build}
+Because a part of our vision is to build high buildings, the buildings that are build, needs to be high buildings. In the Tygron engine, high buildings are of the type “Luxe variant”, so these buildings needs to be built until the indicator has reached 100\%. When the indicator has reached 100\%, it does not matter which buildings are built for the high building indicator. For the extension of the education space, it does not matter which building is built, as long as the building is the most beneficial for the indicator.
+
+\subsection{Demolish strategy}
+In this section the strategy about destroying buildings will be explained. In the first section the reason to destroy a building will be defined, and in the second section the choice for a particular building will be clarified. This document will be used to implement the following user story:\\
+\\
+\textit{"As an agent\\
+When in a simulation\\
+I am able to destroy buildings if I think 
+this is benificial for me\\
+To make room for construction or to 
+optimize a certain indicator."\\}
+There are two important parts in this user story that need to be discussed before implementing anything. The 'stuff' part: so which buildings need to be destroyed, and the 'benificial' part: so when buildings need to be destroyed.
+
+\subsubsection{When and why demolish a construction}
+There are two types of reasons to demolish a construction and both of them ultimately give a better indicator score. The first reason is to directly influence an indicator, and the second reason is to make space for a new building that influences an indicator. Both will be discussed in the following sections. The agent needs to keep destroying buildings in order to build newer, higher buildings, until all indicators are at 100\%.
+
+\subsubsection{Direct influence}
+There is one direct reason to destroy a building. We created an indicator 'Destroy old buildings' that has the goal to destroy all pre-war type of buildings. There are quite a lot of these buildings, and if they are all destroyed this indicator will get to the 100\%. This is a reason to just destroy some buildings without needing another reason and it has a direct influence on an indicator. However, just destroying buildings also has a downside: it will possibly lower the other three indicators. These are to have a positive budget, build more education buildings and build high education buildings. So: if you destroy a certain building there is a chance it will impact to total score negatively. 
+
+\subsubsection{Indirect influence}
+Usually when a building is destroyed, there is no direct benefit. That's why there needs to be built a new building on that spot that improves the score of the building indicators. This is explained in the building strategy section, but it is important to realize when destroying something that there will be new land to build something on. So even when destroying something is not immediately beneficial, there is a possibility it will be beneficial because there is a new area to build a building on.
+
+\subsubsection{Which building to destroy}
+There is only one indicator that benefits from destroying buildings, and that indicator is the 'Destroy old buildings' indicator. So when a building needs to be destroyed for a reason in the previous section, an old building should be chosen. Those buildings have the pre-war type. It doesn't really matter which of the old buildings to destroy. 
+
+Once all old buildings are already destroyed and there still needs to be destroyed more, there is one more reason to choose a specific building. There is one indicator that needs high buildings to get a higher score. So if all old buildings are destroyed the next building to destroy is the lowest one, to make room for a high one.
+
