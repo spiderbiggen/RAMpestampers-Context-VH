@@ -6,9 +6,9 @@ order=linear.
 module buildConstruction {
 	% Build an education construction at an available place.
 	% Repercept the relevant areas
-	if bel(functions(Functions), member(['luxe variant',BuildingID,List],Functions), relevant_areas(0,[[MultiPolygon, Area]|Tail]), randomFloor(Floors))
+	if bel(functions(Functions), member(['luxe variant',BuildingID,List],Functions), relevant_areas(0, RelevantAreas), member([MultiPolygon, Area], RelevantAreas), randomFloor(Floors)), not(bel(member([MultiPolygonOther, AreaOther], RelevantAreas), AreaOther>Area))
 		then building_plan_construction(BuildingID, Floors, MultiPolygon) + get_relevant_areas(0, build, []).
-	
+
 	%If theres no available land we need to adopt a goal to create some
 	if not(bel(relevant_areas(0, MPList), not(empty(MPList))))
 		then adopt(createLandToBuild).
