@@ -34,16 +34,9 @@ createLandToBuild :- relevant_areas(0, MPList), not(empty(MPList)).
 
 %Knowledge for answering a request
 answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
-empty(X) :- length(X, 0).
 
 %The agent finds a price to be acceptable when the offered price is at least 50 euro higher than the ground price for offices in Delft (252)
 acceptablePrice(Price, Areasize) :- Areasize * 252 + 50 < Price.
-
-%this believe ensures that indicatorlink gets generated only once
-%it gets deleted after indicatorlink is inserted as believe
-readIndicatorlink.
-
-
 
 % Takes all buildings of L that return from iseducation and removes all duplicates
 getOldBuildings(Bag,List):-
@@ -68,8 +61,6 @@ upgraded([]).
 % Knowledge about the size of a list
 isNumber(X) :- number(X).
 empty(List) :- length(List, 0).
-
-randomFloor(Floors) :- Floors is random(20)+20.
 
 %Gets a random number between 20 and 40
 randomFloor(Floors) :- Floors is random(20)+20.
