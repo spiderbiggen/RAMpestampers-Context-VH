@@ -22,6 +22,10 @@ module tygronEvents {
 		then delete(actions(Y)) + insert(actions(X)).
 	if percept(upgradeTypes(X)), bel(upgradeTypes(Y)) 
 		then delete(upgradeTypes(Y)) + insert(upgradeTypes(X)).
+		
+	%Add the goal of answering a request every time the agent receives one
+	if bel(requests(X), not(empty(X)), member(request(Type, Category, PopupID, ContentlinkID, VisibleStakeholderIDs, ActionLogIDS, Price, Multipolygon, AreaSize, Answers), X))
+		then adopt(answerRequest(Category, PopupID)).
 
 	%Custom actions percepts
 	%If we have no believe about this CallID insert it

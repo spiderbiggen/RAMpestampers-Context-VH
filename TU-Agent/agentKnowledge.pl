@@ -9,6 +9,7 @@
 :- dynamic requests/1.
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
+:- dynamic requestAnswered/2.
 :- dynamic upgrades/1.
 
 %Believes
@@ -29,6 +30,13 @@ createLandToBuild :- relevant_areas(0, MPList), not(empty(MPList)).
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
 :- dynamic indicatorGoal/2.
+
+
+%Knowledge for answering a request
+answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
+
+%The agent finds a price to be acceptable when the offered price is at least 50 euro higher than the ground price for offices in Delft (252)
+acceptablePrice(Price, Areasize) :- Areasize * 252 + 50 < Price.
 
 % Takes all buildings of L that return from iseducation and removes all duplicates
 getOldBuildings(Bag,List):-
@@ -51,6 +59,7 @@ getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag):-
 % Beliefs for upgrades.	
 upgraded([]).
 % Knowledge about the size of a list
+isNumber(X) :- number(X).
 empty(List) :- length(List, 0).
 
 %Gets a random number between 20 and 40
@@ -58,10 +67,3 @@ randomFloor(Floors) :- Floors is random(20)+20.
 
 %Filters the list of areas for only large areas
 getLargeAreas(OldList, NewList):- findall([MultiPolygon, Area], (member([MultiPolygon, Area], OldList), Area>200), NewList).
-
-
-
-
-
-
-
