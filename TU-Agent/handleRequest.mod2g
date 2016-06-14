@@ -24,7 +24,7 @@ module handleRequest {
 	forall bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
 		do popup_answer(PopupID, 0) + insert(requestAnswered(Category, PopupID)).
 	
-	% If a popup was removed from the requests list, but we havn't answered it, this rule will prevent loops
+	% If a popup was removed from the requests list, but we have not answered it, this rule will prevent loops
 	forall goal(answerRequest(Category, PopupID))
 		do popup_answer(PopupID, 0) + insert(requestAnswered(Category, PopupID)).
 }
