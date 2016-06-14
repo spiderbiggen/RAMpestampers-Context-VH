@@ -13,11 +13,9 @@ order=linear.
 
 module tygron {
 	
-	%TODO: parken en groen
-
 	%TODO budget?
 	
-	%TODO check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
+	%Check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
 	 if goal(answerRequest(Category, PopupID)), bel(requests(X), not(empty(X)))
 		then handleRequest.
 	
@@ -27,6 +25,8 @@ module tygron {
 	if goal(indicatorGoal('Parken en groen', _)), bel(relevant_areas(0,[]), emptySpace(_, _, true))
 		then buildGreen.
 	
+	%If we have no places to build, and we believe theres an empty space that we didn't build on, we should sell this land
+	%Since we cannot build buildings on it.
 	if bel(relevant_areas(0,[]), emptySpace(_, _, false))
 		then sellLand.
 	
