@@ -6,10 +6,10 @@ order=linearall.
 module buyLand {
 	
 	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, RelevantAreas), member([MultiPolygon, Area], RelevantAreas))
-		then map_buy_land(MultiPolygon, 500) + get_relevant_areas(CallID, buy, [0, 1]).
+		then map_buy_land(MultiPolygon, 500) + get_relevant_areas(CallID, buy, []).
 	
 	%If theres no available land we need to adopt a goal to create some
-	if not(bel(callIDAreaBuy(CallID), relevant_areas(CallID, MPList), not(empty(MPList))))
-		then get_relevant_areas(CallID, buy, [0, 1]).
+	if not(bel(relevant_areas(CallID, MPList))), bel(callIDAreaBuy(CallID), not(empty(MPList)))
+		then get_relevant_areas(CallID, buy, []).
 
 }

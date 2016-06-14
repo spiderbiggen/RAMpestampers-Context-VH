@@ -5,7 +5,6 @@ use buildConstruction as module.
 use buyLand as module.
 use upgrade as module.
 use buildGreen as module.
-use buyLand as module.
 
 
 exit=nogoals.
