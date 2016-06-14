@@ -11,6 +11,8 @@
 :- dynamic upgradeTypes/1.
 :- dynamic requestAnswered/2.
 :- dynamic upgrades/1.
+:- dynamic landToSell/2.
+:- dynamic sellProposal/3.
 
 %Believes
 :- dynamic oldBuildings/1.
