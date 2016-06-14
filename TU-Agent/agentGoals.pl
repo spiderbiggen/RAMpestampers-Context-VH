@@ -1,1 +1,2 @@
 getIndicatorGoals.
+buyland.

@@ -59,7 +59,10 @@ randomFloor(Floors) :- Floors is random(20)+20.
 %Filters the list of areas for only large areas
 getLargeAreas(OldList, NewList):- findall([MultiPolygon, Area], (member([MultiPolygon, Area], OldList), Area>200), NewList).
 
+callIDAreaBuild(0).
+callIDAreaBuy(1).
 
+buyland :- false.
 
 
 

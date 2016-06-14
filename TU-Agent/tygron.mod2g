@@ -5,13 +5,20 @@ use buildConstruction as module.
 use buyLand as module.
 use upgrade as module.
 use buildGreen as module.
+use buyLand as module.
 
 
 exit=nogoals.
 order=linear.
 
 module tygron {
-	
+			
+	%Call the upgrade module if there are any remaining upgrades
+	if bel(upgrades(_), not(upgrades([])))
+		then upgrade.
+		
+	if goal(buyland)
+		then buyLand.
 	%TODO: parken en groen
 
 	%TODO budget?
@@ -34,9 +41,5 @@ module tygron {
 	%If the goal to build high buildings is met but we still have the demolish goal, we should enter the demolish module
 	if goal(indicatorGoal('Slopen oude gebouwen', _))
 		then demolish.
-		
-	%Call the upgrade module if there are any remaining upgrades
-	if bel(upgrades(_), not(upgrades([])))
-		then upgrade.
 
 }

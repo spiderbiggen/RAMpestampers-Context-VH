@@ -15,10 +15,10 @@ test buildGreen with
 		never done(building_plan_upgrade(_, _)).
 		
 		%If there is land available, something is build on it
-		bel(relevant_areas(0,[[MultiPolygon, Area]|Tail])) 
+		bel(callIDAreaBuild(CallID), relevant_areas(CallID,[[MultiPolygon, Area]|Tail])) 
 			leadsto done(building_plan_construction(_)).
 		%If there is no land available, a goal to create land is adopted.		
-		not(bel(relevant_areas(0, MPList), not(empty(MPList))))
+		not(bel(callIDAreaBuild(CallID), relevant_areas(CallID, MPList), not(empty(MPList))))
 			leadsto goal(createLandToBuild).	
 		
 	}
