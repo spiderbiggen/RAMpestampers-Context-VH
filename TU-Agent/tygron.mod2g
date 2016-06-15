@@ -15,6 +15,7 @@ order=linear.
 module tygron {
 	%TODO budget?
 	
+	%Every 5 cycles we want to try to sell to another stakeholder.
 	if bel(modulo(X), X=0)
 		then sellLandHandler.
 	

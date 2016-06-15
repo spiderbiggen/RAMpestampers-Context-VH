@@ -5,10 +5,11 @@ order=linearall.
 
 module sellLandHandler {
 	%forall sellLand that we have proposed to every stakeholder, lower the price and start over
-	forall bel(landToSell(MultiPolygon, Price, Stakeholders), length(Stakeholders)=5)
-		do delete(landToSell(MultiPolygon, Price, Stakeholders)) + insert(landToSell(MultiPolygon, Price/2, [3])).
+	forall bel(landToSell(MultiPolygon, Price, Stakeholders), length(Stakeholders)=5, adjustSellPrice(Price, NewPrice))
+		do delete(landToSell(MultiPolygon, Price, Stakeholders)) + insert(landToSell(MultiPolygon, NewPrice, [0, 3])).
 	
 	%forall the land we have to sell, make a proposal to a stakeholder that we havn't proposed it yet
+	%update the landToSell believe with the new Stakeholder
 	if bel(allStakeholders(AllStakeholders), (member(StakeholderID, AllStakeholders)), landToSell(MultiPolygon, Price, Stakeholders)), not(bel(member(StakeholderID, Stakeholders)))
 		then map_sell_land(StakeholderID, MultiPolygon, Price) + delete(landToSell(MultiPolygon, Price, Stakeholders)) + insert(landToSell(MultiPolygon, Price, [StakeholderID|Stakeholders])).
 }

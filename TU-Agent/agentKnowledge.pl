@@ -78,7 +78,10 @@ allStakeholders([0, 1, 2, 3, 4]).
 
 %keep track of the current cycle
 cycle(0).
-increase(OldNumber, NewNumber) :- NewNumber is OldNumber+1.
 
 %Every 5 cycles we want to do something, we use modulo for this.
 modulo(X) :- cycle(Y), X is Y mod 5.
+%Increase a number by one
+increase(OldNumber, NewNumber) :- NewNumber is OldNumber+1.
+%adjust the price we're selling for
+adjustSellPrice(OldPrice, NewPrice) :- NewPrice is OldPrice/2.
