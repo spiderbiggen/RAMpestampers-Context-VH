@@ -38,17 +38,18 @@ define building_plan_upgrade(UpgradeID, MultiPolygon) with
 	
 % Define the answer to a popup action
 % Answer another stakeholders request
-% params = RequestID, AnswerID
-define popup_answer(RequestID, AnswerID) with
-  pre{ requests(X), not(empty(X)) }
-  post{ requestAnswered(RequestID, AnswerID) } 
+% params = PopupID, AnswerID
+define popup_answer(PopupID, AnswerID) with
+  pre{not(requestAnswered(_, PopupID))}
+  post{ requestAnswered(PopupID, AnswerID) } 
   
 % Define the answer to a popup with a date action
 % Answer another stakeholders request
-% params = RequestID, AnswerID, Date
-define popup_answer_with_date(RequestID, AnswerID, Date) with
-  pre{ requests(X), not(empty(X)) }
-  post{ requestAnswered(RequestID, AnswerID) } 
+% params = PopupID, AnswerID, Date
+define popup_answer_with_date(PopupID, AnswerID, Date) with
+  pre{not(requestAnswered(_, PopupID))}
+  post{ requestAnswered(PopupID, AnswerID) } 
+
 %Custom actions
 
 %This returns relevant areas from the tygron environment.

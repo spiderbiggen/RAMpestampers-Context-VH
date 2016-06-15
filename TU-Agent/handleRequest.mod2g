@@ -1,30 +1,30 @@
 use agentKnowledge as knowledge.
 use tygron as actionspec.
 
-order=linear.
+order=linearall.
 
 module handleRequest {
 	% Accept (ActionID = 0) a request to buy land if the indicator goal of building high buildings has been satisfied and the price is acceptable
-	if bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, Area, _), X), isNumber(Price), acceptablePrice(Price, Area), not(requestAnswered('BUY_LAND', PopupID))), not(goal(indicatorGoal('Bouwen hoge gebouwen', _)))
-		then popup_answer(PopupID, 0) + insert(requestAnswered('BUY_LAND', PopupID)).
+	forall bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, Area, _), X), isNumber(Price), acceptablePrice(Price, Area), not(requestAnswered('BUY_LAND', PopupID))), not(goal(indicatorGoal('Bouwen hoge gebouwen', _)))
+		do popup_answer(PopupID, 0) + insert(requestAnswered('BUY_LAND', PopupID)).
 		
 	% Decline (ActionID = 1) a request to buy land if there is a plan to build (on that land)
-	if bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID)))
-		then popup_answer(PopupID, 1) + insert(requestAnswered('BUY_LAND', PopupID)).
+	forall bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID)))
+		do popup_answer(PopupID, 1) + insert(requestAnswered('BUY_LAND', PopupID)).
 		
 	% Answer all permit popups with a date with yes (ActionID = 0)
-	if bel(requests(X), member(request('INTERACTION_WITH_DATE', 'PERMIT', PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
-		then popup_answer_with_date(PopupID, 0, 0) + insert(requestAnswered('PERMIT', PopupID)).
+	forall bel(requests(X), member(request('INTERACTION_WITH_DATE', 'PERMIT', PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
+		do popup_answer_with_date(PopupID, 0, 0) + insert(requestAnswered('PERMIT', PopupID)).
 	
 	% Answer all permit popups with yes (ActionID = 0) since that is the only option
-	if bel(requests(X), member(request('INFORMATION', 'PERMIT', PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
-		then popup_answer(PopupID, 0) + insert(requestAnswered('PERMIT', PopupID)).
+	forall bel(requests(X), member(request('INFORMATION', 'PERMIT', PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
+		do popup_answer(PopupID, 0) + insert(requestAnswered('PERMIT', PopupID)).
 		
 	% Catch any requests that do not fall under any of the preconditions of the previous actions and answer yes (ActionID = 0))
-	if bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
-		then popup_answer(PopupID, 0) + insert(requestAnswered(Category, PopupID)).
-		
-	% If the module is erronously called with an empty list, exit the module	
-	if bel(requests(X), empty(X))
-		then exit-module.
+	forall bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
+		do popup_answer(PopupID, 0) + insert(requestAnswered(Category, PopupID)).
+	
+	% If a popup was removed from the requests list, but we have not answered it, this rule will prevent loops
+	forall goal(answerRequest(Category, PopupID))
+		do popup_answer(PopupID, 0) + insert(requestAnswered(Category, PopupID)).
 }
