@@ -14,12 +14,14 @@ test buildGreen with
 		never done(map_sell_land(_, _, _)).
 		never done(building_plan_upgrade(_, _)).
 		
-		%If there is land available, something is build on it
-		bel(callIDAreaBuild(CallID), relevant_areas(CallID,[[MultiPolygon, Area]|Tail])) 
+		%If there no land available to build a building, trees are built
+		bel(relevant_areas(0,[])) 
 			leadsto done(building_plan_construction(_)).
-		%If there is no land available, a goal to create land is adopted.		
-		not(bel(callIDAreaBuild(CallID), relevant_areas(CallID, MPList), not(empty(MPList))))
-			leadsto goal(createLandToBuild).	
+		
+		%If there is land left for trees, trees are built
+		bel(greenspace(MultiPolygon))
+			leadsto done(building_plan_construction(_)).
+			
 		
 	}
 	%TODO: find a way to create an OR in the post condition, below is not working

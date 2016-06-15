@@ -4,7 +4,7 @@ use agentKnowledge as knowledge.
 % Plan a new building
 % params = FunctionId, Amount of Floors, MultiPolygon describing the build contour
 define building_plan_construction(FunctionId, Floors, MultiPolygon) with
-	pre{relevant_areas(0, MPList), not(empty(MPList))}
+	pre{ true }
 	post{ true }
   
 % Define the buy land action
@@ -35,8 +35,21 @@ define building_plan_demolish(BuildingId) with
 define building_plan_upgrade(UpgradeID, MultiPolygon) with
 	pre{ upgraded(Tail), not(member(UpgradeID, Tail)) }
 	post{ upgraded([UpgradeID|Tail]) }
-
 	
+% Define the answer to a popup action
+% Answer another stakeholders request
+% params = PopupID, AnswerID
+define popup_answer(PopupID, AnswerID) with
+  pre{not(requestAnswered(_, PopupID))}
+  post{ requestAnswered(PopupID, AnswerID) } 
+  
+% Define the answer to a popup with a date action
+% Answer another stakeholders request
+% params = PopupID, AnswerID, Date
+define popup_answer_with_date(PopupID, AnswerID, Date) with
+  pre{not(requestAnswered(_, PopupID))}
+  post{ requestAnswered(PopupID, AnswerID) } 
+
 %Custom actions
 
 %This returns relevant areas from the tygron environment.
