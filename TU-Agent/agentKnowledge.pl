@@ -46,7 +46,7 @@ answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
 acceptablePrice(Price, Areasize) :- Areasize * 252 + 50 < Price.
 
 %When selling our land we'll use a generous price to please other stakeholders.
-generousPrice(Price, Areasize) :- Price is Areasize * 252 - 50.
+generousPrice(Price, Areasize) :- Price is round(round(Areasize) * 400).
 
 % Takes all buildings of L that return from iseducation and removes all duplicates
 getOldBuildings(Bag,List):-
@@ -89,4 +89,4 @@ modulo(X) :- cycle(Y), X is Y mod 5.
 %Increase a number by one
 increase(OldNumber, NewNumber) :- NewNumber is OldNumber+1.
 %adjust the price we're selling for
-adjustSellPrice(OldPrice, NewPrice) :- NewPrice is OldPrice/2.
+adjustSellPrice(OldPrice, NewPrice) :- NewPrice is round(OldPrice/2).
