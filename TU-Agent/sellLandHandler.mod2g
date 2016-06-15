@@ -4,7 +4,6 @@ use tygron as actionspec.
 order=linearall.
 
 module sellLandHandler {
-	
 	%If we believe a piece of land has been sold we should delete the believe.
 	forall bel(landToSell(MultiPolygon, Price, StakeholderList), sold(MultiPolygon))
 		do delete(landToSell(MultiPolygon, Price, StakeholderList)).
