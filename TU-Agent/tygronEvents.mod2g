@@ -51,4 +51,8 @@ module tygronEvents {
 	%we can't seem to fix this by placing it in the init module""
 	if goal(getIndicatorGoals)
 		then drop(getIndicatorGoals).
+		
+	%increase the cycle
+	if bel(cycle(X), increase(X, Y))
+		then delete(cycle(X)) + insert(cycle(Y)).
 }
