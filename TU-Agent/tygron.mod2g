@@ -12,8 +12,8 @@ order=linear.
 
 module tygron {
 		
-	if goal(buyland)
-		then buyLand.
+	%if goal(buyland)
+	%	then buyLand.
 	%TODO: parken en groen
 
 	%TODO budget?
