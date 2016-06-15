@@ -1,18 +1,15 @@
 use agentKnowledge as knowledge.
 use tygron as actionspec.
 
-order=linearall.
+order=linear.
 
 module buyLand {
 	
-	if not(bel(relevant_areas(_,_))), bel(callIDAreaBuy(CallID))
+	if bel(callIDAreaBuy(CallID)), not(bel(relevant_areas(CallID, _)))
 		then get_relevant_areas(CallID, buy, []).
-	
+		
 	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, RelevantAreas), member([MultiPolygon, Area], RelevantAreas))
 		then map_buy_land(MultiPolygon, 500) + get_relevant_areas(CallID, buy, []).
-	
-	%If theres no available land we need to adopt a goal to create some
-	if not(bel(relevant_areas(CallID, MPList))), bel(callIDAreaBuy(CallID), not(empty(MPList)))
-		then get_relevant_areas(CallID, buy, []).
+
 
 }
