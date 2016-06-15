@@ -9,14 +9,16 @@
 :- dynamic requests/1.
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
-:- dynamic requestAnswered/2.
-:- dynamic upgrades/1.
-:- dynamic landToSell/3.
-:- dynamic sold/1.
 
 %Believes
 :- dynamic oldBuildings/1.
 :- dynamic emptySpace/3.
+:- dynamic budget/1.
+:- dynamic landToSell/3.
+:- dynamic sold/1.
+:- dynamic requestAnswered/2.
+:- dynamic upgrades/1.
+:- dynamic budgetChange/1.
 
 %Custom actions beliefs
 :- dynamic relevant_areas/2.
@@ -90,3 +92,5 @@ modulo(X) :- cycle(Y), X is Y mod 5.
 increase(OldNumber, NewNumber) :- NewNumber is OldNumber+1.
 %adjust the price we're selling for
 adjustSellPrice(OldPrice, NewPrice) :- NewPrice is round(OldPrice/2).
+%Reduce the first number with the value of the second
+minus(FirstNumber, SecondNumber, Change) :- Change is FirstNumber-SecondNumber.

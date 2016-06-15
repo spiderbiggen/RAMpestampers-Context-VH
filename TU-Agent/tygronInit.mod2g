@@ -30,7 +30,7 @@ module tygronInit {
 	
 	%Retrieve the indicatorlink for our stakeholder
 	if bel(stakeholders(X), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,Weights)], X))
-		then insert(indicatorlink(Weights)).
+		then insert(indicatorlink(Weights)) + insert(budget(Budget)).
 		
 	%insert indicator when it doesn't exist at all
 	forall bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), not(bel(indicator(IndicatorID, Name, _, Target)))
