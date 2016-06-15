@@ -1,21 +1,13 @@
 use agentKnowledge as knowledge.
 use tygron as actionspec.
+use sellLandHandler as module.
 
 order=linear.
 
 module sellLand {
 	
 	%for the emptySpace that has no building on it, try selling it to the Municipality.
-	forall bel(emptySpace(MultiPolygon, Area, false), generousPrice(Price, Area))
-		do insert(landToSell(MultiPolygon, Price)) + delete(emptySpace(MultiPolygon, Area, false)).
-	
-	%TODO: do this for all stakeholders
-	%forall the land we have to sell, make a proposal to the stakeholder and believe this so we can check it later.
-	forall bel(landToSell(MultiPolygon, Price), Stakeholder is 0), not(bel(sellProposal(Stakeholder, MultiPolygon, Price)))
-		do map_sell_land(Stakeholder, MultiPolygon, Price) + insert(sellProposal(Stakeholder, MultiPolygon, Price)).
-	%TODO:
-	%Keep track of land we're trying to sell
-	%See in the requests what the response was
-	%Try selling it to another stakeholder if a stakeholder refuses
-	%Call this module when we get an anwer? Or periodically?
+	%landToSell holds a list of all stakeholders we've proposed this sell to already, we'll add our own stakeholder in advance
+	if bel(emptySpace(MultiPolygon, Area, false), generousPrice(Price, Area))
+		then insert(landToSell(MultiPolygon, Price, [3])) + delete(emptySpace(MultiPolygon, Area, false)) + sellLandHandler.
 }

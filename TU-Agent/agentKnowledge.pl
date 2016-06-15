@@ -11,7 +11,7 @@
 :- dynamic upgradeTypes/1.
 :- dynamic requestAnswered/2.
 :- dynamic upgrades/1.
-:- dynamic landToSell/2.
+:- dynamic landToSell/3.
 :- dynamic sellProposal/3.
 
 %Believes
@@ -73,3 +73,6 @@ randomFloor(Floors) :- Floors is random(20)+20.
 
 %Filters the list of areas for only large areas
 getLargeAreas(OldList, NewList):- findall([MultiPolygon, Area], (member([MultiPolygon, Area], OldList), Area>200), NewList).
+
+%available stakeholders to sell things to
+allStakeholders([0, 1, 2, 3, 4]).
