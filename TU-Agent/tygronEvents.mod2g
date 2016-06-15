@@ -45,6 +45,6 @@ module tygronEvents {
 	
 	%set up the goals for the indicators
 	%if we don't have the goal, and the goal isn't achieved either, we should adopt it.
-	forall bel(indicator(_, Name, _, Target)), not(goal-a(indicatorGoal(Name, Target)))
+	forall bel(indicator(_, Name, _, Target)), not(goal(indicatorGoal(Name, Target)))
 		do adopt(indicatorGoal(Name, Target)).
 }
