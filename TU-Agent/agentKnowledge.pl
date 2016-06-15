@@ -12,6 +12,7 @@
 :- dynamic requestAnswered/2.
 :- dynamic upgrades/1.
 :- dynamic landToSell/3.
+:- dynamic sold/1.
 
 %Believes
 :- dynamic oldBuildings/1.
@@ -28,6 +29,10 @@ indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target > 0, Curre
 indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target =< 0, Current =< Target.
 %createLandToBuild needs a demolished polygon
 createLandToBuild :- relevant_areas(0, MPList), not(empty(MPList)).
+%Land we want to sell
+sell(MultiPolygon) :- sold(MultiPolygon).
+
+
 %Other beliefs
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
@@ -73,7 +78,7 @@ randomFloor(Floors) :- Floors is random(20)+20.
 %Filters the list of areas for only large areas
 getLargeAreas(OldList, NewList):- findall([MultiPolygon, Area], (member([MultiPolygon, Area], OldList), Area>200), NewList).
 
-%available stakeholders to sell things to
+%List of available stakeholders
 allStakeholders([0, 1, 2, 3, 4]).
 
 %keep track of the current cycle
