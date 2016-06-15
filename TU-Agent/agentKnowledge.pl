@@ -19,6 +19,7 @@
 :- dynamic requestAnswered/2.
 :- dynamic upgrades/1.
 :- dynamic budgetChange/1.
+:- dynamic cycle/1.
 
 %Custom actions beliefs
 :- dynamic relevant_areas/2.
@@ -82,9 +83,6 @@ getLargeAreas(OldList, NewList):- findall([MultiPolygon, Area], (member([MultiPo
 
 %List of available stakeholders
 allStakeholders([0, 1, 2, 3, 4]).
-
-%keep track of the current cycle
-cycle(0).
 
 %Every 5 cycles we want to do something, we use modulo for this.
 modulo(X) :- cycle(Y), X is Y mod 5.

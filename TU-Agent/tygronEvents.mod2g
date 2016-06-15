@@ -60,5 +60,5 @@ module tygronEvents {
 		then delete(budget(OldBudget)) + insert(budget(Budget)) + insert(budgetChange(Change)).
 	%See if the change in budget is equal to the price of a piece of land we're trying to sell.
 	if bel(budgetChange(Change), landToSell(MultiPolygon, Price, _), (Price=Change))
-		then adopt(sold(MultiPolygon)).
+		then insert(sold(MultiPolygon)).
 }
