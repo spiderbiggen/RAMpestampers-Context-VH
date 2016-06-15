@@ -44,11 +44,7 @@ module tygronEvents {
 		do delete(indicator(IndicatorID, Name, OldCurrent, Target)) + insert(indicator(IndicatorID, Name, Current, Target)).
 	
 	%set up the goals for the indicators
-	forall bel(indicator(_, Name, _, Target)), goal(getIndicatorGoals)
+	%if we don't have the goal, and the goal isn't achieved either, we should adopt it.
+	forall bel(indicator(_, Name, _, Target)), not(goal-a(indicatorGoal(Name, Target)))
 		do adopt(indicatorGoal(Name, Target)).
-	
-	%we can drop this after the first run%
-	%we can't seem to fix this by placing it in the init module""
-	if goal(getIndicatorGoals)
-		then drop(getIndicatorGoals).
 }

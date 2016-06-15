@@ -72,8 +72,7 @@ test tygron with
 		%The goal should be reconsidered and dropped because of the believe, according to template G2.
 		bel(relevant_areas(0, MPList), not(empty(MPList))) 
 			leadsto not(goal(createLandToBuild)).
-		bel(indicator(_, Name, _, Target)), goal(getIndicatorGoals) 
-			leadsto goal(indicatorGoal(Name, Target)).
+			
 		%The believe is the reason for not having the goal here, according to template G3.
 		never goal(indicatorGoal(Name, Target)), bel(indicator(_, Name, Current, _), Target > 0, Current >= Target). 
 		never goal(indicatorGoal(Name, Target)), bel(indicator(_, Name, Current, _), Target =< 0, Current =< Target).	
