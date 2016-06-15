@@ -4,7 +4,12 @@ use tygron as actionspec.
 order=linearall.
 
 module sellLandHandler {
-	%forall sellLand that we have proposed to every stakeholder, lower the price and start over
+	
+	%If we believe a piece of land has been sold we should delete the believe.
+	forall bel(landToSell(MultiPolygon, Price, StakeholderList), sold(MultiPolygon))
+		do delete(landToSell(MultiPolygon, Price, StakeholderList)).
+	
+	%forall sellLand that we have already proposed to every stakeholder, lower the price and start over
 	forall bel(landToSell(MultiPolygon, Price, Stakeholders), length(Stakeholders)=5, adjustSellPrice(Price, NewPrice))
 		do delete(landToSell(MultiPolygon, Price, Stakeholders)) + insert(landToSell(MultiPolygon, NewPrice, [0, 3])).
 	

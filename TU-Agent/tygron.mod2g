@@ -16,7 +16,7 @@ module tygron {
 	%TODO budget?
 	
 	%Every 5 cycles we want to try to sell to another stakeholder.
-	if bel(modulo(X), X=0)
+	if bel(modulo(X), X=0), goal(sell(_))
 		then sellLandHandler.
 	
 	%Check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
