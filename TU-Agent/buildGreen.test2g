@@ -19,7 +19,7 @@ test buildGreen with
 			leadsto done(building_plan_construction(_)).
 		
 		%If there is land left for trees, trees are built
-		bel(greenspace(MultiPolygon))
+		bel(emptySpace(MultiPolygon, _, _))
 			leadsto done(building_plan_construction(_)).
 			
 		
