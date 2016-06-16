@@ -32,6 +32,9 @@ module tygron {
 	%If we have no places to build, and we believe theres an empty space that we didn't build on, we should sell this land
 	%Since we cannot build buildings on it.
 	if bel(relevant_areas(0,[]), emptySpace(_, _, false))
+		then sellLand.	
+	%If we have places to build, but no goal to build high buildings or education buildings, we still wanna sellLand.
+	if not(goal(indicatorGoal('Bouwen hoge gebouwen', _))), not(goal(indicatorGoal('Bouw onderwijs', _))), bel(emptySpace(MultiPolygon, Area, false))
 		then sellLand.
 	
 	%if the buildConstruction module adopted the goal to create land we should enter the demolish module
