@@ -19,7 +19,7 @@ test buildGreen with
 		never done(popup_answer(_,_)).
 		never done(popup_answer_with_date(_,_,_)).
 		never done(get_relevant_areas(_,_,_)).
-		% If there is land left for trees, trees are built
+		% If there is land left for trees, trees are built.
 		bel(emptySpace(MultiPolygon, _, _))
 			leadsto done(building_plan_construction(_,_,MultiPolygon)).
 		
