@@ -1,0 +1,12 @@
+\section{Outlook}
+In this section we will talk about the future of the product and some of the possible problems we might encounter.
+\\
+\\
+One of the problems our agent currently has is the abilty to react to all kinds of indicators as right now it depends on the exact name of the indicator to use as goals. 
+This can cause issues if you rename de indicator or if the indicator is translated to a different language as this would mean that some of the modules will never be called by the main module as discussed in section~\ref{sec:overview}. 
+This is a limitation in the sdk though so we can't really do anything about this right now, but we should discuss this with tygron.
+
+Our agent has a very specific strategy which, barring changes in location, will always be executed in exactly the same order.
+This is something we need to consider for the future as this makes the agent too predictable and isn't the same as a human player since a human player will have different actions every time.
+The agent is also relatively fast in deciding if, when or how it wants to do something this is not necessarily a bad thing, but a human player might not always respond immediately as he might take a few minutes to consider the consequences. 
+
