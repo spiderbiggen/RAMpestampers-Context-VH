@@ -1,5 +1,4 @@
 use agentKnowledge as beliefs.
-use agentGoals as goals.
 
 module tygronInit {
 	%%%%% Percept Processing %%%%%
@@ -21,7 +20,7 @@ module tygronInit {
 		then insert(requests(X)).
 	if percept(actions(X))
 		then insert(actions(X)).
-	if percept(upgradeTypes(X))
+	if percept(upgrade_types(X))
 		then insert(upgradeTypes(X)).
 
 	%insert the oldbuildings
