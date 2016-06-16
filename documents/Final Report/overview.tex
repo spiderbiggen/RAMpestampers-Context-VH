@@ -1,1 +1,11 @@
-\section{Overview of the developed and implemented software product}
+\section{Overview of the software product}
+The developed product consists of two parts, a runtime environment and a goal project.
+The environment is used to connect with the Tygron engine and handles everything we need to make our goal project talk with the Tygron engine.
+It handles translating the xml objects, retrieved through Tygron's backend, to parameters we can use with goal and vice versa.
+It also handles sending the actions to the Tygron engine, like buying ground or constructing a building, this can be as simple as translating the parameters, but in certain cases this also handles some of the more complex arithmetic operations like retrieving a list of Multipolygons, a collection of points that form a 2D shape, that can be used to construct buildings.
+
+The GOAL project does all the decision making, it runs in a loop until all it's goals have been achieved or it's manually shutdown.
+It is separated in modules so every distinct function has it's own module, i.e. constructing or demolishing are placed in separate modules.
+Every cycle it will call the event module first which will update the stored data with data it gets from the environment, like a list of building.
+It has one main module which decides what module should be called each cycle, based on it's current goals.
+Sometimes a module is called that can't do anything because there is no space, it will then adopt a goal to make some space so that it can do something in that module.
