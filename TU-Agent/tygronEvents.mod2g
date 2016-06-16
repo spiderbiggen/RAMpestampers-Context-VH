@@ -43,12 +43,20 @@ module tygronEvents {
 	forall percept(indicators(X)), bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), bel(indicator(IndicatorID, Name, OldCurrent, Target))
 		do delete(indicator(IndicatorID, Name, OldCurrent, Target)) + insert(indicator(IndicatorID, Name, Current, Target)).
 	
+	%We can't adopt goals in the init module
 	%set up the goals for the indicators
-	forall bel(indicator(_, Name, _, Target)), goal(getIndicatorGoals)
+	%if we don't have the goal, and the goal isn't achieved either, we should adopt it.
+	forall bel(indicator(_, Name, _, Target)), not(goal(indicatorGoal(Name, Target)))
 		do adopt(indicatorGoal(Name, Target)).
-	
-	%we can drop this after the first run%
-	%we can't seem to fix this by placing it in the init module""
-	if goal(getIndicatorGoals)
-		then drop(getIndicatorGoals).
+		
+	%increase the cycle
+	if bel(cycle(X), increase(X, Y))
+		then delete(cycle(X)) + insert(cycle(Y)).
+		
+	%Update budget
+	if bel(budget(OldBudget), stakeholders(StakeholderList), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,_)], StakeholderList), minus(OldBudget, Budget, Change))
+		then delete(budget(OldBudget)) + insert(budget(Budget)) + insert(budgetChange(Change)).
+	%See if the change in budget is equal to the price of a piece of land we're trying to sell.
+	if bel(budgetChange(Change), landToSell(MultiPolygon, Price, _), (Price=Change))
+		then insert(sold(MultiPolygon)).
 }

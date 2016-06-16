@@ -9,24 +9,31 @@
 :- dynamic requests/1.
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
-:- dynamic requestAnswered/2.
-:- dynamic upgrades/1.
 
 %Believes
 :- dynamic oldBuildings/1.
-:- dynamic greenspace/1.
+:- dynamic emptySpace/3.
+:- dynamic budget/1.
+:- dynamic landToSell/3.
+:- dynamic sold/1.
+:- dynamic requestAnswered/2.
+:- dynamic upgrades/1.
+:- dynamic budgetChange/1.
+:- dynamic cycle/1.
 
 %Custom actions beliefs
 :- dynamic relevant_areas/2.
 
 %The goals and how to achieve them.
-%we have to retrieve this only once and the goal will be dropped by hand
-getIndicatorGoals :- false.
 %an indicatorgoal is met if the current score is the target score
 indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target > 0, Current >= Target.
 indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target =< 0, Current =< Target.
 %createLandToBuild needs a demolished polygon
 createLandToBuild :- relevant_areas(0, MPList), not(empty(MPList)).
+%Land we want to sell
+sell(MultiPolygon) :- sold(MultiPolygon).
+
+
 %Other beliefs
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
@@ -38,6 +45,9 @@ answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
 
 %The agent finds a price to be acceptable when the offered price is at least 50 euro higher than the ground price for offices in Delft (252)
 acceptablePrice(Price, Areasize) :- Areasize * 252 + 50 < Price.
+
+%When selling our land we'll use a generous price to please other stakeholders.
+generousPrice(Price, Areasize) :- Price is round(round(Areasize) * 400).
 
 % Takes all buildings of L that return from iseducation and removes all duplicates
 getOldBuildings(Bag,List):-
@@ -69,12 +79,20 @@ randomFloor(Floors) :- Floors is random(20)+20.
 %Filters the list of areas for only large areas
 getLargeAreas(OldList, NewList):- findall([MultiPolygon, Area], (member([MultiPolygon, Area], OldList), Area>200), NewList).
 
+%List of available stakeholders
+allStakeholders([0, 1, 2, 3, 4]).
+
+%Every 5 cycles we want to do something, we use modulo for this.
+modulo(X) :- cycle(Y), X is Y mod 5.
+%Increase a number by one
+increase(OldNumber, NewNumber) :- NewNumber is OldNumber+1.
+%adjust the price we're selling for
+adjustSellPrice(OldPrice, NewPrice) :- NewPrice is round(OldPrice/2).
+%Reduce the first number with the value of the second
+minus(FirstNumber, SecondNumber, Change) :- Change is FirstNumber-SecondNumber.
+
+%define callIDs for the different get_relevant_area actions
 callIDAreaBuild(0).
 callIDAreaBuy(1).
 
-buyland :- false.
-
-
-
-
-
+buyland.

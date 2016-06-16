@@ -1,6 +1,5 @@
 use TUAgent as mas.
 use agentKnowledge as knowledge.
-use agentGoals as goals.
 use buildGreen as module.
 use tygron as actionspec.
 
@@ -19,7 +18,7 @@ test buildGreen with
 			leadsto done(building_plan_construction(_)).
 		
 		%If there is land left for trees, trees are built
-		bel(greenspace(MultiPolygon))
+		bel(emptySpace(MultiPolygon, _, _))
 			leadsto done(building_plan_construction(_)).
 			
 		

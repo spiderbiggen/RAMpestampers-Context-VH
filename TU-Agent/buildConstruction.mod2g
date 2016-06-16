@@ -1,9 +1,13 @@
 use agentKnowledge as knowledge.
 use tygron as actionspec.
 
-order=linear.
+order=linearall.
 
 module buildConstruction {
+	%If theres no available land we need to adopt a goal to create some
+	if not(bel(callIDAreaBuild(CallID), relevant_areas(CallID, MPList), not(empty(MPList))))
+		then adopt(createLandToBuild) + exit-module.
+		
 	% Build an education construction at an available place and pick the largest option.
 	% Repercept the relevant areas
 	if bel(callIDAreaBuild(CallID), functions(Functions), member(['luxe variant',BuildingID,List],Functions),
@@ -11,7 +15,8 @@ module buildConstruction {
 		not(bel(member([MultiPolygonOther, AreaOther], RelevantAreas), AreaOther>Area))
 			then building_plan_construction(BuildingID, Floors, MultiPolygon) + get_relevant_areas(CallID, build, []).
 
-	%If theres no available land we need to adopt a goal to create some
-	if not(bel(callIDAreaBuild(CallID), relevant_areas(CallID, MPList), not(empty(MPList))))
-		then adopt(createLandToBuild).
+	%If we have a believe about empty space, but we do have land to build something, we update the boolean
+	%this we we can recognize land we can build on, and land we cannot build on.
+	forall bel(emptySpace(MultiPolygon, Area, false))
+		do delete(emptySpace(MultiPolygon, Area, false)) + insert(emptySpace(MultiPolygon, Area, true)).
 }

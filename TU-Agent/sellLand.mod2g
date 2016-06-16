@@ -1,0 +1,16 @@
+use agentKnowledge as knowledge.
+use tygron as actionspec.
+use sellLandHandler as module.
+
+order=linear.
+
+module sellLand {
+	
+	%for the emptySpace that has no building on it, adopt a believe so that sellLandHandler will sell it.
+	%landToSell holds a list of all stakeholders we've proposed this sell to already
+	%Two stakeholders are already in the list:
+	%	0 - Municipality, they will never buy land
+	%	3 - TUDelft, we don't wanna sell land to ourself
+	if bel(emptySpace(MultiPolygon, Area, false), generousPrice(Price, Area))
+		then insert(landToSell(MultiPolygon, Price, [0, 3])) + adopt(sell(MultiPolygon)) + delete(emptySpace(MultiPolygon, Area, false)) + sellLandHandler.
+}

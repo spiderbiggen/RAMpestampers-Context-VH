@@ -1,6 +1,5 @@
 use TUAgent as mas.
 use agentKnowledge as knowledge.
-use agentGoals as goals.
 use tygron as module.
 use tygron as actionspec.
 
@@ -70,10 +69,9 @@ test tygron with
 		
 		%Goal tests%
 		%The goal should be reconsidered and dropped because of the believe, according to template G2.
-		bel(callIDAreaBuild(CallID), relevant_areas(CallID, MPList), not(empty(MPList))) 
-			leadsto not(goal(createLandToBuild)).
-		bel(indicator(_, Name, _, Target)), goal(getIndicatorGoals) 
-			leadsto goal(indicatorGoal(Name, Target)).
+		bel(relevant_areas(0, MPList), not(empty(MPList))) 
+			leadsto not(goal(createLandToBuild)).		
+
 		%The believe is the reason for not having the goal here, according to template G3.
 		never goal(indicatorGoal(Name, Target)), bel(indicator(_, Name, Current, _), Target > 0, Current >= Target). 
 		never goal(indicatorGoal(Name, Target)), bel(indicator(_, Name, Current, _), Target =< 0, Current =< Target).	

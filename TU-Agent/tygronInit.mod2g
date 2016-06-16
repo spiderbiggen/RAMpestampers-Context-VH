@@ -1,5 +1,4 @@
 use agentKnowledge as beliefs.
-use agentGoals as goals.
 
 module tygronInit {
 	%%%%% Percept Processing %%%%%
@@ -30,11 +29,15 @@ module tygronInit {
 	
 	%Retrieve the indicatorlink for our stakeholder
 	if bel(stakeholders(X), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,Weights)], X))
-		then insert(indicatorlink(Weights)).
+		then insert(indicatorlink(Weights)) + insert(budget(Budget)).
 		
 	%insert indicator when it doesn't exist at all
 	forall bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), not(bel(indicator(IndicatorID, Name, _, Target)))
 		do insert(indicator(IndicatorID, Name, Current, Target)).
+	
+	%We insert cycle 0 so we can start counting from here
+	if true
+		then insert(cycle(0)).
 	
 	if bel(buildings(Buildings), upgradeTypes(UpgradeTypes), functions(Functions), getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag))
 		then insert(upgrades(Bag)). 
