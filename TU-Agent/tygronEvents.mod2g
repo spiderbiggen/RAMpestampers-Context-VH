@@ -1,65 +1,75 @@
 use agentKnowledge as knowledge.
 
 module tygronEvents {
-	%%%%% Percept Processing %%%%%
+	%Percept processing.
 	if percept(stakeholders(X)), bel(stakeholders(Y)) 
-		then delete(stakeholders(Y)) + insert(stakeholders(X)).
+		then delete(stakeholders(Y)) + 
+			 insert(stakeholders(X)).
 	if percept(settings(X)), bel(settings(Y)) 
-		then delete(settings(Y)) + insert(settings(X)).
+		then delete(settings(Y)) + 
+			 insert(settings(X)).
 	if percept(functions(X)), bel(functions(Y)) 
-		then delete(functions(Y)) + insert(functions(X)).
+		then delete(functions(Y)) + 
+			 insert(functions(X)).
 	if percept(buildings(X)), bel(buildings([])) 
-		then delete(buildings([])) + insert(buildings(X)).
+		then delete(buildings([])) + 
+			 insert(buildings(X)).
 	if percept(indicators(X)), bel(indicators(Y)) 
-		then delete(indicators(Y)) + insert(indicators(X)).
+		then delete(indicators(Y)) + 
+			 insert(indicators(X)).
 	if percept(lands(X)), bel(lands(Y)) 
-		then delete(lands(Y)) + insert(lands(X)).
+		then delete(lands(Y)) + 
+			 insert(lands(X)).
 	if percept(zones(X)), bel(zones(Y)) 
-		then delete(zones(Y)) + insert(zones(X)).
+		then delete(zones(Y)) + 
+			 insert(zones(X)).
 	if percept(requests(X)), bel(requests(Y)) 
-		then delete(requests(Y)) + insert(requests(X)).
+		then delete(requests(Y)) + 
+			 insert(requests(X)).
 	if percept(actions(X)), bel(actions(Y)) 
-		then delete(actions(Y)) + insert(actions(X)).
+		then delete(actions(Y)) + 
+			 insert(actions(X)).
 	if percept(upgradeTypes(X)), bel(upgradeTypes(Y)) 
-		then delete(upgradeTypes(Y)) + insert(upgradeTypes(X)).
+		then delete(upgradeTypes(Y)) + 
+			 insert(upgradeTypes(X)).
 		
-	%Add the goal of answering a request every time the agent receives one
+	% Add the goal of answering a request every time the agent receives one.
 	forall bel(requests(X), not(empty(X)), member(request(Type, Category, PopupID, ContentlinkID, VisibleStakeholderIDs, ActionLogIDS, Price, Multipolygon, AreaSize, Answers), X))
 		do adopt(answerRequest(Category, PopupID)).
 
-	%Custom actions percepts
-	%If we have no believe about this CallID insert it
+	% Custom actions percepts.
+	% If we have no believe about this CallID insert it.
 	if percept(relevant_areas(CallID,MPList)), not(bel(relevant_areas(CallID, _)))
 		then insert(relevant_areas(CallID,MPList)).
-	%If we have a believe about this CallID update it
+	% If we have a believe about this CallID update it.
 	if percept(relevant_areas(CallID,MPList)), bel(relevant_areas(CallID, OldMPList))
 		then delete(relevant_areas(CallID, OldMPList))+ insert(relevant_areas(CallID,MPList)).
 		
-	%Remove areas from the list that are smaller then 200
+	% Remove areas from the list that are smaller then 200.
 	if bel(relevant_areas(CallID, OldMPList), getLargeAreas(OldMPList, NewMPList))
 		then delete(relevant_areas(CallID, OldMPList)) + insert(relevant_areas(CallID, NewMPList)).
 
-	%update indicator when it does exist but is changed.
+	% Update indicator when it does exist but is changed.
 	forall percept(indicators(X)), bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), bel(indicator(IndicatorID, Name, OldCurrent, Target))
 		do delete(indicator(IndicatorID, Name, OldCurrent, Target)) + insert(indicator(IndicatorID, Name, Current, Target)).
 	
-	%We can't adopt goals in the init module
-	%set up the goals for the indicators
-	%if we don't have the goal, and the goal isn't achieved either, we should adopt it.
+	% We can't adopt goals in the init module
+	% Set up the goals for the indicators
+	% If we don't have the goal, and the goal isn't achieved either, we should adopt it.
 	forall bel(indicator(_, Name, _, Target)), not(goal(indicatorGoal(Name, Target)))
 		do adopt(indicatorGoal(Name, Target)).
 		
-	%increase the cycle
+	% Increase the cycle.
 	if bel(cycle(X), increase(X, Y))
 		then delete(cycle(X)) + insert(cycle(Y)).
 		
-	%Update budget
+	% Update budget.
 	if bel(budget(OldBudget), stakeholders(StakeholderList), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,_)], StakeholderList), minus(OldBudget, Budget, Change))
 		then delete(budget(OldBudget)) + insert(budget(Budget)) + insert(budgetChange(Change)).
-	%See if the change in budget is equal to the price of a piece of land we're trying to sell.
+	% See if the change in budget is equal to the price of a piece of land we're trying to sell.
 	if bel(budgetChange(Change), landToSell(MultiPolygon, Price, Area, _), multiply(Price, Area, Result), (Result=Change))
 		then insert(sold(MultiPolygon)).
-	%remove the budget change believe since we won't use it further
+	% Remove the budget change believe since we won't use it further.
 	if bel(budgetChange(Change))
 		then delete(budgetChange(Change)).
 }
