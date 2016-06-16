@@ -3,9 +3,9 @@ use agentKnowledge as knowledge.
 % Define the building action
 % Plan a new building
 % params = FunctionId, Amount of Floors, MultiPolygon describing the build contour
-define	building_plan_construction(FunctionId, Floors, MultiPolygon) with
-	pre{ availableLandPolygon(MultiPolygon) }
-	post{ not(availableLandPolygon(MultiPolygon)) }
+define building_plan_construction(FunctionId, Floors, MultiPolygon) with
+	pre{ true }
+	post{ true }
   
 % Define the buy land action
 % Buy the land defined by the polygon for given price
@@ -26,12 +26,33 @@ define map_sell_land(StakeholderId, MultiPolygon, Price) with
 % Plan the demolition of a building
 % params = BuildingId
 define building_plan_demolish(BuildingId) with
-	pre{ oldBuildings([building(N,A,B,C,D,E,F,G)|Tail]) }
-	post{ oldBuildings(Tail), availableLandPolygon(G)}
+	pre{oldBuildings([building(N,A,B,C,D,E,F,G,H)|Tail])}
+	post{oldBuildings(Tail)}
 	
 % Define the upgrade building action
 % Plan the upgrade of a building
 % params = the UpgradeID of the upgrade type, Multipolygon describing the area to be upgraded
 define building_plan_upgrade(UpgradeID, MultiPolygon) with
 	pre{ upgraded(Tail), not(member(UpgradeID, Tail)) }
-	post{ upgraded([UpgradeID, Tail]) }
+	post{ upgraded([UpgradeID|Tail]) }
+	
+% Define the answer to a popup action
+% Answer another stakeholders request
+% params = PopupID, AnswerID
+define popup_answer(PopupID, AnswerID) with
+  pre{not(requestAnswered(_, PopupID))}
+  post{ requestAnswered(PopupID, AnswerID) } 
+  
+% Define the answer to a popup with a date action
+% Answer another stakeholders request
+% params = PopupID, AnswerID, Date
+define popup_answer_with_date(PopupID, AnswerID, Date) with
+  pre{not(requestAnswered(_, PopupID))}
+  post{ requestAnswered(PopupID, AnswerID) } 
+
+%Custom actions
+
+%This returns relevant areas from the tygron environment.
+define get_relevant_areas(Id, ActionType, Filters) with
+	pre { true }
+	post{ true }

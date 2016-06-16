@@ -4,7 +4,8 @@ use demolish as module.
 use buildConstruction as module.
 use buyLand as module.
 use upgrade as module.
-
+use handleRequest as module.
+use buildGreen as module.
 
 exit=nogoals.
 order=linear.
@@ -16,11 +17,19 @@ module tygron {
 	%TODO budget?
 	
 	%TODO check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
+	 if goal(answerRequest(Category, PopupID)), bel(requests(X), not(empty(X)))
+		then handleRequest.
+	
+	%If we have the goal to build green constructions, we should enter the buildGreen module
+	%But we need to have a place to build trees: greenspace
+	%Also we must not be able to build more buildings on this area: so the list in relevant_areas has to be empty
+	if goal(indicatorGoal('Parken en groen', _)), bel(relevant_areas(0,[]), greenspace(_))
+		then buildGreen.
 	
 	%if the buildConstruction module adopted the goal to create land we should enter the demolish module
 	%TODO: We could also buy land to create buildable land
 	if goal(createLandToBuild)
-		then demolish.	
+		then demolish.
 	
 	%If we have the goal to build high buildings, we should enter the build module
 	if goal(indicatorGoal('Bouwen hoge gebouwen', _))

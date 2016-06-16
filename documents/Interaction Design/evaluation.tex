@@ -2,3 +2,66 @@
 %we gaan hiervoor een turing test uitvoeren, deze zullen we in deze sectie beschrijven
 
 \section{Evaluation}
+In this section the interaction of a user will be evaluated according to various techniques as described in the Interaction Design course. This will be done by using both a cognitive walkthrough and an emprical method in the form of an expiriment.
+
+\subsection{Cognitive Walkthrough}
+
+In the earlier parts of this project the method cognitive walktrough was used to deduce multiple strategies for the agent. After all the agent needs to be able to make logical choices and be able to respond to the other stakeholders (played by one or more users) in a logical way. This means that there are multiple scenarios in which a user communicates with the agent that should have a clear sequence of actions as a result. For instance, when the user asks to buy land fromt the agent while it is still planning to build on that land or if the price offered is not acceptable will result in the following action sequence: 
+\begin{enumerate}
+\item Select a piece of land to buy from the agent
+\item Choose a price to offer for the land
+\item Place request to buy availible land from the agent
+\item Wait for a response
+\item Click the popup saying that the agent declines the offer
+\end{enumerate}
+
+This sequence is one of many to which the agent will be able to formulate a logical answer. In the ideal case the agent will give responses that correspond 100\% to how the person that the agent is replacing would give. In the next part the actual interaction between a human and the agent will be assessed using a Turingtest.
+
+\subsection{Turingtest}
+This part of the evaluation will explain about the experiment that we have conducted to test the interaction of our agent with a human player. It contains the method that we used to assess the interaction, the results that we have found and the conclusion that we can draw from our results. 
+
+\subsubsection{Method}
+The experiment that was put together was quite simple to do. It consists of a test person behind a computer and one of the people conducting the experiment behind a computer as well. The participant joins a session in the Tygron environment as the municipality stakeholder while the experimenter joins the session as the TU Delft stakeholder. The participant does not know whether the experimenter had joined himself or joined with the agent. The participant then has to do a few simple tasks such as trying to buy ground from the TU Delft, sell land or respond to any of the requests that the TU Delft makes. The participant was asked to think aloud while making decisions and reacting to the actions of either the person or the agent. At the end of the run the participant will tell if they think the TU Delft was played by a human or an agent and how confident they are on a scale of 0 to 100. This process was repeated multiple times. \\
+
+The test persons that were chosen for this experiment were the parents of the experimenters because our product (the agent) would be used to replace a certain stakeholder and playing together mostly with middle-aged people. On top of that, both of these groups will most likely have zero to no experience with playing together with an agent in the Tygron engine. The expiriment was conducted on 3 different people for 5 separate rounds. The order of choosing between joining as human or agent was the same for every participant: human, agent, human, agent, agent.
+
+\subsubsection{Results}
+These are the results that were found: \\
+
+\textbf{Person 1}
+\begin{tabular}{lll}
+\textbf{Round} & \textbf{Choice}  & \textbf{Confidence}\\ 
+1 & agent  & 20         \\
+2 & human  & 15         \\
+3 & human  & 40         \\
+4 & human  & 40         \\
+5 & agent  & 70        \\\\
+\end{tabular}
+
+\textbf{Person 2}
+\begin{tabular}{lll}
+\textbf{Round} & \textbf{Choice}  & \textbf{Confidence}\\ 
+1 & agent  & 10        \\
+2 & human  & 30         \\
+3 & agent  & 80         \\
+4 & agent  & 100         \\
+5 & agent  & 100       \\\\
+\end{tabular}
+
+\textbf{Person 3}
+\begin{tabular}{lll}
+\textbf{Round} & \textbf{Choice}  & \textbf{Confidence}\\ 
+1 & human  & 18         \\
+2 & human  & 25         \\
+3 & agent  & 25         \\
+4 & human  & 40         \\
+5 & agent  & 50        \\\\
+\end{tabular}
+
+As stated in the method section, the participants were asked to think aloud while making decisions. During the experiments we found that the participants had trouble early on to distinguish between the human and the agent, mostly because they were new to the Tygron engine. They were given assistance and tips on how to use the environment and how to do certain actions. As soon as they started to understand the environment better and recognize the things that were done by the other stakeholder that they began to get more confident about guessing whether they were playing with a human or an agent.
+
+\subsubsection{Conclusion}
+In the end the results of the experiment were satisfactory and gave clear insight of how a person with little experience with the Tygron engine in general handle the actions that the agent executes. Initially the agent and the human were hardly distinguishable, mostly because the sequence of things that the agent would do was unknown for the participant. AFter a while the participants started to see a pattern in the actions of the agent and were capable of separating the agent and the human quite good.\\
+The results of this experiment were mostly corresponding to the results that were expected. For a person that has little to no experience with using the Tygron engine, the actions of another stakeholder may not be sufficient to tell if the stakeholder is played by a human or an agent. This is why in the first few rounds of the experiment the participants did not get the right answer most of the time and had low confidence in their choice. \\ The agent has a clear strategy that it will almost always execute in the same order. Because of this after a few iterations of the experiment some of the participants started to see a pattern in the actions that were executed. This led to the participants being able to easily distinguish between the human and the agent after some time and had more confidence in doing so. On top of that the agent has a slow start in which it collects data about the area. Because of this delay afters some runs the participants found it easier to recognize. \\
+To improve future experiments equal to this one a few improvements can be made. First of all the agent that is tested could be altered to have some randomness in the choices that it makes, while still achieving the same goals. This prevents the participants from recognizing the agent its pattern of actions, making it harder to tell the difference between it or a human. The same goes for the slow start that the agent has. To prevent this from happening some of the early percepts that the agent gets could be hardcoded so it knows that from the start, as the information in the percept does not change per map. This will result in some problems when playing in a different map, so it is only for this experiment that it would be a good idea. A final improvement that could be made is to instruct the participants better initially on how to the Tygron engine works. This saves time and also helps the participants to have a more clear idea of the things that they are seeing and on how to better distinguish between the agent and the human for more accurate results.
+

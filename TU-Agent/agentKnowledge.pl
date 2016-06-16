@@ -9,11 +9,15 @@
 :- dynamic requests/1.
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
+:- dynamic requestAnswered/2.
+:- dynamic upgrades/1.
 
 %Believes
 :- dynamic oldBuildings/1.
-:- dynamic availableLandPolygon/1.
-:- dynamic noOldBuildings/0.
+:- dynamic greenspace/1.
+
+%Custom actions beliefs
+:- dynamic relevant_areas/2.
 
 %The goals and how to achieve them.
 %we have to retrieve this only once and the goal will be dropped by hand
@@ -22,15 +26,18 @@ getIndicatorGoals :- false.
 indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target > 0, Current >= Target.
 indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target =< 0, Current =< Target.
 %createLandToBuild needs a demolished polygon
-createLandToBuild :- availableLandPolygon(_).
+createLandToBuild :- relevant_areas(0, MPList), not(empty(MPList)).
 %Other beliefs
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
 :- dynamic indicatorGoal/2.
 
-%this believe ensures that indicatorlink gets generated only once
-%it gets deleted after indicatorlink is inserted as believe
-readIndicatorlink.
+
+%Knowledge for answering a request
+answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
+
+%The agent finds a price to be acceptable when the offered price is at least 50 euro higher than the ground price for offices in Delft (252)
+acceptablePrice(Price, Areasize) :- Areasize * 252 + 50 < Price.
 
 % Takes all buildings of L that return from iseducation and removes all duplicates
 getOldBuildings(Bag,List):-
@@ -38,28 +45,26 @@ getOldBuildings(Bag,List):-
 	sort(Bag1,Bag).
 
 % Is true for all buildings that have the EDUCATION Category and are owned by the TU Delft
-isEducation(building(_,_,3,_,_,884,_,_)).
+isEducation(building(_,_,3,_,_,884,_,_,_)).
 
 %creates a list of all available upgrades.
 getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag):-
 	findall([Multipolygon, UpgradeID, SrcID], 
-		( member(building(_, _, 3, _, _, SrcID, _, Multipolygon), Buildings), 
+		( member(building(_, _, 3, _, _, SrcID, _, Multipolygon, _), Buildings), 
 		member(upgrade_type(UpgradeID, UpgradePairs), UpgradeTypes), 
 		member(upgrade_pair(SrcID, TrgtID), UpgradePairs), 
 		member([Name, TrgtID, _], Functions),
 		sub_string(Name, _, _, _, 'groen')),
 		Bag1),
 	sort(Bag1, Bag).
-% to ensure we only create one upgrades list 
-readUpgrades.
 % Beliefs for upgrades.	
-upgrades([]).
 upgraded([]).
+% Knowledge about the size of a list
+isNumber(X) :- number(X).
+empty(List) :- length(List, 0).
 
+%Gets a random number between 20 and 40
+randomFloor(Floors) :- Floors is random(20)+20.
 
-
-
-
-
-
-
+%Filters the list of areas for only large areas
+getLargeAreas(OldList, NewList):- findall([MultiPolygon, Area], (member([MultiPolygon, Area], OldList), Area>200), NewList).

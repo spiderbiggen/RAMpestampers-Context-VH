@@ -1,0 +1,164 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\setmainfont{Arial}
+
+\usepackage{url}
+\usepackage{hyperref}
+
+\appendix
+
+\title{Interaction Design}
+
+\author{ 	Michiel van den Berg \ \ 4391039 \ \ michielvandenb
+		\and Stefan Breetveld \ \ 4374657 \ \ sbreetveld
+  		\and Timo van Leest \ \ 4423798 \ \ timovanleest
+		\and Daan van den Werf \ \ 4369556 \ \ djvanderwerf
+   		\and Job Zoon \ \ 4393899 \ \ jzoon  }
+
+\begin{document}
+
+\section{User}
+This section will describe our user and how he/she uses the system. 
+It starts with a description of the persona. 
+After that a few user scenario's will be described.
+Finally the tasks will be analysed.
+
+\subsection{Persona}
+This section describes the user by giving a description of the persona.
+\subsubsection*{Hank - Student housing}
+Hank is someone who is in the planning phase of a construction project, for a student housing company, around the TU Delft campus. He wants to use the Tygron engine for detailed information on possible outcomes of scenarios that can happen during his project, because the Tygron engine can provide him with some insights for this decision before he actually has to spend any money on the actual project. 
+
+He can join a session and play the role of student housing company. The project will be a virtual version of the area surrounding the TU Delft. In this virtual version a lot of settings have been configured to match the reality. He has a budget and can do certain actions. He can also see indicators that can help him visualize his current goals and the state of these goals, they also provide some sort of score system. This score system will be shown at the end of the planning session and shows you how much of your own goals you completed. As housing company he wants to build more housing for students for example, but he has to come to an agreement with the other stakeholders before he is allowed to do some actions.
+
+\subsubsection*{Lisa – Municipality}
+Lisa works for the municipality of Delft. She wants to make sure that Hank can complete his project, but he can’t break any laws with his project otherwise she has to say no. Since Hank and Lisa need to work together, Lisa can also join the virtual environment of Tygron. She also has some indicators that define her score, like adding green around the campus and not allowing buildings of certain height. As municipality she has an important role becuase she needs to give permissions when buildings get build or destroyed for example.
+
+%we probably wanna give some real usage scenarios here
+\subsection{Usage scenario}
+The Tygron engine is designed to use in scenarios where all parties involved with the project for instance: the user (project lead), municipalities, housing cooperatives, etc. Each party makes decisions about actions that involve their party, for instance municipalities need to decide if you are allowed to construct a building, if the building is to tall, if you can buy a piece of land for your project, etc. But what if you decided that you wanted to try something in the Tygron engine, but not all other parties are available, you then have to either find someone who can fill in for the other parties or you postpone to a later date.
+
+Our project can help with this by replacing a real world party with a computer controlled party. This computer controlled party, from now on referred to as agent, is designed to follow the guidelines that it is given through the engine, but it can also negotiate with other parties, be they human or computer controlled. The actions these agents take aren’t necessarily 100 percent accurate to what the party would actually do, but we try to make it as close as possible.
+
+%needs some improvement as well
+\subsection{Task Analysis}
+The main problem we want to work on is to make it possible for users to use the Tygron engine while not all other parties are present or ultimately when a user is alone. We want to achieve this by creating agents that will act like the party they replace. We will connect to the Tygron engine by using their SDK. 
+
+We are to use Goal as our platform for creating these agents. Goal is designed for creating (somewhat) Artificial intelligence. It has easy goal management and also has a clear system that acts like the memory of the agent. This memory, also called the believe base, can also store any information the agent receives. 
+
+One of the limitations of goal is how it interacts with other software. We were supplied with a “connector” for this that will handle the communication between goal and the Tygron SDK. Another limitation is its ability to handle mathematical problems. Therefore it can be difficult for the agent to figure out where to construct a new building. This Limitation can be overcome by adding a new action to the “connector” which specifies where it can build.
+
+\newpage
+
+\section{Contextual Inquiry}
+In this section, the four principles of the contextual inquiry are described. The four principles are context, partnership, interpretation and focus.
+
+\subsection{Context}
+In this project, the Tygron Engine is the engine in which the agents should run. The first week was planned to get used to the engine. Knowing how the engine works, is important for the development of the agent. To achieve this knowledge, we visited Tygron in the first week for questions and explanation about the engine.  
+
+\subsection{Partnership}
+Because Tygron is the expert of the Tygron Engine, a weekly visit with Tygron is planned. This weekly meetings are planned for question, explanations and discussions. Working with people of Tygron is convenient for these questions, explanations and discussions. We prefer real interaction with the people working at Tygron above interaction with mail.
+
+\subsection{Interpretation}
+The avoid situation with wrong interpretations, communication is important. When question occur, the questions are asked to another group or Tygron. When we have another opinion about the answers of the question, we can discuss these face to face, which is mostly more beneficial in terms of time. 
+
+\subsection{Focus}
+Each visit with Tygron has its own focus. The focus for each visit is based on the problems and questions occurring in the week before the meeting. When the problems are discussed or solved, the focus will be replaced by another task of the sprint planning. 
+
+\newpage
+
+\section{Evaluation}
+In this section the interaction of a user will be evaluated according to various techniques as described in the Interaction Design course. This will be done by using both a cognitive walkthrough and an emprical method in the form of an expiriment.
+
+\subsection{Cognitive Walkthrough}
+
+In the earlier parts of this project the method cognitive walktrough was used to deduce multiple strategies for the agent. After all the agent needs to be able to make logical choices and be able to respond to the other stakeholders (played by one or more users) in a logical way. This means that there are multiple scenarios in which a user communicates with the agent that should have a clear sequence of actions as a result. For instance, when the user asks to buy land fromt the agent while it is still planning to build on that land or if the price offered is not acceptable will result in the following action sequence: 
+\begin{enumerate}
+\item Select a piece of land to buy from the agent
+\item Choose a price to offer for the land
+\item Place request to buy availible land from the agent
+\item Wait for a response
+\item Click the popup saying that the agent declines the offer
+\end{enumerate}
+
+This sequence is one of many to which the agent will be able to formulate a logical answer. In the ideal case the agent will give responses that correspond 100\% to how the person that the agent is replacing would give. In the next part the actual interaction between a human and the agent will be assessed using a Turingtest.
+
+\subsection{Turingtest}
+This part of the evaluation will explain about the experiment that we have conducted to test the interaction of our agent with a human player. It contains the method that we used to assess the interaction, the results that we have found and the conclusion that we can draw from our results. 
+
+\subsubsection{Method}
+The experiment that was put together was quite simple to do. It consists of a test person behind a computer and one of the people conducting the experiment behind a computer as well. The participant joins a session in the Tygron environment as the municipality stakeholder while the experimenter joins the session as the TU Delft stakeholder. The participant does not know whether the experimenter had joined himself or joined with the agent. The participant then has to do a few simple tasks such as trying to buy ground from the TU Delft, sell land or respond to any of the requests that the TU Delft makes. The participant was asked to think aloud while making decisions and reacting to the actions of either the person or the agent. At the end of the run the participant will tell if they think the TU Delft was played by a human or an agent and how confident they are on a scale of 0 to 100. This process was repeated multiple times. \\
+
+The test persons that were chosen for this experiment were the parents of the experimenters because our product (the agent) would be used to replace a certain stakeholder and playing together mostly with middle-aged people. On top of that, both of these groups will most likely have zero to no experience with playing together with an agent in the Tygron engine. The expiriment was conducted on 3 different people for 5 separate rounds. The order of choosing between joining as human or agent was the same for every participant: human, agent, human, agent, agent.
+
+\subsubsection{Results}
+These are the results that were found: \\
+
+\textbf{Person 1}
+\begin{tabular}{lll}
+\textbf{Round} & \textbf{Choice}  & \textbf{Confidence}\\ 
+1 & agent  & 20         \\
+2 & human  & 15         \\
+3 & human  & 40         \\
+4 & human  & 40         \\
+5 & agent  & 70        \\\\
+\end{tabular}
+
+\textbf{Person 2}
+\begin{tabular}{lll}
+\textbf{Round} & \textbf{Choice}  & \textbf{Confidence}\\ 
+1 & agent  & 10        \\
+2 & human  & 30         \\
+3 & agent  & 80         \\
+4 & agent  & 100         \\
+5 & agent  & 100       \\\\
+\end{tabular}
+
+\textbf{Person 3}
+\begin{tabular}{lll}
+\textbf{Round} & \textbf{Choice}  & \textbf{Confidence}\\ 
+1 & human  & 18         \\
+2 & human  & 25         \\
+3 & agent  & 25         \\
+4 & human  & 40         \\
+5 & agent  & 50        \\\\
+\end{tabular}
+
+As stated in the method section, the participants were asked to think aloud while making decisions. During the experiments we found that the participants had trouble early on to distinguish between the human and the agent, mostly because they were new to the Tygron engine. They were given assistance and tips on how to use the environment and how to do certain actions. As soon as they started to understand the environment better and recognize the things that were done by the other stakeholder that they began to get more confident about guessing whether they were playing with a human or an agent.
+
+\subsubsection{Conclusion}
+In the end the results of the experiment were satisfactory and gave clear insight of how a person with little experience with the Tygron engine in general handle the actions that the agent executes. Initially the agent and the human were hardly distinguishable, mostly because the sequence of things that the agent would do was unknown for the participant. AFter a while the participants started to see a pattern in the actions of the agent and were capable of separating the agent and the human quite good.\\
+The results of this experiment were mostly corresponding to the results that were expected. For a person that has little to no experience with using the Tygron engine, the actions of another stakeholder may not be sufficient to tell if the stakeholder is played by a human or an agent. This is why in the first few rounds of the experiment the participants did not get the right answer most of the time and had low confidence in their choice. \\ The agent has a clear strategy that it will almost always execute in the same order. Because of this after a few iterations of the experiment some of the participants started to see a pattern in the actions that were executed. This led to the participants being able to easily distinguish between the human and the agent after some time and had more confidence in doing so. On top of that the agent has a slow start in which it collects data about the area. Because of this delay afters some runs the participants found it easier to recognize. \\
+To improve future experiments equal to this one a few improvements can be made. First of all the agent that is tested could be altered to have some randomness in the choices that it makes, while still achieving the same goals. This prevents the participants from recognizing the agent its pattern of actions, making it harder to tell the difference between it or a human. The same goes for the slow start that the agent has. To prevent this from happening some of the early percepts that the agent gets could be hardcoded so it knows that from the start, as the information in the percept does not change per map. This will result in some problems when playing in a different map, so it is only for this experiment that it would be a good idea. A final improvement that could be made is to instruct the participants better initially on how to the Tygron engine works. This saves time and also helps the participants to have a more clear idea of the things that they are seeing and on how to better distinguish between the agent and the human for more accurate results.
+
+\newpage
+
+\section{Glossary}
+
+\textbf{Agent}\\
+An agent is an autonomous entity which observes through sensors and acts upon an environment using actuators and directs its activity towards achieving goals.\\
+\\
+\textbf{Engine}\\
+An engine is a type of software that generates source code or markup and produces elements that begin another process, allowing real-time maintenance of software requirements.\\
+\\
+\textbf{Connector}\\
+A software solution that enables the GOAL agents to connect to the SDK of the Tygron environment.\\
+\\
+\textbf{Percept}\\
+Information that an agent receives from the environment that it is in.
+
+\textbf{}
+\textbf{}
+
+
+
+
+
+
+
+
+
+\end{document}

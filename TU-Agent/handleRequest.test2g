@@ -1,0 +1,47 @@
+use TUAgent as mas.
+use agentKnowledge as knowledge.
+use agentGoals as goals.
+use handleRequest as module.
+use tygron as actionspec.
+
+test handleRequest with
+	%check if there is at least an oldbuilding believe.
+	pre { true }
+	in {
+		%these actions should never be called within the handleRequest module
+		never done(building_plan_construction(_, _, _)).		
+		never done(map_buy_land(_, _)).
+		never done(map_sell_land(_, _, _)).
+		never done(building_plan_upgrade(_, _)).
+		never done(building_plan_demolish(_)).
+		
+		%Test for answering buy land type requests when the agent is not in need of land
+		bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), acceptablePrice(Price, Area), not(requestAnswered('BUY_LAND', PopupID))), not(goal(indicatorGoal('Bouwen hoge gebouwen', _))) 
+			leadsto done(popup_answer(PopupID, 0)).
+			
+		%Test for answering a buy land type request in which the price is not acceptable in which case the goal should still exist
+		bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(acceptablePrice(Price, Area)), not(requestAnswered('BUY_LAND', PopupID))) 
+			leadsto a-goal(answerRequest('BUY_LAND', PopupID)).
+		
+		%Test for answering buy land type requests when the agent needs the land for itself
+		bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID)))
+			leadsto popup_answer(PopupID, 1).
+		
+		%Test for answering a normal permit
+		bel(requests(X), member(request('INFORMATION', 'PERMIT', PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
+			leadsto popup_answer(PopupID, 0).
+			
+		%Test for answering a permit with a date
+		bel(requests(X), member(request('INTERACTION_WITH_DATE', 'PERMIT', PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
+			leadsto popup_answer_with_date(PopupID, 0, 0).	
+		
+		%Test for handling any left over cases which should not occur (often at least) and get the answer "yes"
+		bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
+			leadsto done(popup_answer(PopupID, 0)).
+	}
+
+	post { true }
+
+	tygronagent {
+		do handleRequest.
+	}

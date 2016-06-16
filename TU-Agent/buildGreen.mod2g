@@ -1,0 +1,16 @@
+use agentKnowledge as knowledge.
+use tygron as actionspec.
+
+order=linear.
+
+module buildGreen {
+	
+	% Build trees at an available place
+	% This place is the multypolygon of a demolished building, this is stored in greenspace
+	if bel(functions(Functions), member(['loofbomen',BuildingID,List],Functions), greenspace(MultiPolygon))
+		then building_plan_construction(BuildingID,1,MultiPolygon) + delete(greenspace(MultiPolygon)).
+		
+	%If theres no available land we need to adopt a goal to create some
+	if not(bel(relevant_areas(0, MPList), not(empty(MPList))))
+		then adopt(createLandToBuild).
+}
