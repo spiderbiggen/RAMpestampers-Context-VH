@@ -9,9 +9,9 @@ It also handles the sendings of actions to the Tygron engine, like buying ground
 The environment is built on the Tygron sdk, for communication with the engine, and Eishub eis\footnote{\url{https://github.com/eishub/eis}}, for the communication with GOAL, and is derived from the tygronenv\footnote{\url{https://github.com/eishub/tygron}}.
 The functionality of the environment is limited by the actions and data available in the sdk.
 
-The GOAL project does all the decision making, it runs in a loop until all its goals have been achieved or it's manually shutdown.
+The GOAL project does all the decision making, it runs in a loop until all its goals have been achieved or its manually shutdown.
 It is separated in modules so every distinct function has its own module, i.e. constructing or demolishing are placed in separate modules.
-Every cycle it will call the event module first which will update the stored data with data it gets from the environment, like a list of building.
+Every cycle the agent will call the event module first which will update the stored data with data it gets from the environment, for example a list of building.
 It has one main module which decides what module should be called each cycle, based on its current goals.
 Sometimes a module is called that cannot do anything because there is no space to build a construction, it will then adopt a goal to make some space so that it can do something in that module.
-The goal project runs mainly on swi- prolog which is why it cannot easily handle complex arithmetic operations, this is why we need to handle these in the environment as mentioned before.
+The goal project runs mainly on swi-prolog which is why it cannot easily handle complex arithmetic operations, this is why we need to handle these in the environment as mentioned before.
