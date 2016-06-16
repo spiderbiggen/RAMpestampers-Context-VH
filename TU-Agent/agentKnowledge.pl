@@ -64,7 +64,6 @@ getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag):-
 		member(upgrade_type(UpgradeID, UpgradePairs), UpgradeTypes), 
 		member(upgrade_pair(SrcID, TrgtID), UpgradePairs), 
 		member([Name, TrgtID, _], Functions),
-		sub_string(Name, _, _, _, 'groen')),
 		Bag1),
 	sort(Bag1, Bag).
 % Beliefs for upgrades.	
