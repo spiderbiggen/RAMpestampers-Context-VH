@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[11pt,a4paper]{report}
 
 \usepackage[english]{babel}
 \usepackage[utf8x]{inputenc}
@@ -45,10 +45,12 @@
 \newpage
 \include{outlook}
 
-\newpage
-\include{InteractionDesign}
-
 \bibliographystyle{apacite}
 \bibliography{biblio}
+
+\appendix
+\addtocontents{toc}{\setcounter{tocdepth}{0}}
+\newpage
+\include{InteractionDesign}
 
 \end{document}
