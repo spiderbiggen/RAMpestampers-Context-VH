@@ -14,7 +14,7 @@
 :- dynamic oldBuildings/1.
 :- dynamic emptySpace/3.
 :- dynamic budget/1.
-:- dynamic landToSell/3.
+:- dynamic landToSell/4.
 :- dynamic sold/1.
 :- dynamic requestAnswered/2.
 :- dynamic upgrades/1.
@@ -90,3 +90,5 @@ increase(OldNumber, NewNumber) :- NewNumber is OldNumber+1.
 adjustSellPrice(OldPrice, NewPrice) :- NewPrice is round(OldPrice/2).
 %Reduce the first number with the value of the second
 minus(FirstNumber, SecondNumber, Change) :- Change is FirstNumber-SecondNumber.
+%Multiply the first number with the second number
+multiply(FirstNumber, SecondNumber, Result) :- result is FirstNumber*SecondNumber.
