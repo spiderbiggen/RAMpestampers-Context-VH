@@ -6,25 +6,36 @@ use buyLand as module.
 use upgrade as module.
 use handleRequest as module.
 use buildGreen as module.
+use sellLand as module.
+use sellLandHandler as module.
 
 exit=nogoals.
 order=linear.
 
 module tygron {
-	
-	%TODO: parken en groen
-
 	%TODO budget?
 	
-	%TODO check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
+	%Every 5 cycles we want to try to sell to another stakeholder.
+	if bel(modulo(X), X=0), goal(sell(_))
+		then sellLandHandler.
+	
+	%Check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
 	 if goal(answerRequest(Category, PopupID)), bel(requests(X), not(empty(X)))
 		then handleRequest.
 	
 	%If we have the goal to build green constructions, we should enter the buildGreen module
-	%But we need to have a place to build trees: greenspace
+	%But we need to have a place to build trees: emptySpace
 	%Also we must not be able to build more buildings on this area: so the list in relevant_areas has to be empty
-	if goal(indicatorGoal('Parken en groen', _)), bel(relevant_areas(0,[]), greenspace(_))
+	if goal(indicatorGoal('Parken en groen', _)), bel(relevant_areas(0,[]), emptySpace(_, _, true))
 		then buildGreen.
+	
+	%If we have no places to build, and we believe theres an empty space that we didn't build on, we should sell this land
+	%Since we cannot build buildings on it.
+	if bel(relevant_areas(0,[]), emptySpace(_, _, false))
+		then sellLand.	
+	%If we have places to build, but no goal to build high buildings or education buildings, we still wanna sellLand.
+	if not(goal(indicatorGoal('Bouwen hoge gebouwen', _))), not(goal(indicatorGoal('Bouw onderwijs', _))), bel(emptySpace(MultiPolygon, Area, false))
+		then sellLand.
 	
 	%if the buildConstruction module adopted the goal to create land we should enter the demolish module
 	%TODO: We could also buy land to create buildable land
