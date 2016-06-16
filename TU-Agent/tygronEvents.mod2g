@@ -57,6 +57,9 @@ module tygronEvents {
 	if bel(budget(OldBudget), stakeholders(StakeholderList), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,_)], StakeholderList), minus(OldBudget, Budget, Change))
 		then delete(budget(OldBudget)) + insert(budget(Budget)) + insert(budgetChange(Change)).
 	%See if the change in budget is equal to the price of a piece of land we're trying to sell.
-	if bel(budgetChange(Change), landToSell(MultiPolygon, Price, _), (Price=Change))
+	if bel(budgetChange(Change), landToSell(MultiPolygon, Price, Area, _), multiply(Price, Area, Result), (Result=Change))
 		then insert(sold(MultiPolygon)).
+	%remove the budget change believe since we won't use it further
+	if bel(budgetChange(Change))
+		then delete(budgetChange(Change)).
 }
