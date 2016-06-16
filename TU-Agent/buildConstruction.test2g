@@ -5,6 +5,7 @@ use tygron as actionspec.
 
 timeout = 30.
 
+% This test will test the buildConstruction module.
 test buildConstruction with
 	% Check if there is indeed the goal to build high buildings.
 	pre { goal(indicatorGoal('Bouwen hoge gebouwen', _)) }
