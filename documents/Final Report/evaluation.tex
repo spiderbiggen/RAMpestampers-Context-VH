@@ -1,11 +1,27 @@
 \chapter{Evaluation and failure analysis}
-In this chapter an evaluation is given of the product in its entirety. This chapter also includes a failure analysis. 
+In this chapter an evaluation is given of the entire product. This chapter also includes the failure analysis. 
 
 \section{Evaluation of the connector}
+The connector is pretty much where we need it to be for our agent.
+Some of the Percepts or custom actions might need some fine tuning to increase performance, but that is not really that important since a human player wouldn't respond immediately either.
+For example the Buildings percept is so large that updating it takes a good minute at the least, which, while not necessarily a problem, is quite annoying.
+
+
+%The connector consists of the main class ContextEnv which creates entities for every stakeholder that is used in that environment.
+%Each entity receives its own updates, and creates new percepts for these updates, and actions which are independent of other agents running in this environment.
+%Every time the connector needs to translate an object it will use a translator, when a translator for the given object cannot be found an error will be thrown that indicates that the translation failed.
+%These translators extend Java2Parameter or Parameter2Java depending on the direction of the translation, to Goal or from Goal respectively.
+%Every standard action is defined in the sdk\footnote{nl.tytech.data.engine.event.ParticipantEventType}.
 
 \section{Evaluation of the agent}
+The agent is split up in separate modules as stated in chapter~\ref{ch:overview}.
+This really helps with keeping the code readable, because it means that we do not have all our code in the same file.
+The agent can perform almost all the actions that we wanted to implement at the start of this project.
+We left out the ability to give money to another stakeholder since we noticed that realistically nobody would just give someone else money.
 
 \section{Failure Analysis}
 Failures in the agent are usually the result of a failure in the environment, since the environment is what actually interprets the agent's actions.
 These failures more often than not throw an error which can be read in the agent's console output.
 Many possible failures are caught in the tests of the connector, but some of the failures only show up once an agent is run using that version of the connector.
+These failures most often occur when calling an action with arguments as these can be confusing and are quite prone to errors.
+Failures in the design of a percept can be quite hard to catch as it can be difficult to debug the agent and check if the percept is correct, since a percept can be quite long.
