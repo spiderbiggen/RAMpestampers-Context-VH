@@ -9,6 +9,7 @@
 :- dynamic requests/1.
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
+:- dynamic landBought/1.
 
 %Believes
 :- dynamic oldBuildings/1.
@@ -42,6 +43,9 @@ sell(MultiPolygon) :- sold(MultiPolygon).
 
 %Knowledge for answering a request
 answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
+
+%Knowledge for knowing when land is bought
+buyland :- landBought(MultiPolygon).
 
 %The agent finds a price to be acceptable when the offered price is at least 50 euro higher than the ground price for offices in Delft (252)
 acceptablePrice(Price, Areasize) :- Areasize * 252 + 50 < Price.
@@ -94,5 +98,3 @@ minus(FirstNumber, SecondNumber, Change) :- Change is FirstNumber-SecondNumber.
 %define callIDs for the different get_relevant_area actions
 callIDAreaBuild(0).
 callIDAreaBuy(1).
-
-buyland.

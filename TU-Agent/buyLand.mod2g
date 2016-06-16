@@ -9,7 +9,6 @@ module buyLand {
 		then get_relevant_areas(CallID, buy, [zones(3)]).
 		
 	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, RelevantAreas), member([MultiPolygon, Area], RelevantAreas))
-		then map_buy_land(MultiPolygon, 500) + get_relevant_areas(CallID, buy, [zones(3)]).
 
 
 }

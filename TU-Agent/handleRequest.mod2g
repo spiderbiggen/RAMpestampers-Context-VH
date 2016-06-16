@@ -3,7 +3,7 @@ use tygron as actionspec.
 
 order=linearall.
 
-module handleRequest {
+module handleRequest {	
 	% Accept (ActionID = 0) a request to buy land if the indicator goal of building high buildings has been satisfied and the price is acceptable
 	forall bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, Area, _), X), isNumber(Price), acceptablePrice(Price, Area), not(requestAnswered('BUY_LAND', PopupID))), not(goal(indicatorGoal('Bouwen hoge gebouwen', _)))
 		do popup_answer(PopupID, 0) + insert(requestAnswered('BUY_LAND', PopupID)).
@@ -23,8 +23,12 @@ module handleRequest {
 	% Catch any requests that do not fall under any of the preconditions of the previous actions and answer yes (ActionID = 0))
 	forall bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
 		do popup_answer(PopupID, 0) + insert(requestAnswered(Category, PopupID)).
-	
+		
 	% If a popup was removed from the requests list, but we have not answered it, this rule will prevent loops
 	forall goal(answerRequest(Category, PopupID))
 		do popup_answer(PopupID, 0) + insert(requestAnswered(Category, PopupID)).
+	
+	% If the module is entered with an empty list, exit
+	if bel(requests(X), empty(X))
+		then exit-module.
 }
