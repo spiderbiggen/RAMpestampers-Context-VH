@@ -3,14 +3,14 @@ use tygron as actionspec.
 
 order=linearall.
 
+% This module will demolish old buildings, and create land to build on or sell.
 module demolish {
-	
 	% Takes the first building of the list of destroyable buildings
 	% Destroys this building and deletes it of the list
 	% call get_relevant_areas to update believes about land where we can build.
-	if bel(oldBuildings([building(BuildingID,A,B,C,D,E,F,MultiPolygon,Area)|Tail]))
-		then building_plan_demolish(BuildingID) + 
-			 delete(oldBuildings([building(BuildingID,A,B,C,D,E,F,MultiPolygon,Area)|Tail])) + 
+	if bel(oldBuildings([building(BuildingID, A, B, C, D, E, F, MultiPolygon, Area)|Tail]))
+		then building_plan_demolish(BuildingID) +
+			 delete(oldBuildings([building(BuildingID, A, B, C, D, E, F, MultiPolygon, Area)|Tail])) + 
 			 insert(oldBuildings(Tail)) + 
 			 insert(emptySpace(MultiPolygon, Area, false)) +
 			 get_relevant_areas(0, build, []).

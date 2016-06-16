@@ -3,6 +3,7 @@ use tygron as actionspec.
 
 order=linearall.
 
+% This module will try to buy land from other stakeholders.
 module buyLand {
 	if true
 		then exit-module.

@@ -49,7 +49,7 @@ module tygron {
 	%Calls the upgrade module
 	%Only does this when all high buildings have been built and we don't need more trees for our indicator
 	if bel(upgrades(_), not(upgrades([]))), goal(indicatorGoal('Bouw onderwijs', _)), 
-		not(goal(indicatorGoal('Parken en groen', _))), not(goal(indicatorgoal('Bouwen hoge gebouwen', _)))
+		not(goal(indicatorGoal('Parken en groen', _))), not(goal(indicatorGoal('Bouwen hoge gebouwen', _)))
 		then upgrade.
 	
 	%If we have the goal to build high buildings, we should enter the build module

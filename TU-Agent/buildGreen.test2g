@@ -5,6 +5,7 @@ use tygron as actionspec.
 
 timeout = 30.
 
+% This test will test the buildgreen module.
 test buildGreen with
 	% We should never enter this module if we have no goal to build green.
 	pre { goal(indicatorGoal('Parken en groen', _)) }
