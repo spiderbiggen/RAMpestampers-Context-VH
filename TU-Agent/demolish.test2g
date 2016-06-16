@@ -4,23 +4,26 @@ use agentGoals as goals.
 use demolish as module.
 use tygron as actionspec.
 
-
 timeout = 30.
 
 test demolish with
-	%check if there is at least an oldbuilding believe.
-	pre {bel(oldBuildings([Building|Tail]))}
+	% We can't test for this OR that condition, so we aren't able to define a pre condition.
+	pre { true }
 	in {
-		%these actions should never be called within the demolish module
+		% Failures in action selection.
+		% These actions should never be called within the green module.
 		never done(building_plan_construction(_, _, _)).
+		never done(building_plan_upgrade(_, _)).
 		never done(map_buy_land(_, _)).
 		never done(map_sell_land(_, _, _)).
-		never done(building_plan_upgrade(_, _)).
-											
-		goal(createLandToBuild) 
+		never done(popup_answer(_, _)).
+		never done(popup_answer_with_date(_, _, _)).
+		% The bel that there is an old building to destroy leads to the destruction of a building.
+		bel(oldBuildings([Building|Tail]))
 			leadsto done(building_plan_demolish(_)).
 	}
-	post {bel(oldBuildings(_))}
+	% After this module there should still be a list of oldBuildings.
+	post { bel(oldBuildings(_)) }
 
 	tygronagent {
 		do demolish.
