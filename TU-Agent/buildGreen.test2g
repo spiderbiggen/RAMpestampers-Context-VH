@@ -5,27 +5,28 @@ use buildGreen as module.
 use tygron as actionspec.
 
 test buildGreen with
-	%check if there is a goal for green.
+	% We should never enter this module if we have no goal to build green.
 	pre { goal(indicatorGoal('Parken en groen', _)) }
 	in {
-		%these actions should never be called within the green module
+		% Failures in action selection
+		% These actions should never be called within the green module.
 		never done(building_plan_demolish(_)).
+		never done(building_plan_upgrade(_, _)).
 		never done(map_buy_land(_, _)).
 		never done(map_sell_land(_, _, _)).
-		never done(building_plan_upgrade(_, _)).
-		
-		%If there no land available to build a building, trees are built
-		bel(relevant_areas(0,[])) 
-			leadsto done(building_plan_construction(_)).
-		
-		%If there is land left for trees, trees are built
+		never done(popup_answer(_,_)).
+		never done(popup_answer_with_date(_,_,_)).
+		never done(get_relevant_areas(_,_,_)).
+		% If there is land left for trees, trees are built
 		bel(emptySpace(MultiPolygon, _, _))
-			leadsto done(building_plan_construction(_)).
-			
+			leadsto done(building_plan_construction(_,_,MultiPolygon)).
 		
+		% Failures in Goal Management
+		% If there's no land to build green we should adopt a goal to get land.
+		not(bel(relevant_areas(0, MPList), not(empty(MPList))))
+			leadsto goal(createLandToBuild).
 	}
-	%TODO: find a way to create an OR in the post condition, below is not working
-	%not(bel(availableLandPolygon(MP))) ; goal(createLandToBuild) 
+	% We are unable to define a post condition for this module.
 	post { true }
 
 	tygronagent {
