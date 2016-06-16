@@ -25,8 +25,6 @@
 :- dynamic relevant_areas/2.
 
 %The goals and how to achieve them.
-%we have to retrieve this only once and the goal will be dropped by hand
-getIndicatorGoals :- false.
 %an indicatorgoal is met if the current score is the target score
 indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target > 0, Current >= Target.
 indicatorGoal(Name, Target) :- indicator(_, Name, Current, _), Target =< 0, Current =< Target.

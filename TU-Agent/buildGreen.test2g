@@ -1,6 +1,5 @@
 use TUAgent as mas.
 use agentKnowledge as knowledge.
-use agentGoals as goals.
 use buildGreen as module.
 use tygron as actionspec.
 
