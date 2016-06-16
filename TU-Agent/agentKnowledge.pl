@@ -46,8 +46,8 @@ answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
 %The agent finds a price to be acceptable when the offered price is at least 50 euro higher than the ground price for offices in Delft (252)
 acceptablePrice(Price, Areasize) :- Areasize * 252 + 50 < Price.
 
-%When selling our land we'll use a generous price to please other stakeholders.
-generousPrice(Price, Areasize) :- Price is round(round(Areasize) * 400).
+%Since we're selling land when we have no use for it, we'll use a generous price.
+generousPrice(Price) :- Price is 400.
 
 % Takes all buildings of L that return from iseducation and removes all duplicates
 getOldBuildings(Bag,List):-
