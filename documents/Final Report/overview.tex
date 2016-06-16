@@ -1,0 +1,17 @@
+\chapter{Overview of the software product}\label{ch:overview}
+In this chapter we will give a brief overview of the product design and implementation. We will briefly outline how it works and some of its limitations.
+\\
+\\
+The developed product consists of two parts, a runtime environment and a GOAL project.
+The environment is used to connect with the Tygron engine and handles everything we need to make our GOAL project talk with the Tygron engine.
+It handles translating the xml objects, retrieved through Tygron's backend, to parameters we can use with GOAL and vice versa.
+It also handles the sendings of actions to the Tygron engine, like buying ground or constructing a building, this can be as simple as translating the parameters, but in certain cases this also handles some of the more complex arithmetic operations like retrieving a list of Multipolygons, a collection of points that form a 2D shape, that can be used to construct buildings.
+The environment is built on the Tygron sdk, for communication with the engine, and Eishub eis\footnote{\url{https://github.com/eishub/eis}}, for the communication with GOAL, and is derived from the tygronenv\footnote{\url{https://github.com/eishub/tygron}}.
+The functionality of the environment is limited by the actions and data available in the sdk.
+
+The GOAL project does all the decision making, it runs in a loop until all its goals have been achieved or its manually shutdown.
+It is separated in modules so every distinct function has its own module, i.e. constructing or demolishing are placed in separate modules.
+Every cycle the agent will call the event module first which will update the stored data with data it gets from the environment, for example a list of building.
+It has one main module which decides what module should be called each cycle, based on its current goals.
+Sometimes a module is called that cannot do anything because there is no space to build a construction, it will then adopt a goal to make some space so that it can do something in that module.
+The goal project runs mainly on swi-prolog which is why it cannot easily handle complex arithmetic operations, this is why we need to handle these in the environment as mentioned before.
