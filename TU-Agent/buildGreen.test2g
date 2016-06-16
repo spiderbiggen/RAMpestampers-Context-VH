@@ -10,7 +10,7 @@ test buildGreen with
 	% We should never enter this module if we have no goal to build green.
 	pre { goal(indicatorGoal('Parken en groen', _)) }
 	in {
-		% Failures in action selection
+		% Failures in action selection.
 		% These actions should never be called within the green module.
 		never done(building_plan_demolish(_)).
 		never done(building_plan_upgrade(_, _)).
@@ -23,7 +23,7 @@ test buildGreen with
 		bel(emptySpace(MultiPolygon, _, _))
 			leadsto done(building_plan_construction(_,_,MultiPolygon)).
 		
-		% Failures in Goal Management
+		% Failures in Goal Management.
 		% If there's no land to build green we should adopt a goal to get land.
 		not(bel(relevant_areas(0, MPList), not(empty(MPList))))
 			leadsto goal(createLandToBuild).

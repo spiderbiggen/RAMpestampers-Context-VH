@@ -10,7 +10,7 @@ test buildConstruction with
 	% Check if there is indeed the goal to build high buildings.
 	pre { goal(indicatorGoal('Bouwen hoge gebouwen', _)) }
 	in {
-		% Failures in action selection
+		% Failures in action selection.
 		% These actions should never be called within the build construction module.
 		never done(building_plan_demolish(_)).
 		never done(building_plan_upgrade(_, _)).
@@ -18,11 +18,11 @@ test buildConstruction with
 		never done(map_sell_land(_, _, _)).
 		never done(popup_answer(_,_)).
 		never done(popup_answer_with_date(_,_,_)).
-		% If there is land available, something is build on it
+		% If there is land available, something is build on it.
 		bel(relevant_areas(0,[[MultiPolygon, Area]|Tail]))
 			leadsto done(building_plan_construction(_)).
 
-		% Failures in Goal Management
+		% Failures in Goal Management.
 		% If there is no land available, a goal to create land is adopted.		
 		not(bel(relevant_areas(0, MPList), not(empty(MPList))))
 			leadsto goal(createLandToBuild).
