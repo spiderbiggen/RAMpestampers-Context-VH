@@ -12,51 +12,51 @@ use sellLandHandler as module.
 exit=nogoals.
 order=linear.
 
+% This is our main module, it calls the different modules based on the current status of the indicators.
 module tygron {
-	%TODO budget?
-	
-	%Every 5 cycles we want to try to sell to another stakeholder.
+	% Every 5 cycles we want to try to sell to another stakeholder.
 	if bel(modulo(X), X=0), goal(sell(_))
 		then sellLandHandler.
 	
-	%Check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate%
-	 if goal(answerRequest(Category, PopupID))
+	% Check for requestgoals and handle these first so other stakeholders can move on without waiting on our bot, prevents a stalemate.
+	if goal(answerRequest(Category, PopupID))
 		then handleRequest.
 	
-	%If we have the goal to build green constructions, we should enter the buildGreen module
-	%But we need to have a place to build trees: emptySpace
-	%Also we must not be able to build more buildings on this area: so the list in relevant_areas has to be empty
-	if goal(indicatorGoal('Parken en groen', _)), not(goal(indicatorGoal('Budget TU Delft', _))), bel(relevant_areas(0,[]), emptySpace(_, _, true))
+	% If we have the goal to build green constructions, we should enter the buildGreen module.
+	% But we need to have a place to build trees: emptySpace.
+	% Also we must not be able to build more buildings on this area: so the list in relevant_areas has to be empty.
+	if goal(indicatorGoal('Parken en groen', _)), not(goal(indicatorGoal('Budget TU Delft', _))), 
+	   bel(relevant_areas(0,[]), emptySpace(_, _, true))
 		then buildGreen.
 	
-	%If we have no places to build, and we believe theres an empty space that we didn't build on, we should sell this land
-	%Since we cannot build buildings on it.
+	% If we have no places to build, and we believe theres an empty space that we didn't build on, we should sell this land.
+	% Since we cannot build buildings on it.
 	if bel(relevant_areas(0,[]), emptySpace(_, _, false))
 		then sellLand.	
-	%If we have places to build, but no goal to build high buildings or education buildings, we still wanna sellLand.
-	if not(goal(indicatorGoal('Bouwen hoge gebouwen', _))), not(goal(indicatorGoal('Bouw onderwijs', _))), bel(emptySpace(MultiPolygon, Area, false))
+	% If we have places to build, but no goal to build high buildings or education buildings, we still wanna sellLand.
+	if not(goal(indicatorGoal('Bouwen hoge gebouwen', _))), not(goal(indicatorGoal('Bouw onderwijs', _))), 
+	   bel(emptySpace(MultiPolygon, Area, false))
 		then sellLand.
 	
-	%if the buildConstruction module adopted the goal to create land we should enter the demolish module
-	%TODO: We could also buy land to create buildable land
+	% If the buildConstruction module adopted the goal to create land we should enter the demolish module.
 	if goal(createLandToBuild), bel(oldBuildings([Head|Tail]))
 		then demolish.
 		
-	%If we don't have more buildings to destroy, we need to buy some land so we enter the buyLand module
+	% If we don't have more buildings to destroy, we need to buy some land so we enter the buyLand module.
 	if goal(createLandToBuild)
 		then buyLand.
 	
-	%Calls the upgrade module
-	%Only does this when all high buildings have been built and we don't need more trees for our indicator
+	% Calls the upgrade module
+	% Only does this when all high buildings have been built and we don't need more trees for our indicator.
 	if bel(upgrades(_), not(upgrades([]))), goal(indicatorGoal('Bouw onderwijs', _)), 
-		not(goal(indicatorGoal('Parken en groen', _))), not(goal(indicatorgoal('Bouwen hoge gebouwen', _)))
+	   not(goal(indicatorGoal('Parken en groen', _))), not(goal(indicatorGoal('Bouwen hoge gebouwen', _)))
 		then upgrade.
 	
-	%If we have the goal to build high buildings, we should enter the build module
+	% If we have the goal to build high buildings, we should enter the build module.
 	if goal(indicatorGoal('Bouwen hoge gebouwen', _))
 		then buildConstruction.
 	
-	%If the goal to build high buildings is met but we still have the demolish goal, we should enter the demolish module
+	% If the goal to build high buildings is met but we still have the demolish goal, we should enter the demolish module.
 	if goal(indicatorGoal('Slopen oude gebouwen', _))
 		then demolish.
 

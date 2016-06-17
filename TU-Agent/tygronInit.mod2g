@@ -1,7 +1,7 @@
 use agentKnowledge as beliefs.
 
 module tygronInit {
-	%%%%% Percept Processing %%%%%
+	%Percept processing.
 	if percept(stakeholders(X))
 		then insert(stakeholders(X)).
 	if percept(settings(X))
@@ -23,16 +23,18 @@ module tygronInit {
 	if percept(upgrade_types(X))
 		then insert(upgradeTypes(X)).
 
-	%insert the oldbuildings
+	% Insert the oldbuildings.
 	if bel(buildings(X), getOldBuildings(Bag,X)) 
 		then insert(oldBuildings(Bag)).
 	
-	%Retrieve the indicatorlink for our stakeholder
+	% Retrieve the indicatorlink for our stakeholder.
 	if bel(stakeholders(X), member([stakeholder(_, 'TU', Budget, _), indicatorLink(_ ,Weights)], X))
-		then insert(indicatorlink(Weights)) + insert(budget(Budget)).
+		then insert(indicatorlink(Weights)) + 
+			 insert(budget(Budget)).
 		
-	%insert indicator when it doesn't exist at all
-	forall bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), not(bel(indicator(IndicatorID, Name, _, Target)))
+	% Insert indicator when it doesn't exist at all.
+	forall bel(indicatorlink(Weights), member(indicatorWeights(IndicatorID, Name, _), Weights), indicators(Indicators), member(indicator(IndicatorID, Current, Target, _), Indicators)), 
+		   not(bel(indicator(IndicatorID, Name, _, Target)))
 		do insert(indicator(IndicatorID, Name, Current, Target)).
 	
 	%We insert cycle 0 so we can start counting from here

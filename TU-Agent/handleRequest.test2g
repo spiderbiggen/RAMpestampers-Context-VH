@@ -5,10 +5,11 @@ use tygron as actionspec.
 
 timeout = 30.
 
+% This test tests the handleRequest module.
 test handleRequest with
 	pre { true }
 	in {
-		% Failures in action selection
+		% Failures in action selection.
 		% These actions should never be called within the handleRequest module.
 		never done(building_plan_construction(_,_,_)).
 		never done(building_plan_demolish(_)).
@@ -35,7 +36,7 @@ test handleRequest with
 		bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
 			leadsto done(popup_answer(PopupID, 0)).
 			
-		% Failures in Goal Management
+		% Failures in Goal Management.
 		% The goal to answer a request should be dropped when it is answered.
 		bel(requestAnswered(Category, PopupID))
 			leadsto not(goal(answerRequest(Category, PopupID))).
