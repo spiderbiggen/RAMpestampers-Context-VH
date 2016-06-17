@@ -128,6 +128,12 @@ In this section we'll describe some of the percepts in the connector and how our
 	\\The connector provides a request percept, that enables our agent to answer to all the requests that the engine generates for our agent. For example when another stakeholder wants to buy something or asks permission.\\
 
 \subsubsection{Add a percept}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{addPercept.png}
+\caption{How to create a new percept}
+\label{fig:addPercept}
+\end{figure}
+
 To add a new percept you will first need to create a translator, which translates java objects to parameters used in GOAL/prolog, for the object type you want to percept. Say you want to add a new buildings percept you would then create a translator for the \verb|Building| class that transforms the data you want into parameters you can use within GOAL/prolog.
 After you have created this translator you want to add it to the appropriate array, \verb|Java2Parameter|, in the environment class, \verb|ContextEnv|, this will then automatically register the translator once you start a GOAL project using the environment.\\
 \\
@@ -139,6 +145,11 @@ If you use the usual method you're now done creating your new percept, but if yo
 After you are done creating the percept the only thing left to do is using it in a GOAL project. You can access your new percept by it's default name which it gets from the type so for \verb|Maplink.BUILDINGS| this would be |buildings|. You could also give the percept a custom name in which case you can access it with that name. Note that anyhing in GOAL/prolog that starts with a capital character will be seen as a variable so giving the percept a custom name of \verb|Buildings| wouldn't work as it won't accept a variable name as an argument in the \verb|percept| action.
 
 \subsubsection{Actions}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{addAction.png}
+\caption{How to create a custom action}
+\label{fig:addAction}
+\end{figure}
 
 All available actions have been defined in the sdk, specifically in \\\verb|nl.tytech.data.engine.event.ParticipantEventType|. 
 All action have a description stated in @EventParamData, this annotation also states the required parameters. 
