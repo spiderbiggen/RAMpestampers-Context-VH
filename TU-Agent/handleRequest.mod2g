@@ -21,7 +21,7 @@ module handleRequest {
 		do popup_answer(PopupID, 0) + insert(requestAnswered('PERMIT', PopupID)).
 		
 	% Catch any requests that do not fall under any of the preconditions of the previous actions and answer yes (ActionID = 0))
-	forall bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
+	forall bel(requests(X), member(request(_, Category, PopupID, _, _, _, _, _, _, _), X))
 		do popup_answer(PopupID, 0) + insert(requestAnswered(Category, PopupID)).
 		
 	% If a popup was removed from the requests list, but we have not answered it, this rule will prevent loops
