@@ -128,6 +128,12 @@ In this section we'll describe some of the percepts in the connector and how our
 	\\The connector provides a request percept, that enables our agent to answer to all the requests that the engine generates for our agent. For example when another stakeholder wants to buy something or asks permission.\\
 
 \subsubsection{Add a percept}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{addPercept.png}
+\caption{How to create a new percept}
+\label{fig:addPercept}
+\end{figure}
+
 To add a new percept you will first need to create a translator, which translates java objects to parameters used in GOAL/prolog, for the object type you want to percept. Say you want to add a new buildings percept you would then create a translator for the \verb|Building| class that transforms the data you want into parameters you can use within GOAL/prolog.
 After you have created this translator you want to add it to the appropriate array, \verb|Java2Parameter|, in the environment class, \verb|ContextEnv|, this will then automatically register the translator once you start a GOAL project using the environment.\\
 \\
@@ -139,6 +145,11 @@ If you use the usual method you're now done creating your new percept, but if yo
 After you are done creating the percept the only thing left to do is using it in a GOAL project. You can access your new percept by it's default name which it gets from the type so for \verb|Maplink.BUILDINGS| this would be |buildings|. You could also give the percept a custom name in which case you can access it with that name. Note that anyhing in GOAL/prolog that starts with a capital character will be seen as a variable so giving the percept a custom name of \verb|Buildings| wouldn't work as it won't accept a variable name as an argument in the \verb|percept| action.
 
 \subsubsection{Actions}
+\begin{figure}[h!]
+\includegraphics[width=\textwidth]{addAction.png}
+\caption{How to create a custom action}
+\label{fig:addAction}
+\end{figure}
 
 All available actions have been defined in the sdk, specifically in \\\verb|nl.tytech.data.engine.event.ParticipantEventType|. 
 All action have a description stated in @EventParamData, this annotation also states the required parameters. 
@@ -147,7 +158,7 @@ These should then not be passed through in goal.
 Filling these in will result in the action not working at all.\\
 \\
 When the action you want to use requires anything but a standard string or number (float, double or integer), you will want to go ahead and add a translator for that object.
-You can do this in much the same was adding a percept.
+You can do this in much the same way as adding a percept.
 You start of with creating a translator, but where for a percept you are converting a java object to parameters here you are translating parameters to java objects.
 After you have created this translator you want to register this in the environment too, but you want to put it in a different array, \verb|Parameter2Java|, and then you are done.
 
@@ -186,7 +197,7 @@ In this project there is an own server with all TU Delft students. But there is 
 
 \newpage
 \subsection{Persistent data management}
-The data management for our project envelops multiple parts. We have a part where the data for the game is stored and the data we need for running the agent. The first part is done by Tygron. When a new project is created it is stored in the Tygron database to which the clients can connect via the Tygron server. Any changes made in a session are then updated in the database, which are visible to all the other clients. Figure \ref{fig:tygron2} shows the diagram of the Tygron Engine connected to the database and the GOAL agent.
+The data management for our project envelops multiple parts. We have a part where the data for the game is stored and the data we need for running the agent. The first part is done by Tygron. When a new project is created it is stored in the Tygron database to which the clients can connect via the Tygron server. Any changes made in a session are then updated in the database, which are visible to all the other clients. Figure \ref{fig:tygron1} shows the diagram of the Tygron Engine connected to the database and the GOAL agent.
 
 \begin{figure}[h!]
   \includegraphics[width=\linewidth]{agentstate.png}
