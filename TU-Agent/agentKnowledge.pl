@@ -30,7 +30,7 @@ allStakeholders([0, 1, 2, 3, 4]).
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
 :- dynamic indicatorGoal/2.
-:- dynamic upgrades/1.
+:- dynamic upgraded/1.
 :- dynamic landBought/1.
 
 % Custom actions believes.
