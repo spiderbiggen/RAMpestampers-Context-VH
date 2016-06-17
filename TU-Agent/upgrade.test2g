@@ -8,7 +8,7 @@ timeout = 30.
 % This test will test the buildConstruction module.
 test upgrade with
 	% Check if there is indeed the goal to build high buildings.
-	pre { goal(indicatorGoal('Bouw onderwijs', _)) }
+	pre { goal(indicatorGoal('Bouw onderwijs', _)), bel(upgrades(UpgradeList)) }
 	in {
 		% Failures in action selection.
 		% These actions should never be called within the build construction module.
@@ -19,13 +19,11 @@ test upgrade with
 		never done(popup_answer(_,_)).
 		never done(popup_answer_with_date(_,_,_)).
 		
-		% If the module is started, something always needs to be upgraded
-		%eventually done(building_plan_upgrade(_,_)).
-
-		% Failures in Goal Management.
-		% If there is no land available, a goal to create land is adopted.		
-		%not(bel(relevant_areas(0, MPList), not(empty(MPList))))
-		%	leadsto goal(createLandToBuild).
+		% If the module is started, something always needs to be upgraded.
+		bel(upgrades(UpgradeList)) leadsto
+			building_plan_upgrade(_,_).
+		
+		eventually not(bel(upgrades(UpgradeList))).
 	}
 	% We are not able to define a good post condition here since there can be multiple outcomes.
 	post { true }
