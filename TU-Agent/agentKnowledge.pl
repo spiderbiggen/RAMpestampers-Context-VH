@@ -1,3 +1,10 @@
+% Global Variables
+% Define callIDs for the different get_relevant_area actions
+callIDAreaBuild(0).
+callIDAreaBuy(1).
+% List of available stakeholders.
+allStakeholders([0, 1, 2, 3, 4]).
+
 % These are the percepts we receive.
 :- dynamic stakeholders/1.
 :- dynamic settings/1.
@@ -9,7 +16,6 @@
 :- dynamic requests/1.
 :- dynamic actions/1.
 :- dynamic upgradeTypes/1.
-:- dynamic landBought/1.
 
 % Believes.
 :- dynamic oldBuildings/1.
@@ -24,6 +30,8 @@
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
 :- dynamic indicatorGoal/2.
+:- dynamic upgrades/1.
+:- dynamic landBought/1.
 
 % Custom actions believes.
 :- dynamic relevant_areas/2.
@@ -78,14 +86,8 @@ getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag):-
 		sub_string(Name, _, _, _, 'luxe')),
 		Bag1),
 	sort(Bag1, Bag).
-% List of applied upgrades.	
-upgraded([]).
 % Gets a random number between 20 and 40.
 randomFloor(Floors) :- Floors is random(20)+20.
 % Filters the list of areas for only large areas.
 getLargeAreas(OldList, NewList):- findall([MultiPolygon, Area], (member([MultiPolygon, Area], OldList), Area>200), NewList).
-%define callIDs for the different get_relevant_area actions
-callIDAreaBuild(0).
-callIDAreaBuy(1).
-% List of available stakeholders.
-allStakeholders([0, 1, 2, 3, 4]).
+
