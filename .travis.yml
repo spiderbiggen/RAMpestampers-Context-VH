@@ -6,7 +6,7 @@ install:
 - java -cp TU-Agent/contextvh-*-jar-with-dependencies.jar login.Login $email $password
 script:
 # run the Goal Test with a 60s timeout
-- timeout 60 java -cp com.github.goalhub.runtime.jar-with-dependencies_2.0.2.20160601191828.jar goal.tools.Run TU-Agent/test.test2g -v > result.txt || echo 0
+- timeout 60 java -cp com.github.goalhub.runtime.jar-with-dependencies_2.0.2.20160601191828.jar goal.tools.Run TU-Agent/tygronTest.test2g -v > result.txt || echo 0
 # print the test output
 - cat result.txt
 # if there is a test failed then the build fails
@@ -49,4 +49,13 @@ script:
 - grep "test failed:" resultHandleRequest.txt && $? || echo 0
 # check that the tests actually passed otherwise the build still fails
 - grep "test passed:" resultHandleRequest.txt && echo 0 || $?
+
+# run the Goal Test with a 60s timeout
+- timeout 60 java -cp com.github.goalhub.runtime.jar-with-dependencies_2.0.2.20160601191828.jar goal.tools.Run TU-Agent/upgrade.test2g -v > resultUpgrade.txt || echo 0
+# print the test output
+- cat resultUpgrade.txt
+# if there is a test failed then the build fails
+- grep "test failed:" resultUpgrade.txt && $? || echo 0
+# check that the tests actually passed otherwise the build still fails
+- grep "test passed:" resultUpgrade.txt && echo 0 || $?
 
