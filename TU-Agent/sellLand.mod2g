@@ -11,6 +11,6 @@ module sellLand {
 	%Two stakeholders are already in the list:
 	%	0 - Municipality, they will never buy land
 	%	3 - TUDelft, we don't wanna sell land to ourself
-	if bel(emptySpace(MultiPolygon, Area, false), generousPrice(Price, Area))
-		then insert(landToSell(MultiPolygon, Price, [0, 3])) + adopt(sell(MultiPolygon)) + delete(emptySpace(MultiPolygon, Area, false)) + sellLandHandler.
+	if bel(emptySpace(MultiPolygon, Area, false), generousPrice(Price))
+		then insert(landToSell(MultiPolygon, Price, Area, [0, 3])) + adopt(sell(MultiPolygon)) + delete(emptySpace(MultiPolygon, Area, false)) + sellLandHandler.
 }
