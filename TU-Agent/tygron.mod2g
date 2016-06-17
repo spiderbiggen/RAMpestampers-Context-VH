@@ -14,10 +14,6 @@ order=linear.
 
 module tygron {
 	
-	%If the agent has the goal of buying land go to the buyland module
-	if goal(buyland)
-		then buyLand.
-	
 	%Every 5 cycles we want to try to sell to another stakeholder.
 	if bel(modulo(X), X=0), goal(sell(_))
 		then sellLandHandler.
