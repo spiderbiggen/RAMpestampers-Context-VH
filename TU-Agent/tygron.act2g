@@ -1,58 +1,57 @@
 use agentKnowledge as knowledge.
 
-% Define the building action
-% Plan a new building
-% params = FunctionId, Amount of Floors, MultiPolygon describing the build contour
+% Define the building action.
+% Plan a new building.
+% Params = FunctionId, Amount of Floors, MultiPolygon describing the build contour.
 define building_plan_construction(FunctionId, Floors, MultiPolygon) with
 	pre{ true }
 	post{ true }
   
 % Define the buy land action
 % Buy the land defined by the polygon for given price
-% params = Multipolygon describing the area to be bought, Price per square meter
+% Params = Multipolygon describing the area to be bought, Price per square meter
 define map_buy_land(MultiPolygon, Price) with
 	pre{ true }
 	post{ true }
 	
 
-% define the sell land action
-% sell the land defined by the polygon for given price
-% params = Buyer of the land", Multipolygon describing the area to be sold, Price per square meter
+% Define the sell land action.
+% Sell the land defined by the polygon for given price.
+% Params = Buyer of the land", Multipolygon describing the area to be sold, Price per square meter.
 define map_sell_land(StakeholderId, MultiPolygon, Price) with
 	pre{ true }
 	post { true }
 	
-% Define the demolish building action
-% Plan the demolition of a building
-% params = BuildingId
+% Define the demolish building action.
+% Plan the demolition of a building.
+% Params = BuildingId.
 define building_plan_demolish(BuildingId) with
-	pre{oldBuildings([building(N,A,B,C,D,E,F,G,H)|Tail])}
+	pre{oldBuildings([building(BuildingID, Name, StakeholderID, ConstructionYear, Category, FunctionID, Floors, MultiPolygon, Area)|Tail])}
 	post{oldBuildings(Tail)}
 	
-% Define the upgrade building action
-% Plan the upgrade of a building
-% params = the UpgradeID of the upgrade type, Multipolygon describing the area to be upgraded
+% Define the upgrade building action.
+% Plan the upgrade of a building.
+% Params = the UpgradeID of the upgrade type, Multipolygon describing the area to be upgraded.
 define building_plan_upgrade(UpgradeID, MultiPolygon) with
 	pre{ upgraded(Tail), not(member(UpgradeID, Tail)) }
 	post{ upgraded([UpgradeID|Tail]) }
 	
-% Define the answer to a popup action
-% Answer another stakeholders request
-% params = PopupID, AnswerID
+% Define the answer to a popup action.
+% Answer another stakeholders request.
+% Params = PopupID, AnswerID.
 define popup_answer(PopupID, AnswerID) with
   pre{not(requestAnswered(_, PopupID))}
   post{ requestAnswered(PopupID, AnswerID) } 
   
-% Define the answer to a popup with a date action
-% Answer another stakeholders request
-% params = PopupID, AnswerID, Date
+% Define the answer to a popup with a date action.
+% Answer another stakeholders request.
+% Params = PopupID, AnswerID, Date.
 define popup_answer_with_date(PopupID, AnswerID, Date) with
   pre{not(requestAnswered(_, PopupID))}
   post{ requestAnswered(PopupID, AnswerID) } 
 
-%Custom actions
-
-%This returns relevant areas from the tygron environment.
+% Custom actions.
+% This returns relevant areas from the tygron environment.
 define get_relevant_areas(Id, ActionType, Filters) with
 	pre { true }
 	post{ true }

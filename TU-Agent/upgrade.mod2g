@@ -3,11 +3,12 @@ use tygron as actionspec.
 
 order=linearall.
 
+% This module handles the upgrades of buildings.
 module upgrade {
 	
 	if bel(upgrades(Upgrades), member([MultiPolygon, UpgradeID, SrcID], Upgrades), 
-		delete(Upgrades, [MultiPolygon, UpgradeID, SrcID], Upgrades2)) 
-			then building_plan_upgrade(UpgradeID, MultiPolygon) + 
-				delete(upgrades(Upgrades)) + insert(upgrades(Upgrades2)).
+	   delete(Upgrades, [MultiPolygon, UpgradeID, SrcID], Upgrades2)) 
+		then building_plan_upgrade(UpgradeID, MultiPolygon) + 
+			 delete(upgrades(Upgrades)) + insert(upgrades(Upgrades2)).
 
 }

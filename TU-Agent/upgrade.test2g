@@ -1,0 +1,33 @@
+use TUAgent as mas.
+use agentKnowledge as knowledge.
+use upgrade as module.
+use tygron as actionspec.
+
+timeout = 30.
+
+% This test will test the upgrade module.
+test upgrade with
+	% Check if there is indeed the goal to upgrade to education buildings and if there are any upgrades to do.
+	pre { goal(indicatorGoal('Bouw onderwijs', _)), bel(upgrades(UpgradeList)) }
+	in {
+		% Failures in action selection.
+		% These actions should never be called within the upgrade module.
+		never done(building_plan_demolish(_)).
+		never done(building_plan_construction(_, _, _)).
+		never done(map_buy_land(_, _)).
+		never done(map_sell_land(_, _, _)).
+		never done(popup_answer(_,_)).
+		never done(popup_answer_with_date(_,_,_)).
+		
+		% If the module is started, something always needs to be upgraded.
+		bel(upgrades(UpgradeList)) leadsto
+			building_plan_upgrade(_,_).
+		
+		% The upgrades belief should be changed after an upgrade, so eventually this belief is different.
+		eventually not(bel(upgrades(UpgradeList))).
+	}
+	post { true }
+
+	tygronagent {
+		do upgrade.
+	}

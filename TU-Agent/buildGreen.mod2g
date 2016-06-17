@@ -3,14 +3,15 @@ use tygron as actionspec.
 
 order=linear.
 
+% This module will build green or adopt goals to create land to build green on.
 module buildGreen {
-	
-	% Build trees at an available place
-	% This place is the multypolygon of a demolished building, this is stored in emptySpace
-	if bel(functions(Functions), member(['loofbomen',BuildingID,List],Functions), emptySpace(MultiPolygon, Area, Bool))
-		then building_plan_construction(BuildingID,1,MultiPolygon) + delete(emptySpace(MultiPolygon, Area, Bool)).
+	% Build trees at an available place.
+	% This place is the multypolygon of a demolished building, this is stored in emptySpace.
+	if bel(functions(Functions), member(['loofbomen', BuildingID,List], Functions), emptySpace(MultiPolygon, Area, Bool))
+		then building_plan_construction(BuildingID, 1, MultiPolygon) + 
+			 delete(emptySpace(MultiPolygon, Area, Bool)).
 		
-	%If theres no available land we need to adopt a goal to create some
+	% If theres no available land we need to adopt a goal to create some.
 	if not(bel(relevant_areas(0, MPList), not(empty(MPList))))
 		then adopt(createLandToBuild).
 }
