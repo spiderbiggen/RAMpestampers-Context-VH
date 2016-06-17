@@ -44,9 +44,9 @@ answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
 empty(List) :- length(List, 0).
 
 % Logic on numbers.
-isNumber(X) :- number(X).
+isNumber(Var) :- number(Var).
 % Every 5 cycles we want to do something, we use modulo for this.
-modulo(X) :- cycle(Y), X is Y mod 5.
+modulo(Rest) :- cycle(CycleNumber), Rest is CycleNumber mod 5.
 % Increase a number by one.
 increase(OldNumber, NewNumber) :- NewNumber is OldNumber+1.
 % adjust the price we're selling for.
@@ -69,11 +69,11 @@ getOldBuildings(Bag,List):-
 isEducation(building(_,_,3,_,_,884,_,_,_)).
 %creates a list of all available upgrades.
 getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag):-
-	findall([Multipolygon, UpgradeID, SrcID], 
-		( member(building(_, _, 3, _, _, SrcID, _, Multipolygon, _), Buildings), 
+	findall([Multipolygon, UpgradeID, SourceID], 
+		( member(building(_, _, 3, _, _, SourceID, _, Multipolygon, _), Buildings), 
 		member(upgrade_type(UpgradeID, UpgradePairs), UpgradeTypes), 
-		member(upgrade_pair(SrcID, TrgtID), UpgradePairs), 
-		member([Name, TrgtID, _], Functions),
+		member(upgrade_pair(SourceID, TargetID), UpgradePairs), 
+		member([Name, TargetID, _], Functions),
 		sub_string(Name, _, _, _, 'luxe')),
 		Bag1),
 	sort(Bag1, Bag).
