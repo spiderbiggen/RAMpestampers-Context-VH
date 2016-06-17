@@ -1,0 +1,35 @@
+use TUAgent as mas.
+use agentKnowledge as knowledge.
+use upgrade as module.
+use tygron as actionspec.
+
+timeout = 30.
+
+% This test will test the buildConstruction module.
+test upgrade with
+	% Check if there is indeed the goal to build high buildings.
+	pre { goal(indicatorGoal('Bouw onderwijs', _)) }
+	in {
+		% Failures in action selection.
+		% These actions should never be called within the build construction module.
+		never done(building_plan_demolish(_)).
+		never done(building_plan_construction(_, _, _)).
+		never done(map_buy_land(_, _)).
+		never done(map_sell_land(_, _, _)).
+		never done(popup_answer(_,_)).
+		never done(popup_answer_with_date(_,_,_)).
+		
+		% If the module is started, something always needs to be upgraded
+		%eventually done(building_plan_upgrade(_,_)).
+
+		% Failures in Goal Management.
+		% If there is no land available, a goal to create land is adopted.		
+		%not(bel(relevant_areas(0, MPList), not(empty(MPList))))
+		%	leadsto goal(createLandToBuild).
+	}
+	% We are not able to define a good post condition here since there can be multiple outcomes.
+	post { true }
+
+	tygronagent {
+		do upgrade.
+	}
