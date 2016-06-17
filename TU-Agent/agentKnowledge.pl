@@ -30,7 +30,7 @@ allStakeholders([0, 1, 2, 3, 4]).
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
 :- dynamic indicatorGoal/2.
-:- dynamic upgraded/1.
+:- dynamic upgrades/1.
 :- dynamic landBought/1.
 
 % Custom actions believes.
@@ -86,6 +86,8 @@ getUseableUpgrades(Buildings, Functions, UpgradeTypes, Bag):-
 		sub_string(Name, _, _, _, 'luxe')),
 		Bag1),
 	sort(Bag1, Bag).
+% List of applied upgrades.	
+upgraded([]).
 % Gets a random number between 20 and 40.
 randomFloor(Floors) :- Floors is random(20)+20.
 % Filters the list of areas for only large areas.
