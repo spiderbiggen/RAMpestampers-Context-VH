@@ -11,6 +11,7 @@ test buyLand with
 	pre { goal(buyland) }
 	in {
 		% Failures in action selection.
+		% These actions should never be called within the buyland module.
 		never done(building_plan_demolish(_)).
 		never done(building_plan_upgrade(_, _)).
 		never done(map_sell_land(_, _, _)).
@@ -18,9 +19,11 @@ test buyLand with
 		never done(popup_answer_with_date(_,_,_)).
 		never done(get_relevant_areas(_,_,_)).
 		never done(building_plan_construction(_,_,_)).
+		% If there is nothing left to demolish and more land is needed, buy land
 		bel(callIDAreaBuy(CallID), relevant_areas(CallID, RelevantAreas), member([MultiPolygon, Area], RelevantAreas))
 			leadsto done(map_buy_land(MultiPolygon, _)).
 	}
+	% Afterwards the land should have been bought
 	post { landBought(MultiPolygon) }
 
 	tygronagent {
