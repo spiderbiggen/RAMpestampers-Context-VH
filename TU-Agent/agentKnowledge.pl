@@ -39,8 +39,6 @@ createLandToBuild :- relevant_areas(0, MPList), not(empty(MPList)).
 sell(MultiPolygon) :- sold(MultiPolygon).
 % A request is answered when we believe it is.
 answerRequest(Category, PopupID) :- requestAnswered(Category, PopupID).
-%Knowledge for knowing when land is bought
-buyland :- landBought(MultiPolygon).
 
 % Knowledge about lists.
 % See if a list is empty.
