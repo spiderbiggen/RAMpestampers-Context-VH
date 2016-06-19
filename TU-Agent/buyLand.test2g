@@ -4,7 +4,7 @@ use buyLand as module.
 use buildConstruction as module.
 use tygron as actionspec.
 
-timeout = 120.
+timeout = 240.
 
 % This test will test the buyland module.
 test buyLand with
