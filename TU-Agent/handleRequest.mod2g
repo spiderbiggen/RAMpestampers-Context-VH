@@ -6,7 +6,7 @@ order=linearall.
 % This module will handle all unanswered requests.
 module handleRequest {
 	% Accept (ActionID = 0) a request to buy land if the indicator goal of building high buildings has been satisfied and the price is acceptable.
-	forall bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, Area, _), X), isNumber(Price), acceptablePrice(Price, Area), not(requestAnswered('BUY_LAND', PopupID))), not(goal(indicatorGoal('Bouwen hoge gebouwen', _)))
+	forall bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, Area, _), X), isNumber(Area), isNumber(Price), acceptablePrice(Price, Area), not(requestAnswered('BUY_LAND', PopupID))), not(goal(indicatorGoal('Bouwen hoge gebouwen', _)))
 		do popup_answer(PopupID, 0) + 
 		   insert(requestAnswered('BUY_LAND', PopupID)).
 		

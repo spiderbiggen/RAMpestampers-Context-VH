@@ -1,0 +1,36 @@
+use TUAgent as mas.
+use agentKnowledge as knowledge.
+use buyLand as module.
+use buildConstruction as module.
+use tygron as actionspec.
+
+timeout = 240.
+
+% This test will test the buyland module.
+test buyLand with
+	% We should never enter this module if we have no goal to create more land for building.
+	pre {
+		not(bel(relevant_areas(1, _)))
+	}
+	in {
+		% Failures in action selection.
+		% These actions should never be called within the buyland module.
+		never done(building_plan_demolish(_)).
+		never done(building_plan_upgrade(_, _)).
+		never done(map_sell_land(_, _, _)).
+		never done(popup_answer(_,_)).
+		never done(popup_answer_with_date(_,_,_)).
+		never done(get_relevant_areas(_,build,_)).
+		never done(building_plan_construction(_,_,_)).
+		% If there is nothing left to demolish and more land is needed, buy land
+		bel(callIDAreaBuy(CallID), relevant_areas(CallID, RelevantAreas), member([MultiPolygon, Area], RelevantAreas))
+			leadsto done(map_buy_land(MultiPolygon, _)).
+	}
+	% We are unable to define a post condition for this module.
+	post { 
+		true
+	}
+
+	tygronagent {
+		do buyLand.
+	}

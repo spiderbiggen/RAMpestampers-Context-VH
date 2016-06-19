@@ -1,11 +1,19 @@
 use agentKnowledge as knowledge.
 use tygron as actionspec.
 
-order=linearall.
+order=linear.
 
 % This module will try to buy land from other stakeholders.
 module buyLand {
-	if true
-		then exit-module.
+	
+	if bel(callIDAreaBuy(CallID)), not(bel(relevant_areas(CallID, _)))
+		then get_relevant_areas(CallID, buy, [zones(3), buildings(false)]).
+		
+	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, []))
+		then get_relevant_areas(CallID, buy, [zones(3), buildings(false)]).
+		
+	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, RelevantAreas), member([MultiPolygon, Area], RelevantAreas)), not(bel(landBought(MultiPolygon)))
+		then map_buy_land(MultiPolygon, 400) + get_relevant_areas(CallID, buy, [zones(3), buildings(false)]) + insert(landBought(MultiPolygon)).
+
 
 }

@@ -1,3 +1,10 @@
+% Global Variables
+% Define callIDs for the different get_relevant_area actions
+callIDAreaBuild(0).
+callIDAreaBuy(1).
+% List of available stakeholders.
+allStakeholders([0, 1, 2, 3, 4]).
+
 % These are the percepts we receive.
 :- dynamic stakeholders/1.
 :- dynamic settings/1.
@@ -23,6 +30,7 @@
 :- dynamic indicatorlink/1.
 :- dynamic indicator/4.
 :- dynamic indicatorGoal/2.
+:- dynamic landBought/1.
 
 % Custom actions believes.
 :- dynamic relevant_areas/2.
@@ -83,5 +91,4 @@ upgraded([]).
 randomFloor(Floors) :- Floors is random(20)+20.
 % Filters the list of areas for only large areas.
 getLargeAreas(OldList, NewList):- findall([MultiPolygon, Area], (member([MultiPolygon, Area], OldList), Area>200), NewList).
-% List of available stakeholders.
-allStakeholders([0, 1, 2, 3, 4]).
+
