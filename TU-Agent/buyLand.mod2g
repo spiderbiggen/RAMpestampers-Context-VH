@@ -10,7 +10,10 @@ module buyLand {
 		then get_relevant_areas(CallID, buy, [zones(3), buildings(false)]).
 		
 	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, []))
-		then get_relevant_areas(CallID, buy, [zones(3), buildings(false)]).
+		then get_relevant_areas(CallID, buy, [buildings(false)]).
+		
+	if bel(land, callIDAreaBuild(CallID))
+		then get_relevant_areas(CallID, build, []) + delete(land).
 		
 	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, RelevantAreas), member([MultiPolygon, Area], RelevantAreas)), not(bel(landBought(MultiPolygon)))
 		then map_buy_land(MultiPolygon, 400) + get_relevant_areas(CallID, buy, [zones(3), buildings(false)]) + insert(landBought(MultiPolygon)).

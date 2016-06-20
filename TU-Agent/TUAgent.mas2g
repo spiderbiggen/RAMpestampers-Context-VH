@@ -1,5 +1,5 @@
 use "contextvh-1.0.1-jar-with-dependencies.jar" as environment 
-	with project = "vhramp" ,
+	with project = "vhproject" ,
 	stakeholders = ["TU"].
 
 define tygronagent as agent {
