@@ -6,15 +6,21 @@ order=linear.
 % This module will try to buy land from other stakeholders.
 module buyLand {
 	
+	% If we know that we bought some land percept the buildable areas.
 	if bel(land, callIDAreaBuild(CallID))
 		then get_relevant_areas(CallID, build, []) + delete(land).	
-		
+
+	% If we have perceived a list of available areas, select one and try to buy it.
 	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, RelevantAreas), member([MultiPolygon, Area], RelevantAreas)), not(bel(landBought(MultiPolygon)))
 		then map_buy_land(MultiPolygon, 400) + get_relevant_areas(CallID, buy, [zones(3), buildings(false), amount(50)]) + insert(landBought(MultiPolygon)).	
 
+	% If we do not have the believe relevant_areas(CallID, _) where CallID is the id of the buy action percept the buyable areas for the tu zone.
 	if bel(callIDAreaBuy(CallID)), not(bel(relevant_areas(CallID, _)))
 		then get_relevant_areas(CallID, buy, [zones(3), buildings(false), amount(50)]).
-		
+
+
+	% If we believe relevant_areas(CallID, List) where CallID is the id of the buy action percept the buyable areas
+	%	and the list is empty try perceiving again but this time try it for all zones instead of only the tu zone.		
 	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, []))
 		then get_relevant_areas(CallID, buy, [buildings(false), amount(50)]).
 		
