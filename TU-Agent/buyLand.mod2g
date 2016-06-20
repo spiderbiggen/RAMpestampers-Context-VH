@@ -6,17 +6,19 @@ order=linear.
 % This module will try to buy land from other stakeholders.
 module buyLand {
 	
-	if bel(callIDAreaBuy(CallID)), not(bel(relevant_areas(CallID, _)))
-		then get_relevant_areas(CallID, buy, [zones(3), buildings(false)]).
-		
-	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, []))
-		then get_relevant_areas(CallID, buy, [buildings(false)]).
-		
 	if bel(land, callIDAreaBuild(CallID))
-		then get_relevant_areas(CallID, build, []) + delete(land).
+		then get_relevant_areas(CallID, build, []) + delete(land).	
 		
 	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, RelevantAreas), member([MultiPolygon, Area], RelevantAreas)), not(bel(landBought(MultiPolygon)))
-		then map_buy_land(MultiPolygon, 400) + get_relevant_areas(CallID, buy, [zones(3), buildings(false)]) + insert(landBought(MultiPolygon)).
+		then map_buy_land(MultiPolygon, 400) + get_relevant_areas(CallID, buy, [zones(3), buildings(false), amount(50)]) + insert(landBought(MultiPolygon)).	
+
+	if bel(callIDAreaBuy(CallID)), not(bel(relevant_areas(CallID, _)))
+		then get_relevant_areas(CallID, buy, [zones(3), buildings(false), amount(50)]).
+		
+	if bel(callIDAreaBuy(CallID), relevant_areas(CallID, []))
+		then get_relevant_areas(CallID, buy, [buildings(false), amount(50)]).
+		
+
 
 
 }
