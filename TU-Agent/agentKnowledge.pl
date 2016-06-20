@@ -31,6 +31,7 @@ allStakeholders([0, 1, 2, 3, 4]).
 :- dynamic indicator/4.
 :- dynamic indicatorGoal/2.
 :- dynamic landBought/1.
+:- dynamic land/0.
 
 % Custom actions believes.
 :- dynamic relevant_areas/2.

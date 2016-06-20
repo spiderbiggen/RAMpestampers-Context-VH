@@ -6,6 +6,7 @@ order=linearall.
 % This module handles the upgrades of buildings.
 module upgrade {
 	
+	% Upgrade an area and delete that area from the upgrades list.
 	if bel(upgrades(Upgrades), member([MultiPolygon, UpgradeID, SrcID], Upgrades), 
 	   delete(Upgrades, [MultiPolygon, UpgradeID, SrcID], Upgrades2)) 
 		then building_plan_upgrade(UpgradeID, MultiPolygon) + 

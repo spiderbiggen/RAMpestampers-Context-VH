@@ -10,10 +10,24 @@ module handleRequest {
 		do popup_answer(PopupID, 0) + 
 		   insert(requestAnswered('BUY_LAND', PopupID)).
 		
+	% Accept (ActionID = 0) a request to buy land if there is a plan to buy land.
+	if bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, _, 'NO_MULTIPOLYGON', _, _), X), not(requestAnswered('BUY_LAND', PopupID))), not(bel(land))
+		then popup_answer(PopupID, 0) + 
+		   insert(requestAnswered('BUY_LAND', PopupID)) + insert(land).	
+	% Accept (ActionID = 0) a request to buy land if there is a plan to buy land.
+	forall bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, _, 'NO_MULTIPOLYGON', _, _), X), not(requestAnswered('BUY_LAND', PopupID)))
+		do popup_answer(PopupID, 0) + 
+		   insert(requestAnswered('BUY_LAND', PopupID)).	
+	
 	% Decline (ActionID = 1) a request to buy land if there is a plan to build (on that land).
 	forall bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, Price, _, _, _), X), isNumber(Price), not(requestAnswered('BUY_LAND', PopupID)))
 		do popup_answer(PopupID, 1) + 
 		   insert(requestAnswered('BUY_LAND', PopupID)).
+		   
+	% Accept (ActionID = 0) a request to buy land if there is a plan to buy land.
+	forall bel(requests(X), member(request(_, 'BUY_LAND', PopupID, _, _, _, _, _, _, _), X), not(requestAnswered('BUY_LAND', PopupID))), not(bel(land))
+		do popup_answer(PopupID, 0) + 
+		   insert(requestAnswered('BUY_LAND', PopupID)) + insert(land).
 		
 	% Answer all permit popups with a date with yes (ActionID = 0).
 	forall bel(requests(X), member(request('INTERACTION_WITH_DATE', 'PERMIT', PopupID, _, _, _, _, _, _, _), X), not(requestAnswered(Category, PopupID)))
