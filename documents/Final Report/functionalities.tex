@@ -6,7 +6,7 @@ We implemented these features to make the agent act like a normal person.
 A normal person playing the Tygron game can also use the actions described below, so our agent should be able to use them too.
 
 The agent has indicators that represents our vision of the TU Delft.
-Inicators are 'scores' on a scale from 0 to 100 that represent how well the agent is doing.
+Indicators are 'scores' on a scale from 0 to 100 that represent how well the agent is doing.
 For example, building something can improve a certain indicator.
 At the end, the agent wants to get a score of 100 on all indicators, because that means it has fulfilled all its goals.
 
@@ -29,7 +29,7 @@ If the agent has land that is not suitable for any construction, it is not neces
 The agent is able to answer requests from other stakeholders. Requests are either accepted or declined. A request is declined when another agent wants to buy a piece of land that is planned for building a construction. Other requests that are beneficial for the agent’s indicators are accepted.
 
 \section{Buy land functionality}
-The agent can buy land. This will happen when the agent doesn't have any old buildings left to destroy, but it still wants to build new buildings. The agent will send a request to buy some land to another stakeholder, which will hopefully accept its offer. When it does accept the offer, the agent will build more buildings on this new piece of land.
+The agent is able to buy land. This will happen when the agent doesn't have any old buildings left to destroy, but it still wants to build new buildings. The agent will send a request to buy some land to another stakeholder, which will hopefully accept the offer. When it does accept the offer, the agent will build more buildings on this new piece of land.
 
 \section{Upgrade functionality}
 If the agent still has some old buildings, but the 'build green' and the 'build high buildings' indicators are full, it will upgrade these old buildings to newer buildings.
