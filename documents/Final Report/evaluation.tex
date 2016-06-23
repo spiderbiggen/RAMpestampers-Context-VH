@@ -3,20 +3,24 @@ In this chapter an evaluation is given of the entire product. This chapter also 
 
 \section{Evaluation of the connector}
 The connector is pretty much where it needs to be for the agent.
-Some of the Percepts or custom actions might need some fine tuning to increase performance, but that is not really that important since a human player wouldn't respond immediately either.
-For example the Buildings percept is so large that updating it takes a good minute at the least, which, while not necessarily a problem, is quite annoying.
+Some of the Percepts (the information the agent receives from the environment) or custom actions might need some fine tuning to increase performance, but that is not really that important since a human player would not always respond immediately either.
+For example the Buildings percept contains so much data that updating it takes a good minute at least, which, while not necessarily a problem, is quite annoying.
 
 \section{Evaluation of the agent}
 The agent is split up in separate modules as stated in chapter~\ref{ch:overview}.
 This really helps with keeping the code readable, because it means that we do not have all our code in the same file.
-The agent can perform almost all the actions that we wanted to implement at the start of this project.
-We left out the ability to give money to another stakeholder since we noticed that realistically nobody would just give someone else money.
+The agent can perform almost all the actions that we wanted to implement at the start of this project and works as we expected.
+This is mostly because the actions are pretty straightforward like buying ground or responding to requests made by other stakeholders.
+The only thing that we did not plan was the shape in which the agent constructs the new buildings. We planned on just building in the shape of the area that the agent demolished, but in the end the buildings have a custom size which is decided by the environment. This actually looks a lot better than what we had in mind so this is a good thing.
+We left out the ability to give money to another stakeholder since we noticed that realistically nobody would just give someone else money. 
+This did not have any negative impacts on the behavior of the agent, as no other stakeholder has the option to ask for money without anything in return.
+On top of that, not implementing an action has no impact anyway because what this means is that the agent is simply unable to do this action and will never be called because of this. In the end we are pretty satisfied with the final result as the agent is able to do everything that we planned for it. 
 
 \section{Failure Analysis}
 Failures in the agent are usually the result of a failure in the environment, since the environment is what actually interprets the agent's actions.
 These failures more often than not throw an error which can be read in the agent's console output.
 Many possible failures are caught in the tests of the connector, but some of the failures only show up once an agent is run using that version of the connector.
 These failures most often occur when calling an action with arguments as these can be confusing and are quite prone to errors.
-Failures in the design of a percept can be quite hard to catch as it can be difficult to debug the agent and check if the percept is correct, since a percept can be quite long.
-In goal failures can be a bit harder to find since it can be difficult to debug.
-Apart from that figuring out what caused an error in the code can be quite hard to find since the eclipse plugin doesn't highlight this very well.
+Failures in the design of a percept can be quite hard to catch as it can be difficult to debug the agent and check if the percept is correct. This is because some percepts can be quite long.
+Debugging can be hard in GOAL since there are multiple factors that could have caused a failure. These range from goals of the agent not handled well to percepts that were different than stated in their implementation.
+Apart from that figuring out what caused an error in the code can be quite hard to find since the eclipse plugin does not include proper error highlighting. On top of that the debugger did not work very well as it did not show the agent's goals and believes when you paused it.
