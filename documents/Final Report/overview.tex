@@ -7,7 +7,7 @@ The environment is used to connect with the Tygron engine and handles everything
 It takes care of data transmission between the agent and the Tygron engine.
 The environment is built on the Tygron sdk, for communication with the engine, and the tygronenv\footnote{\url{https://github.com/eishub/tygron}} which is extended to provide additional functionality.
 The functionality of the environment is limited by the actions and data available in the sdk.
-We added some new functionality to the connector, like new percepts, lists of objects for use in goal, and custom actions.
+Changes to the connector extend the default implementations and add some of our own, like new percepts, lists of objects for use in GOAL, and custom actions.
 The changes to these percepts include adding more information to buildings and requests.
 The custom actions are designed to perform a complex action that would be (almost) impossible in goal and then add the result as a percept so that it's result can be used in GOAL.
 
@@ -17,5 +17,5 @@ Every cycle the agent will call the event module first which will update the sto
 It has one main module which decides what module should be called each cycle, based on its current goals.
 Sometimes a module is called that cannot do anything because there is no space to build a construction, it will then adopt a goal to make some space so that it can eventually do something in the module that could not do anything.
 The goal project runs mainly on SWI-Prolog\footnote{\url{http://www.swi-prolog.org/}} which is why it cannot easily handle complex arithmetic operations. 
-This is why we need to handle these in the environment as mentioned before.
+This is why these need to be handled in the environment as mentioned before.
 
